@@ -1,1 +1,2 @@
-# group_project
+# Group_Project
+# Group 7
