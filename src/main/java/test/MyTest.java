@@ -3,12 +3,10 @@ package test;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import model.Student;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;

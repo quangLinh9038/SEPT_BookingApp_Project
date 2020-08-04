@@ -18,20 +18,23 @@ public class EmployeeService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    //CREATE
+    // get all employees
     public List<Employee> getAllEmployees(){
         Query query = sessionFactory.getCurrentSession().createQuery("From Employee");
         return query.list();
     }
 
+    // add employee
     public void addEmployee(Employee employee){
         sessionFactory.getCurrentSession().save(employee);
     }
 
+    // update employee
     public void updateEmployee(Employee employee){
         sessionFactory.getCurrentSession().update(employee);
     }
 
+    // delete employee
     public void deleteEmployee(int id){
         Query query = sessionFactory.getCurrentSession().createQuery("From Employee where id = :id");
         query.setInteger("id", id);

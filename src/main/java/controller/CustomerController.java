@@ -3,10 +3,7 @@ package controller;
 
 import model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.CustomerService;
 
 import java.util.List;
@@ -38,7 +35,7 @@ public class CustomerController {
     }
 
     @RequestMapping(path = "customers/delete", method = RequestMethod.DELETE)
-    public void deleteCustomer(@RequestBody int id){
+    public void deleteCustomer(@RequestParam int id){
         customerService.deleteCustomer(id);
     }
 }

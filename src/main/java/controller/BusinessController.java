@@ -28,7 +28,7 @@ public class BusinessController {
         businessService.saveBusiness(business);
     }
 
-    @RequestMapping(path = "admin/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "business/{id}", method = RequestMethod.DELETE)
     public void deleteBusiness (@PathVariable int id){
         businessService.deleteBusiness(id);
     }

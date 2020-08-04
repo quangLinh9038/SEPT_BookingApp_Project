@@ -17,21 +17,24 @@ public class CustomerService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    //CREATE
+    // get all customer
     public List<Customer> getAllCustomers(){
         Query query = sessionFactory.getCurrentSession().createQuery("From Customer");
         return query.list();
     }
 
+    // add customer
     public void addCustomer(Customer customer){
         sessionFactory.getCurrentSession().save(customer);
 
     }
 
+    // update customer
     public void updateCustomer(Customer customer){
         sessionFactory.getCurrentSession().update(customer);
     }
 
+    // delete customer
     public void deleteCustomer(int id){
         Query query = sessionFactory.getCurrentSession().createQuery("From Customer where id = :id");
         query.setInteger("id", id);
