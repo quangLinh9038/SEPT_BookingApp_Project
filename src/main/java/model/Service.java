@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,8 +28,8 @@ public class Service {
     @Column
     private int price;
 
-    @OneToMany(mappedBy = "Service", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private AssignService assignService;
+    @OneToMany(mappedBy = "service", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<AssignService> assignService = new ArrayList<>();
 
     @ManyToOne
     @JsonIgnore
@@ -80,11 +81,11 @@ public class Service {
         this.price = price;
     }
 
-    public AssignService getAssignService() {
+    public List<AssignService> getAssignService() {
         return assignService;
     }
 
-    public void setAssignService(AssignService assignService) {
+    public void setAssignService(List<AssignService> assignService) {
         this.assignService = assignService;
     }
 
