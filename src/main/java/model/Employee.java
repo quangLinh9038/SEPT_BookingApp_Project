@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.awt.print.Book;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Employee")
@@ -27,11 +29,11 @@ public class Employee {
     @JsonIgnore
     private Admin admin;
 
-    @OneToMany(mappedBy = "Employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Booking booking;
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private AssignService assignService;
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<AssignService> assignServices = new ArrayList<>();
 
     public Employee() {
     }
@@ -76,20 +78,20 @@ public class Employee {
         this.admin = admin;
     }
 
-    public Booking getBooking() {
-        return booking;
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setBooking(Booking booking) {
-        this.booking = booking;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
-    public AssignService getAssignService() {
-        return assignService;
+    public List<AssignService> getAssignServices() {
+        return assignServices;
     }
 
-    public void setAssignService(AssignService assignService) {
-        this.assignService = assignService;
+    public void setAssignServices(List<AssignService> assignServices) {
+        this.assignServices = assignServices;
     }
 
     @Override
@@ -100,8 +102,8 @@ public class Employee {
                 ", schedule='" + schedule + '\'' +
                 ", business=" + business +
                 ", admin=" + admin +
-                ", booking=" + booking +
-                ", assignService=" + assignService +
+                ", bookings=" + bookings +
+                ", assignServices=" + assignServices +
                 '}';
     }
 }

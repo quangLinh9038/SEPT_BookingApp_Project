@@ -11,7 +11,6 @@ import java.util.Date;
 public class Booking {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -26,7 +25,19 @@ public class Booking {
 
     @ManyToOne
     @JsonIgnore
+    private Admin admin;
+
+    @ManyToOne
+    @JsonIgnore
     private Customer customer;
+
+    @OneToOne
+    @MapsId
+    private Service service;
+
+    @ManyToOne
+    @JsonIgnore
+    private Employee employee;
 
     public Booking() {
     }
@@ -72,6 +83,30 @@ public class Booking {
         this.customer = customer;
     }
 
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public Service getService() {
+        return service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -79,6 +114,7 @@ public class Booking {
                 ", date_created=" + date_created +
                 ", description='" + description + '\'' +
                 ", status=" + status +
+                ", admin=" + admin +
                 ", customer=" + customer +
                 '}';
     }

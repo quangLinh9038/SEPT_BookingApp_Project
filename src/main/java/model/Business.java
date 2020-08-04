@@ -2,6 +2,7 @@ package model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,11 +29,11 @@ public class Business {
     @MapsId
     private Admin admin;
 
-    @OneToMany(mappedBy = "Business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Service> services;
+    @OneToMany(mappedBy = "business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Service> services = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Employee> employees;
+    @OneToMany(mappedBy = "business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Employee> employees = new ArrayList<>();
 
     public Business() {
     }

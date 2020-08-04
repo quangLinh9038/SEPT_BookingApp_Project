@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -8,19 +9,20 @@ import java.util.List;
 public class Admin {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
     private String name;
 
-    @OneToMany
-    private List<Booking> bookings;
+    @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>();
 
     @OneToOne
-    @MapsId
     private Business business;
+
+    @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Employee> employees = new ArrayList<>();
 
     public Admin() {
     }
@@ -49,6 +51,22 @@ public class Admin {
         this.bookings = bookings;
     }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
+
     @Override
     public String toString() {
         return "Admin{" +
@@ -56,6 +74,7 @@ public class Admin {
                 ", name='" + name + '\'' +
                 ", bookings=" + bookings +
                 ", business=" + business +
+                ", employees=" + employees +
                 '}';
     }
 }

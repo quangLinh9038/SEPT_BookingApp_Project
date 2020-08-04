@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -8,7 +9,6 @@ import java.util.List;
 public class Customer {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -21,8 +21,8 @@ public class Customer {
     @Column
     private String contact;
 
-    @OneToMany(mappedBy = "Customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Booking> bookings;
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>();
 
     public Customer() {
     }
