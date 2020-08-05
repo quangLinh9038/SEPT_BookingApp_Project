@@ -30,9 +30,11 @@ public class Employee {
     private Admin admin;
 
     @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();
 
     @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<AssignService> assignServices = new ArrayList<>();
 
     public Employee() {

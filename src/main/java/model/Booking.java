@@ -15,7 +15,7 @@ public class Booking {
     private int id;
 
     @Column
-    private Date date_created;
+    private String date_created;
 
     @Column
     private String description;
@@ -24,19 +24,15 @@ public class Booking {
     private boolean status;
 
     @ManyToOne
-    @JsonIgnore
     private Admin admin;
 
     @ManyToOne
-    @JsonIgnore
     private Customer customer;
 
-    @OneToOne
-    @MapsId
+    @ManyToOne
     private Service service;
 
     @ManyToOne
-    @JsonIgnore
     private Employee employee;
 
     public Booking() {
@@ -51,11 +47,11 @@ public class Booking {
         this.id = id;
     }
 
-    public Date getDate_created() {
+    public String getDate_created() {
         return date_created;
     }
 
-    public void setDate_created(Date date_created) {
+    public void setDate_created(String date_created) {
         this.date_created = date_created;
     }
 
