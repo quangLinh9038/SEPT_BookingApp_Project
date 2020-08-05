@@ -1,6 +1,8 @@
 package model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,7 @@ public class Business {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(unique = true)
     private String name;
 
     @Column
@@ -32,9 +34,11 @@ public class Business {
     private Admin admin;
 
     @OneToMany(mappedBy = "business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Service> services = new ArrayList<>();
 
     @OneToMany(mappedBy = "business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Employee> employees = new ArrayList<>();
 
     public Business() {

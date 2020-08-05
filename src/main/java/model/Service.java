@@ -29,14 +29,15 @@ public class Service {
     private int price;
 
     @OneToMany(mappedBy = "service", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<AssignService> assignService = new ArrayList<>();
 
     @ManyToOne
-    @JsonIgnore
     private Business business;
 
-    @OneToOne
-    private Booking booking;
+    @OneToMany(mappedBy = "service",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Booking> bookings = new ArrayList<>();
 
     public Service() {
     }
@@ -97,12 +98,12 @@ public class Service {
         this.business = business;
     }
 
-    public Booking getBooking() {
-        return booking;
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setBooking(Booking booking) {
-        this.booking = booking;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     @Override
@@ -115,7 +116,7 @@ public class Service {
                 ", price=" + price +
                 ", assignService=" + assignService +
                 ", business=" + business +
-                ", booking=" + booking +
+                ", booking=" + bookings +
                 '}';
     }
 }

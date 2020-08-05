@@ -25,7 +25,8 @@ public class AdminController {
     }
 
     @RequestMapping(path = "admin", method =  RequestMethod.POST)
-    public void saveAdmin (@RequestBody Admin admin){
+    public void addAdmin (@RequestBody Admin admin){
+        System.out.println(admin);
         adminService.saveAdmin(admin);
     }
 

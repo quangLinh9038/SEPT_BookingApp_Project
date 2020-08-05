@@ -14,11 +14,9 @@ public class AssignService {
     private int id;
 
     @ManyToOne
-    @JsonIgnore
     private Employee employee;
 
     @ManyToOne
-    @JsonIgnore
     private Service service;
 
     public AssignService() {
