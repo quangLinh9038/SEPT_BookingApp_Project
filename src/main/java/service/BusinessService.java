@@ -1,5 +1,6 @@
 package service;
 
+import model.Admin;
 import model.Business;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -23,6 +24,13 @@ public class BusinessService {
 
     //save(add) business
     public void saveBusiness (Business business){
+//        if (business.getAdmin()!=null){
+//            int id = business.getAdmin().getId();
+//            Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id = :id");
+//            query.setInteger("id",id);
+//            Admin admin = (Admin) query.uniqueResult();
+//            admin.setBusiness(business);
+//        }
         sessionFactory.getCurrentSession().save(business);
     }
 
@@ -44,6 +52,11 @@ public class BusinessService {
         Query query = sessionFactory.getCurrentSession().createQuery("from Business where name like :name");
         query.setString("name", "%"+name+"%");
         return query.list();
+    }
+
+    //update busines
+    public void updateBusiness(Business business){
+        sessionFactory.getCurrentSession().update(business);
     }
 
     //delete business

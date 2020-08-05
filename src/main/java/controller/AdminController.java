@@ -29,6 +29,17 @@ public class AdminController {
         adminService.saveAdmin(admin);
     }
 
+    @RequestMapping(path = "admin/{name}", method = RequestMethod.GET)
+    public void findAdmin(@PathVariable String name) {
+        adminService.findAdmin(name);
+    }
+
+    //update path
+    @RequestMapping(path = "admin", method = RequestMethod.PUT)
+    public void updateAdmin(@RequestBody Admin admin){
+        adminService.updateAdmin(admin);
+    }
+
     @RequestMapping(path = "admin/{id}", method = RequestMethod.DELETE)
     public void deleteAdmin (@PathVariable int id){
         adminService.deleteAdmin(id);

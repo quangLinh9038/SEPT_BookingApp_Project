@@ -1,27 +1,35 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "Admin")
 public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @Column
     private String name;
 
     @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();
 
-    @OneToOne
+    //business mapping
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+//    @PrimaryKeyJoinColumn
     private Business business;
 
     @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Employee> employees = new ArrayList<>();
 
     public Admin() {

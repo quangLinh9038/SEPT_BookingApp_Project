@@ -50,6 +50,11 @@ public class AdminService {
         return query.list();
     }
 
+    //update admin
+    public void updateAdmin(Admin admin) {
+        sessionFactory.getCurrentSession().update(admin);
+    }
+
     //delete admin
     public void deleteAdmin(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id:id");

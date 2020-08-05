@@ -30,11 +30,11 @@ public class MyTest {
 	            stringBuilder.append(line);
 	        }
 	
-	        Gson gson = new Gson();
-	        String json = stringBuilder.toString();
-	        List<Student> students = gson.fromJson(json, new TypeToken<List<Student>>(){}.getType());
-	        //String s = stringBuilder.toString();
-	        Assert.assertEquals(students.get(0).getName(), "Thanh");
+//	        Gson gson = new Gson();
+//	        String json = stringBuilder.toString();
+//	        List<Student> students = gson.fromJson(json, new TypeToken<List<Student>>(){}.getType());
+//	        //String s = stringBuilder.toString();
+//	        Assert.assertEquals(students.get(0).getName(), "Thanh");
 	        
 	    } catch (MalformedURLException e) {
 	        e.printStackTrace();

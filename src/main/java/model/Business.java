@@ -25,8 +25,10 @@ public class Business {
     @Column
     private String schedule;
 
+    //admin mapping
     @OneToOne
-    @MapsId
+//    @MapsId
+    @PrimaryKeyJoinColumn
     private Admin admin;
 
     @OneToMany(mappedBy = "business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

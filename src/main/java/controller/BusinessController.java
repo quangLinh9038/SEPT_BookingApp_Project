@@ -28,6 +28,12 @@ public class BusinessController {
         businessService.saveBusiness(business);
     }
 
+    //update
+    @RequestMapping(path = "business", method = RequestMethod.PUT)
+    public void updateBusiness(@RequestBody Business business){
+        businessService.updateBusiness(business);
+    }
+
     @RequestMapping(path = "business/{id}", method = RequestMethod.DELETE)
     public void deleteBusiness (@PathVariable int id){
         businessService.deleteBusiness(id);
