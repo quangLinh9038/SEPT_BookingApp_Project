@@ -41,10 +41,10 @@ public class BusinessService {
             Admin admin = (Admin) query.uniqueResult();
             business.setAdmin(admin);
             admin.setBusiness(business);
-
         }
 
         if (business.getEmployees()!=null){
+
             for(Employee employee: business.getEmployees()){
                 int employee_id = employee.getId();
                 Query query = sessionFactory.getCurrentSession().createQuery("from Employee where id= :id");
@@ -89,7 +89,7 @@ public class BusinessService {
         return query.list();
     }
 
-    //update busines
+    //update business
     public void updateBusiness(Business business){
         sessionFactory.getCurrentSession().update(business);
     }
