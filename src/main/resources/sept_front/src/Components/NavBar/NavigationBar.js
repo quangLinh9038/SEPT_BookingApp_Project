@@ -53,5 +53,5 @@ export const NavigationBar = () => (
         </MDBNavLink>
       </MDBNavItem> */}
     </Navbar>
-  </Styles>
+  </Styles> 
 )

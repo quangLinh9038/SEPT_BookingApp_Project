@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const StyledSideNav = styled.div`
             position:fixed;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
-            height: 120%;
+            height: 100%;
             width: 75px;     /* Set the width of the sidebar */
             z-index: 1;      /* Stay on top of everything */
             top: 3.4em;      /* Stay at the top */
-            background-color: #ABB2B9; /* Black */
+            background-color: #B0ACAD; /* Grey */
             overflow-x: hidden;     /* Disable horizontal scroll */
             padding-top: 10px;
             `;
@@ -28,11 +28,17 @@ class SideNav extends React.Component {
               path: '/Employee/Owner',
               name: 'Owner',
               css: 'fas fa-user-tie',
-              key: 2
+              key: 2 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
             },
+            {
+              path: '/Customer/Profile',
+              name: 'Profile',
+              css: 'fa fa-fw fa-user',
+              key: 3
+            },      
           ]
         }
-        
+
         }  
         onItemClick = (path)=> {
             this.setState({active:path})
@@ -82,20 +88,23 @@ class NavItem extends React.Component{
         return(
             <StyledNavItem active={active}>
                 <Link to={this.props.path} className={this.props.css} onClick={this.handleClick}>
-                    <NavIcon></NavIcon>
+                    <NavIcon>
+
+                    </NavIcon>
                 </Link>
             </StyledNavItem>    
         );
     }
-    
+
 }
 const NavIcon = styled.div`
+    color: #000000
 `;
 export default class Sidebar extends React.Component {
     render() {
         return (
             <SideNav>
-                
+
             </SideNav>
         );
     }
