@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const StyledSideNav = styled.div`
             position:fixed;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
-            height: 120%;
+            height: 100%;
             width: 75px;     /* Set the width of the sidebar */
             z-index: 1;      /* Stay on top of everything */
             top: 3.4em;      /* Stay at the top */
-            background-color: #ABB2B9; /* Black */
+            background-color: #B0ACAD; /* Grey */
             overflow-x: hidden;     /* Disable horizontal scroll */
             padding-top: 10px;
             `;
@@ -19,20 +19,20 @@ class SideNav extends React.Component {
           activePath: '/',
           items: [
             {
-              path: '/home', /* path is used as id to check which NavItem is active basically */
+              path: '/', /* path is used as id to check which NavItem is active basically */
               name: 'Home',
-              css: 'fa fa-fw fa-home',
+              css: 'fa fa-fw fa-calendar',
               key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
             },
             {
-              path: '/service',
-              name: 'Service',
-              css: 'fa fa-fw fa-clock',
+              path: '/Customer/Profile',
+              name: 'Profile',
+              css: 'fa fa-fw fa-user',
               key: 2
-            },
+            },      
           ]
         }
-        
+
         }  
         onItemClick = (path)=> {
             this.setState({active:path})
@@ -65,7 +65,7 @@ const StyledNavItem = styled.div`
   margin-bottom: 0;   /* Puts space between NavItems */
   a {
     font-size: 2.7em;
-    color: ${(props) => props.active ? "white" : "#9FFFCB"};
+    color: ${(props) => props.active ? "#9FFFCB": "white"};
     :hover {
       opacity: 0.7;
       text-decoration: none; /* Gets rid of underlining of icons */
@@ -82,20 +82,23 @@ class NavItem extends React.Component{
         return(
             <StyledNavItem active={active}>
                 <Link to={this.props.path} className={this.props.css} onClick={this.handleClick}>
-                    <NavIcon></NavIcon>
+                    <NavIcon>
+
+                    </NavIcon>
                 </Link>
             </StyledNavItem>    
         );
     }
-    
+
 }
 const NavIcon = styled.div`
+    color: #000000
 `;
 export default class Sidebar extends React.Component {
     render() {
         return (
             <SideNav>
-                
+
             </SideNav>
         );
     }
