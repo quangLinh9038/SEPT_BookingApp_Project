@@ -19,15 +19,15 @@ class SideNav extends React.Component {
           activePath: '/',
           items: [
             {
-              path: '/home', /* path is used as id to check which NavItem is active basically */
+              path: '/', /* path is used as id to check which NavItem is active basically */
               name: 'Home',
-              css: 'fa fa-fw fa-home',
+              css: 'fa fa-home',
               key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
             },
             {
-              path: '/service',
-              name: 'Service',
-              css: 'fa fa-fw fa-clock',
+              path: '/Employee/Owner',
+              name: 'Owner',
+              css: 'fas fa-user-tie',
               key: 2
             },
           ]
@@ -65,7 +65,7 @@ const StyledNavItem = styled.div`
   margin-bottom: 0;   /* Puts space between NavItems */
   a {
     font-size: 2.7em;
-    color: ${(props) => props.active ? "white" : "#9FFFCB"};
+    color: ${(props) => props.active ? "#9FFFCB" : "#9FFFCB"};
     :hover {
       opacity: 0.7;
       text-decoration: none; /* Gets rid of underlining of icons */

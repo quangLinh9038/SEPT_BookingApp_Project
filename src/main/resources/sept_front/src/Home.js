@@ -10,8 +10,8 @@ const GridWrapper = styled.div`
   grid-auto-rows: minmax(25px, auto);
 `;
 export const Home = (props) => (
-  <GridWrapper>
+  
     <p>Booking Appointment</p>
     
-  </GridWrapper>
+  
 )
