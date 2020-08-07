@@ -20,7 +20,7 @@ public class MyTest {
     public void test1() throws IOException {
 
         try{
-	        URL url = new URL(TestConfig.URL+"business");
+	        URL url = new URL(TestConfig.URL+"booking");
 	        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 	        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
 	        String line = "";

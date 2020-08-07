@@ -16,10 +16,10 @@ public class Booking {
     private int id;
 
     @Column
-    private String date_created;
+    private String date_booked;
 
     @Column
-    private Time duration;
+    private Time time;
 
     @Column
     private boolean status;
@@ -53,11 +53,11 @@ public class Booking {
     }
 
     public String getDate_created() {
-        return date_created;
+        return date_booked;
     }
 
     public void setDate_created(String date_created) {
-        this.date_created = date_created;
+        this.date_booked = date_booked;
     }
 
     public String getNote() {
@@ -68,12 +68,12 @@ public class Booking {
         this.note = note;
     }
 
-    public Time getDuration() {
-        return duration;
+    public Time getTime() {
+        return time;
     }
 
-    public void setDuration(Time duration) {
-        this.duration = duration;
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public boolean isStatus() {
@@ -120,8 +120,8 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "id=" + id +
-                ", date_created=" + date_created +
-                ", duration='" + duration + '\'' +
+                ", date_created=" + date_booked +
+                ", time='" + time + '\'' +
                 ", status=" + status +
                 ", note='" + note + '\'' +
                 ", admin=" + admin +
