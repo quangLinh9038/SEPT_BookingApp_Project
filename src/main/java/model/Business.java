@@ -13,19 +13,21 @@ public class Business {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bu_id")
     private int id;
 
     @Column(unique = true)
     private String name;
 
     @Column
-    private String profile;
-
-    @Column
     private String contact;
 
     @Column
+    private String descriptions;
+
+    @Column
     private String schedule;
+
 
     //admin mapping
     @OneToOne
@@ -60,12 +62,12 @@ public class Business {
         this.name = name;
     }
 
-    public String getProfile() {
-        return profile;
+    public String getDescriptions() {
+        return descriptions;
     }
 
-    public void setProfile(String profile) {
-        this.profile = profile;
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions;
     }
 
     public String getContact() {
@@ -113,8 +115,8 @@ public class Business {
         return "Business{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", profile='" + profile + '\'' +
                 ", contact='" + contact + '\'' +
+                ", descriptions='" + descriptions + '\'' +
                 ", schedule='" + schedule + '\'' +
                 ", admin=" + admin +
                 ", services=" + services +

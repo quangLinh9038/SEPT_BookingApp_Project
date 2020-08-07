@@ -10,6 +10,7 @@ import service.ServiceService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/")
 public class ServiceController {
 

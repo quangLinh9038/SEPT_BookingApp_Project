@@ -9,6 +9,7 @@ import service.AdminService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/")
 public class AdminController {
 

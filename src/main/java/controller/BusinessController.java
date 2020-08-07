@@ -8,6 +8,8 @@ import service.BusinessService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
+
 @RequestMapping(path = "/")
 public class BusinessController {
 

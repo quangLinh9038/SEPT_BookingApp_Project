@@ -23,6 +23,9 @@ public class Customer {
     @Column
     private String contact;
 
+    @Column
+    private String email;
+
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();
@@ -62,6 +65,10 @@ public class Customer {
         this.contact = contact;
     }
 
+    public String getEmail() {return email;}
+
+    public void setEmail(String email) {this.email = email;}
+
     public List<Booking> getBookings() {
         return bookings;
     }
@@ -77,6 +84,7 @@ public class Customer {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", contact='" + contact + '\'' +
+                ", email='" + email + '\'' +
                 ", bookings=" + bookings +
                 '}';
     }
