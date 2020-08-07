@@ -10,6 +10,7 @@ import service.ServiceService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/")
 public class EmployeeController {
 
@@ -20,10 +21,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+
     @RequestMapping(path = "employees", method = RequestMethod.GET)
     public List<Employee> getAllServices(){
         return employeeService.getAllEmployees();
     }
+
 
     @RequestMapping(path = "employees", method = RequestMethod.POST)
     public void addService(@RequestBody Employee employee){
