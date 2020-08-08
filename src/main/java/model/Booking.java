@@ -27,6 +27,7 @@ public class Booking {
     @Column
     private String note;
 
+
     //MAPPING
     @ManyToOne
     private Admin admin;
@@ -52,11 +53,11 @@ public class Booking {
         this.id = id;
     }
 
-    public String getDate_created() {
+    public String getDate_booked() {
         return date_booked;
     }
 
-    public void setDate_created(String date_created) {
+    public void setDate_booked(String date_booked) {
         this.date_booked = date_booked;
     }
 

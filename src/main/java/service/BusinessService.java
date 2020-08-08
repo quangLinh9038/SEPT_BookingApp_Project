@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * Created by Quang Linh on 04 Aug 2020
+ * RUD functions for Business
+ */
 
 @Transactional
 @org.springframework.stereotype.Service
@@ -33,6 +37,9 @@ public class BusinessService {
 //            admin.setBusiness(business);
 //        }
 //        sessionFactory.getCurrentSession().save(business);
+
+        //adding Business's admin
+        //querying Admin's id stored in database
         if (business.getAdmin()!=null){
             int admin_id = business.getAdmin().getId();
             System.out.println((admin_id));
@@ -69,7 +76,7 @@ public class BusinessService {
     }
 
 
-    //get business
+    //get business by id
     public Business getBusiness (int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Business where id=:id");
         query.setInteger("id",id);

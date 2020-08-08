@@ -13,7 +13,9 @@ import java.util.List;
 
 /**
  * Created by Quang Linh on 04 Aug 2020
+ * AdminService: CRUD functions
  */
+
 @Transactional
 @Service
 public class AdminService {
@@ -25,9 +27,11 @@ public class AdminService {
         this.sessionFactory = sessionFactory;
     }
 
-    //save admin
+    // save admin
     public void saveAdmin(Admin admin) {
         System.out.println(admin.getBusiness());
+
+        // Admin and Business have one-to-one relationship
         if (admin.getBusiness()!=null){
             int business_id = admin.getBusiness().getId();
             System.out.println((business_id));
@@ -66,7 +70,7 @@ public class AdminService {
         sessionFactory.getCurrentSession().update(admin);
     }
 
-    //delete admin
+    //delete admin by id
     public void deleteAdmin(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id:id");
         query.setInteger("id",id);

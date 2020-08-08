@@ -9,7 +9,7 @@ import service.AdminService;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin //enable CORS
 @RequestMapping(path = "/")
 public class AdminController {
 
@@ -20,17 +20,20 @@ public class AdminController {
         this.adminService = adminService;
     }
 
+    //get list of admin
     @RequestMapping(path = "admin", method = RequestMethod.GET)
     public List<Admin> getAllAdmin(){
         return adminService.getAllAdmin();
     }
 
+    //add new admin path
     @RequestMapping(path = "admin", method =  RequestMethod.POST)
     public void addAdmin (@RequestBody Admin admin){
         System.out.println(admin);
         adminService.saveAdmin(admin);
     }
 
+    //get admin by name path
     @RequestMapping(path = "admin/{name}", method = RequestMethod.GET)
     public void findAdmin(@PathVariable String name) {
         adminService.findAdmin(name);
@@ -42,6 +45,7 @@ public class AdminController {
         adminService.updateAdmin(admin);
     }
 
+    //delete admin path
     @RequestMapping(path = "admin/{id}", method = RequestMethod.DELETE)
     public void deleteAdmin (@PathVariable int id){
         adminService.deleteAdmin(id);

@@ -12,10 +12,11 @@ import java.util.List;
 public class Business {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //generate id incrementally
     @Column(name = "bu_id")
     private int id;
 
+    // generate unique name in Business table
     @Column(unique = true)
     private String name;
 
@@ -28,17 +29,20 @@ public class Business {
     @Column
     private String schedule;
 
-
+    //MAPPING
     //admin mapping
     @OneToOne
 //    @MapsId
     @PrimaryKeyJoinColumn
     private Admin admin;
 
+    //one-to-many relationship with service table
+    // 1 business may have more than 1 service
     @OneToMany(mappedBy = "business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Service> services = new ArrayList<>();
 
+    // 1 business have more than employee
     @OneToMany(mappedBy = "business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Employee> employees = new ArrayList<>();

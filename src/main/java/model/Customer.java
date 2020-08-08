@@ -26,6 +26,7 @@ public class Customer {
     @Column
     private String email;
 
+    // 1 Customer can create many Bookings
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();

@@ -25,10 +25,12 @@ public class Employee {
     @JsonIgnore
     private Business business;
 
+    //an employee can be an admin in the system
     @ManyToOne
     @JsonIgnore
     private Admin admin;
 
+    //1 employee can be assigned for many bookings
     @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();

@@ -15,12 +15,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+/**
+ * Created by Lam Doan on 07 Aug 2020
+ * Testing class
+ * Unit test URL
+ */
+
 public class URLTest {
     private HttpURLConnection httpURLConnection;
     private BufferedReader bufferedReader;
     private StringBuilder stringBuilder;
 
-
+    // Admin URL
     @Test
     public void adminURLTest(){
 
@@ -48,6 +54,7 @@ public class URLTest {
         }
     }
 
+    // Employee's URL
     @Test
     public void  EmployeeURLTest(){
         try {
@@ -67,7 +74,7 @@ public class URLTest {
         }
     }
 
-
+    //CustomerURL
     @Test
     public void  CustomerURLTest(){
         try {
@@ -87,6 +94,7 @@ public class URLTest {
         }
     }
 
+    //Service URL
     @Test
     public void  ServiceURLTest(){
         try {
@@ -106,6 +114,7 @@ public class URLTest {
         }
     }
 
+    //Booking URL
     @Test
     public void  BookingURLTest(){
         try {
