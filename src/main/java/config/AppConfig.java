@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import service.StudentService;
 
-import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
@@ -31,7 +29,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("/WEB-INF/classes/static/");
     }
 
-
     @Bean
     public LocalSessionFactoryBean sessionFactory(){
 
@@ -41,17 +38,18 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         //For mysql
         //properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.put("hibernate.show_sql", true);
-        properties.put("hibernate.hbm2ddl.auto", "update");
+        properties.put("hibernate.hbm2ddl.auto", "create-drop");
+
+
 
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
 
         sessionFactoryBean.setPackagesToScan("model");
-
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/minh");
-        dataSource.setUsername("minh");
-        dataSource.setPassword("rmit");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/group7");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("conmeobeo3007");
 
         sessionFactoryBean.setDataSource(dataSource);
         sessionFactoryBean.setHibernateProperties(properties);
