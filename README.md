@@ -1,9 +1,68 @@
-# COSC2101: SEPT
-# Group Project
-# Online Booking Application v1.0
-# Group 7: 
-  Nguyen Quang Linh
-  Nguyen Thanh Dat
-  Doan Son Lam
-  Mai Viet Cuong
+
+##Appointment Booking System
+================
+This project is built based on instructions from Software Engineering: Process & Tools course in order to develop a online appointment booking can be used for multiple businesses. It contains a fullstack web application with appropriate technologies, processes and tools. 
+
+## Features 
+The system can be flexible for diverse businesses such as dentist, hair spa, etc.
+* Booking a time slot for an appointment 
+* Input personal details as contact, address, email
+* Display bookings with relevent details
+* Able to retrive stored information
+* Tracking booking'status
+
+## Tools 
+- Back-end: 
+  - Spring MVC 4
+  - Hibernate 4.3.6.Final
+  - PostgresSQL 9.4.1211
+- Front-end: 
+  - HTML
+  - CSS
+  - ReactJS
+ - Build tools: 
+  - Maven version 3.6.3
+ - Unit test: 
+  - Junit 4 or 5
+## Installation
+The project run on local server; therefore it is neccessary to follow some steps to install the system on local server:
+- You need to have PostgresSQL, Maven, Java, npm installed 
+- Create a new Postgres database 
+- Rename jdbc on "App.config" with your new database and change username and passowrd
+- For back-end: 
+  - Run the project with Maven build in terminal:
+  ```
+  mvn clean install
+  ```
+ - Start jetty server: 
+   ```
+   mvn jetty:run
+   ```
+ - Front-end: 
+   - cd resource/sept-front
+   ```
+   mvn jetty:run
+   ```
+
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request 
+
+## History
+
+This is the first release of the system. Any update will be notice!!!
+
+## Credits
+
+- Group 7: 
+  - Nguyen Quang Linh
+  - Nguyen Thanh Dat
+  - Doan Son Lam
+  - Mai Viet Cuong
+
+
 
