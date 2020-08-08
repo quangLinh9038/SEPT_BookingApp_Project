@@ -12,7 +12,7 @@ export default class ViewEmployeeList extends React.Component {
         super()
         this.state = {
             lists: [],
-            input: '', name: '',id:''
+            input: '', name: '',id:'',schedule:''
         }
     }
 
@@ -75,74 +75,18 @@ export default class ViewEmployeeList extends React.Component {
                     <thead className='thead-dark'>
                         <tr>
                             <th>#</th>
-                            <th>ID</th>
                             <th>NAME</th>
-                            <th>AGE</th>
-                            <th>GENDER</th>
-                            <th>BUSINESS</th>
-                            <th>POSITION</th>
-                            <th>PHONE</th>
-                            <th>EMAIL</th>
+                            <th>SCHEDULE</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         
+                        
                         <tr>
-                            <th>1</th>
-                            <td>s3682365</td>
-                            <td>Mai Viet Cuong</td>
-                            <td>22</td>
-                            <td>Male</td>
-                            <td>Coffee</td>
-                            <td>Manager</td>
-                            <td>03xxxxxx</td>
-                            <td>example@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <th>2</th>
-                            <td>s3682365</td>
-                            <td>VCV</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>Manager</td>
-                            <td>Coffee</td>
-                            <td>03xxxxxx</td>
-                            <td>example@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <th>3</th>
-                            <td>s3682365</td>
-                            <td>VCV</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>Manager</td>
-                            <td>Coffee</td>
-                            <td>03xxxxxx</td>
-                            <td>example@gmail.com</td>
-                        </tr>
-
-
-                        <tr>
-                            <th>4</th>
-                            <td>s3682365</td>
-                            <td>VCV</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>Manager</td>
-                            <td>Coffee</td>
-                            <td>03xxxxxx</td>
-                            <td>example@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            
-                                <Link to={`/BusinessOwner/EmployeeMana`}>
-                                    <i style={{ color: 'red' }} className='fa fa-fw fa-plus' />
-                                </Link>
-                            
+                            <Link to={`/BusinessOwner/EmployeeMana`}>
+                                <i style={{ color: 'red' }} className='fa fa-fw fa-plus' />
+                            </Link>
                         </tr>
 
 

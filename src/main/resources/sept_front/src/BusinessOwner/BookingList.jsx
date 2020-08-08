@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import BookService from '../Components/Booking/BookService';
 
 const StyledGrid = styled.div`
 display: grid;
@@ -10,14 +11,8 @@ export default class ViewBookingList extends React.Component{
     render(){
         return(
             <StyledGrid>
-                <span>Name:MVC, id:s3682365</span>
-                <span>Name:NDI, id:s321341</span>
-                <span>Name:ALQ, id:s5433457</span>
-                <span>Name:DDQ, id:s5435432214</span>
-
-            </StyledGrid>
-
-            
+                <BookService/>
+            </StyledGrid>          
         )
     }
 }

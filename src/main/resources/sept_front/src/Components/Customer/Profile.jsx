@@ -1,61 +1,66 @@
 import React from 'react';
+import BookService from '../Booking/BookService';
+const lru = 'https://5f2d05928085690016922b96.mockapi.io/customer'
 export default class Profile extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            listCustomers: [],
+            input: '', cus_name: '', cus_ID: '', cus_address:'',cus_contact:'',cus_email:'',cus_password:''
+        }
+    }
+
+    // fetch Customer api to front-end
+    fetchCustomers() {
+        fetch(lru)
+            .then(res => res.json())
+            .then(json => this.setState({ listCustomers: json }))
+    }
+
+    componentDidMount() {    
+        this.fetchCustomers()  
+    }
+
     render() {
         return (
-            // <div class='container'>
                 <div className='row'>
                     <div className='col-4'>
-                        <div className='user-card' style={{ width: '350px' }} >
+                        <div className='user-card' style={{ width: '18rem' }} >
                             <div class="card" >
-                                <img style={{ width: '300px', paddingLeft:'40px'}} class="card-img-top" src="https://cdn4.iconfinder.com/data/icons/user-avatar-flat-icons/512/User_Avatar-36-512.png" alt="Card image" />
-                                <div class="card-body">
-                                    <h4 class="card-title">Nguyen Thanh Dat</h4>
-                                    <p class="card-text"><b>Customer ID:</b> 3697822</p>
-                                    <p class="card-text"><b>Phone:</b> 0389989797</p>
-                                    <p class="card-text"><b>Adress:</b> District 7, HCMC</p>
-                                    
-
-                                    <a href="#" class="btn btn-primary">Edit Profile</a>
-                                </div>
+                                <img  class="card-img-top" src="https://cdn4.iconfinder.com/data/icons/user-avatar-flat-icons/512/User_Avatar-36-512.png" alt="Card image" />
                             </div>
                         </div>
                     </div>
+
+                    {/* View list of customers function as a table */}
                     <div className='col-8'>
-                        <div class='user-list-table' style={{width:'900px'}} >
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Business</th>
-                                        <th scope="col">Service</th>
-                                        <th scope="col">Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Dental Clinic</td>
-                                        <td>Whitening</td>
-                                        <td>21/7/2020</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <table className='table table-hover text-center'>
+                    <thead className='thead-dark'>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    {this.state.listCustomers.map(p =>
+                        <tbody>
+                            <tr>
+                                <td>{p.cus_ID}</td>
+                                <td>{p.cus_name}</td>
+                                <td>{p.cus_address}</td>
+                                <td>{p.cus_contact}</td>
+                                <td>{p.cus_email}</td>
+                                <td>{p.cus_password}</td>
+                            </tr>
+                        </tbody>
+                    )}
+                </table>
                     </div>
                 </div>
-            // </div>
+           
         )
     }
 }
