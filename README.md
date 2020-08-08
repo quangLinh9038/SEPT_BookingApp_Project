@@ -2,7 +2,7 @@
 ##Appointment Booking System
 ================
 This project is built based on instructions from Software Engineering: Process & Tools course in order to develop a online appointment booking can be used for multiple businesses. It contains a fullstack web application with appropriate technologies, processes and tools. 
-
+<img src="https://xbsoftware.com/wp-content/uploads/2019/12/online-appointment-scheduling-system-for-salons-main-update.png">
 ## Features 
 The system can be flexible for diverse businesses such as dentist, hair spa, etc.
 * Booking a time slot for an appointment 
