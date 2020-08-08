@@ -15,7 +15,7 @@ public class Admin {
     @Column(name = "admin_id")
     private int id;
 
-    @Column(name = "admin_name")
+    @Column(name = "admin_name", unique = true)
     private String name;
 
     @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
