@@ -5,13 +5,13 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNav
 import { BrowserRouter as Router } from 'react-router-dom';
 import styled from 'styled-components';
 const Styles = styled.div`
-  .navbar { background-color: #424949; }
+  .navbar { background-color: #424949; position: sticky }
   a, .navbar-nav, .navbar-light .nav-link {
     color: #424949;
     &:hover { color: white; }
   }
   .navbar-brand {
-    font-size: 1.2em;
+    font-size: 1em;
     color: #9FFFCB;
     &:hover { color: white; }
   }
@@ -36,6 +36,9 @@ export const NavigationBar = () => (
         <i style={{paddingRight:'10px'}} className='fa fa-twitter'/>
         <i  className='fa fa-instagram'/>
       </NavItem>
+
+
+
       {/* <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto" >
           <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
@@ -52,6 +55,10 @@ export const NavigationBar = () => (
           <MDBIcon fab icon="google-plus-g" />
         </MDBNavLink>
       </MDBNavItem> */}
+
+
+
+      
     </Navbar>
   </Styles> 
 )

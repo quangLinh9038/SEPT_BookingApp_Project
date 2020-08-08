@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const StyledSideNav = styled.div`
             position:fixed;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
             height: 100%;
-            width: 75px;     /* Set the width of the sidebar */
+            width: 50px;     /* Set the width of the sidebar */
             z-index: 1;      /* Stay on top of everything */
             top: 3.4em;      /* Stay at the top */
-            background-color: #B0ACAD; /* Grey */
+            background-color: #78797D; /* Grey */
             overflow-x: hidden;     /* Disable horizontal scroll */
             padding-top: 10px;
             `;
@@ -33,7 +33,7 @@ class SideNav extends React.Component {
             {
               path: '/Customer/Profile',
               name: 'Profile',
-              css: 'fa fa-fw fa-user',
+              css: 'fa fa-user-circle-o',
               key: 3
             },      
           ]
@@ -66,11 +66,11 @@ class SideNav extends React.Component {
 }
 const StyledNavItem = styled.div`
   height: 70px;
-  width: 75px; /* width must be same size as NavBar to center */
+  width: 50px; /* width must be same size as NavBar to center */
   text-align: center; /* Aligns <a> inside of NavIcon div */
-  margin-bottom: 0;   /* Puts space between NavItems */
+  margin-bottom:0;   /* Puts space between NavItems */
   a {
-    font-size: 2.7em;
+    font-size: 1.7em;
     color: ${(props) => props.active ? "#9FFFCB" : "#9FFFCB"};
     :hover {
       opacity: 0.7;
