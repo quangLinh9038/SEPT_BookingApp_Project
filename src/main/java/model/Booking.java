@@ -4,6 +4,7 @@ package model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
@@ -15,14 +16,18 @@ public class Booking {
     private int id;
 
     @Column
-    private String date_created;
+    private String date_booked;
 
     @Column
-    private String description;
+    private Time time;
 
     @Column
     private boolean status;
 
+    @Column
+    private String note;
+
+    //MAPPING
     @ManyToOne
     private Admin admin;
 
@@ -48,19 +53,27 @@ public class Booking {
     }
 
     public String getDate_created() {
-        return date_created;
+        return date_booked;
     }
 
     public void setDate_created(String date_created) {
-        this.date_created = date_created;
+        this.date_booked = date_booked;
     }
 
-    public String getDescription() {
-        return description;
+    public String getNote() {
+        return note;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public boolean isStatus() {
@@ -107,9 +120,10 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "id=" + id +
-                ", date_created=" + date_created +
-                ", description='" + description + '\'' +
+                ", date_created=" + date_booked +
+                ", time='" + time + '\'' +
                 ", status=" + status +
+                ", note='" + note + '\'' +
                 ", admin=" + admin +
                 ", customer=" + customer +
                 '}';

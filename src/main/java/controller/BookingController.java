@@ -11,6 +11,7 @@ import service.CustomerService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/")
 public class BookingController {
 

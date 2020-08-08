@@ -3,6 +3,7 @@ package test;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import model.Admin;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,7 +21,7 @@ public class MyTest {
     public void test1() throws IOException {
 
         try{
-	        URL url = new URL(TestConfig.URL+"business");
+	        URL url = new URL(TestConfig.URL+"admin");
 	        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 	        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
 	        String line = "";
@@ -32,9 +33,9 @@ public class MyTest {
 	
 //	        Gson gson = new Gson();
 //	        String json = stringBuilder.toString();
-//	        List<Student> students = gson.fromJson(json, new TypeToken<List<Student>>(){}.getType());
-//	        //String s = stringBuilder.toString();
-//	        Assert.assertEquals(students.get(0).getName(), "Thanh");
+//	        List<Admin> admins = gson.fromJson(json, new TypeToken<List<Admin>>(){}.getType());
+////	        String s = stringBuilder.toString();
+//	        Assert.assertEquals(admins.get(0).getName(), "Thanh");
 	        
 	    } catch (MalformedURLException e) {
 	        e.printStackTrace();

@@ -14,7 +14,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(unique = true)
     private String name;
 
     @Column
@@ -22,6 +22,9 @@ public class Customer {
 
     @Column
     private String contact;
+
+    @Column
+    private String email;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
@@ -62,6 +65,10 @@ public class Customer {
         this.contact = contact;
     }
 
+    public String getEmail() {return email;}
+
+    public void setEmail(String email) {this.email = email;}
+
     public List<Booking> getBookings() {
         return bookings;
     }
@@ -77,6 +84,7 @@ public class Customer {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", contact='" + contact + '\'' +
+                ", email='" + email + '\'' +
                 ", bookings=" + bookings +
                 '}';
     }
