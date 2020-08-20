@@ -7,13 +7,13 @@ display:;
 margin-bottom:20px;
 margin-left:20px;
 `
-const url = 'https://5f2d05928085690016922b96.mockapi.io/Employee'
+const url = 'http://localhost:8080/employees'
 export default class ViewEmployeeList2 extends React.Component {
     constructor() {
         super()
         this.state = {
-            lists: [],
-            e_ID: '', e_name: '', e_schedule: '', input: ''
+            listsEmployees: [],
+            id: '', name: '', schedule: '', input: '', admin_admin_id: '', business_bu_id: ''
         }
     }
 
@@ -21,7 +21,7 @@ export default class ViewEmployeeList2 extends React.Component {
     fetchListEmployee() {
         fetch(url)
             .then(res => res.json())
-            .then(json => this.setState({ lists: json }))
+            .then(json => this.setState({ listsEmployees: json }))
     }
 
     componentDidMount() {
@@ -37,7 +37,7 @@ export default class ViewEmployeeList2 extends React.Component {
     // Function add employee
     handleAddEmployee() {
         let emp = {
-            e_ID: this.state.e_ID, e_name: this.state.e_name, e_schedule: this.state.e_schedule
+            id: this.state.id, name: this.state.name, schedule: this.state.schedule
         }
         fetch(url, {
             headers: {
@@ -52,12 +52,12 @@ export default class ViewEmployeeList2 extends React.Component {
 
     // Function edit employee
     handleEditEmployee(id, name, schedule) {
-        this.setState({ e_ID: id, e_name: name, e_schedule: schedule })
+        this.setState({ id: id, name: name, schedule: schedule })
     }
 
     // Function clear employee
     handleClearEmployee() {
-        this.setState({ e_ID: '', e_name: '', e_schedule: '' })
+        this.setState({ ID: '', name: '', schedule: '' })
     }
 
     // handleDeleteEmployeeById(id){
@@ -74,8 +74,8 @@ export default class ViewEmployeeList2 extends React.Component {
         fetch(url)
             .then(res => res.json())
             .then(json => {
-                let data = json.filter((d, i) => d.e_name == this.state.input)
-                this.setState({ lists: data })
+                let data = json.filter((d, i) => d.name == this.state.input)
+                this.setState({ listsEmployees: data })
             })
     }
 
@@ -120,12 +120,12 @@ export default class ViewEmployeeList2 extends React.Component {
                             <th>SCHEDULE</th>
                         </tr>
                     </thead>
-                    {this.state.lists.map(p =>
+                    {this.state.listsEmployees.map(p =>
                         <tbody>
                             <tr>
-                                <td>{p.e_ID}</td>
-                                <td>{p.e_name}</td>
-                                <td>{p.e_schedule}</td>
+                                <td>{p.id}</td>
+                                <td>{p.name}</td>
+                                <td>{p.schedule}</td>
                             </tr>
                         </tbody>
                     )}
@@ -148,7 +148,7 @@ export default class ViewEmployeeList2 extends React.Component {
                                         <Form.Group as={Col} md='6' controlId='formGridName'>
                                             <Form.Label>Name:</Form.Label>
                                             <Form.Control type='text' placeholder='Enter name'
-                                                name='e_name' value={this.state.e_name}
+                                                name='name' value={this.state.name}
                                                 onChange={this.handleChange.bind(this)}
                                             />
                                         </Form.Group>
@@ -156,7 +156,7 @@ export default class ViewEmployeeList2 extends React.Component {
                                         <Form.Group as={Col} md='6' controlId='formGridSchedule'>
                                             <Form.Label>Schedule:</Form.Label>
                                             <Form.Control type='text' placeholder='Enter schedule'
-                                                name='e_schedule' value={this.state.e_schedule}
+                                                name='schedule' value={this.state.schedule}
                                                 onChange={this.handleChange.bind(this)}
                                             />
                                         </Form.Group>

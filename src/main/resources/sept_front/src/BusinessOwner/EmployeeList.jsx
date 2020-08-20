@@ -12,7 +12,7 @@ export default class ViewEmployeeList extends React.Component {
         super()
         this.state = {
             lists: [],
-            input: '', name: '',id:'',schedule:''
+            input: '', name: '', id: '', schedule: ''
         }
     }
 
@@ -81,15 +81,11 @@ export default class ViewEmployeeList extends React.Component {
                     </thead>
 
                     <tbody>
-                        
-                        
                         <tr>
                             <Link to={`/BusinessOwner/EmployeeMana`}>
                                 <i style={{ color: 'red' }} className='fa fa-fw fa-plus' />
                             </Link>
                         </tr>
-
-
                     </tbody>
                 </table>
 

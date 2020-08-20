@@ -1,11 +1,13 @@
 import React from 'react';
 import { Nav, Navbar, Form, FormControl, NavItem } from 'react-bootstrap';
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-  MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
+import {
+  MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
+  MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon
+} from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
 import styled from 'styled-components';
 const Styles = styled.div`
-  .navbar { background-color: #424949; position: sticky }
+  .navbar { background-color: #424949; position: relative  }
   a, .navbar-nav, .navbar-light .nav-link {
     color: #424949;
     &:hover { color: white; }
@@ -28,13 +30,13 @@ const Styles = styled.div`
 `;
 export const NavigationBar = () => (
   <Styles>
-    <Navbar expand="sm" style={{paddingBottom:'4.5px'}}>
+    <Navbar expand="sm" style={{ paddingBottom: '4.5px' }}>
       <Navbar.Brand href="/"><b>Bookin'</b></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <NavItem>
-        <i style={{paddingRight:'15px'}} className='fa fa-facebook'/>
-        <i style={{paddingRight:'10px'}} className='fa fa-twitter'/>
-        <i  className='fa fa-instagram'/>
+        <i style={{ paddingRight: '15px' }} className='fa fa-facebook' />
+        <i style={{ paddingRight: '10px' }} className='fa fa-twitter' />
+        <i className='fa fa-instagram' />
       </NavItem>
 
 
@@ -58,7 +60,7 @@ export const NavigationBar = () => (
 
 
 
-      
+
     </Navbar>
-  </Styles> 
+  </Styles>
 )

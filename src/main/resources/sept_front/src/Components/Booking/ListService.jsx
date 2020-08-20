@@ -8,59 +8,68 @@ margin-bottom:20px;
 margin-left:20px;
 `
 
-const URL = 'https://5f2d05928085690016922b96.mockapi.io/Services'
-const url = 'https://5f2d05928085690016922b96.mockapi.io/Employee'
-const lru = 'https://5f2d05928085690016922b96.mockapi.io/customer'
-const LRU = 'https://5f2d05928085690016922b96.mockapi.io/Booking'
+const urlServices = 'http://localhost:8080/services'
+const urlEmployees = 'http://localhost:8080/employees'
+const urlCustomers = 'http://localhost:8080/customers'
+const urlBooking = 'http://localhost:8080/booking'
 export default class ListService extends React.Component {
     constructor() {
         super()
         this.state = {
-            listServices: [],
-            listEmployees: [],
-            listCustomers: [],
             listBooking: [],
-            ser_ID: '', ser_name: '', ser_duration: '', ser_descriptions: '', ser_price: '', input: '', e_name: '', cus_name: '', cus_ID: '',
-            e_ID: '', e_schedule: '',
 
-            bookingEmployee: {
-                name: ''
-            },
-            bookingService: {
-                name: ''
-            },
-            bookingCustomer: {
-                name: ''
-            },
+            listServices: [],
 
-            descriptions: ''
+            listEmployees: [
+                {
+                    name: ''
+                }
+            ],
+
+            listCustomers: [
+                {
+                    name: ''
+                }
+            ],
+
+            id: '', name: '', description: '', duration: '', price: '', business_bu_id: '', note: '', e_name: '', cus_name: '',
+
+            employee: {
+                name: ''
+            },
+            service: {
+                name: ''
+            },
+            customer: {
+                name: ''
+            },
         }
     }
 
     // fetch list of services
     fetchListServices() {
-        fetch(URL)
+        fetch(urlServices)
             .then(res => res.json())
             .then(json => this.setState({ listServices: json }))
     }
 
     // fetch list of employees
     fetchListEmployees() {
-        fetch(url)
+        fetch(urlEmployees)
             .then(res => res.json())
             .then(json => this.setState({ listEmployees: json }))
     }
 
     // fetch list of customers
     fetchCustomers() {
-        fetch(lru)
+        fetch(urlCustomers)
             .then(res => res.json())
             .then(json => this.setState({ listCustomers: json }))
     }
 
     // fetch list of booking appointment
     fetchBooking() {
-        fetch(LRU)
+        fetch(urlBooking)
             .then(res => res.json())
             .then(json => this.setState({ listBooking: json }))
     }
@@ -69,6 +78,7 @@ export default class ListService extends React.Component {
         this.fetchListServices()
         this.fetchListEmployees()
         this.fetchCustomers()
+        this.fetchBooking()
     }
 
     // Take change function
@@ -80,7 +90,7 @@ export default class ListService extends React.Component {
 
     // search function
     search() {
-        fetch(URL)
+        fetch(urlServices)
             .then(res => res.json())
             .then(json => {
                 let data = json.filter((d, i) => d.ser_name == this.state.input)
@@ -88,21 +98,36 @@ export default class ListService extends React.Component {
             })
     }
 
+    handleAddService() {
+        let emp = {
+            name: this.state.name
+        }
+        fetch(urlServices, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'post',
+            body: JSON.stringify(emp)
+        })
+            .then(res => this.fetchListServices())
+    }
+
     // Function add to booking appointment back-end
     handleAddToAppointment() {
         let emp = {
-            bookingCustomer: {
-                name: this.state.cus_name
-            },
-            bookingEmployee: {
+            employee: {
                 name: this.state.e_name
             },
-            bookingService: {
-                name: this.state.ser_name
+            service: {
+                name: this.state.name
             },
-            descriptions: this.state.ser_descriptions
+            customer: {
+                name: this.state.cus_name
+            },
+            note: this.state.description
         }
-        fetch(LRU, {
+        fetch(urlBooking, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -137,7 +162,7 @@ export default class ListService extends React.Component {
                             </form>
                         </li>
 
-                        {/* Button to book appointment */}
+                        {/* Button to book an appointment */}
                         <button type='button' className='btn btn-success' data-toggle='modal' data-target='#formBooking' >
                             <i className='fa fa-address-book' style={{ paddingRight: '10px' }} />
                             Book
@@ -168,11 +193,11 @@ export default class ListService extends React.Component {
                     {this.state.listServices.map(p =>
                         <tbody>
                             <tr>
-                                <td>{p.ser_ID}</td>
-                                <td>{p.ser_name}</td>
-                                <td>{p.ser_duration}</td>
-                                <td>{p.ser_descriptions}</td>
-                                <td>{p.ser_price}</td>
+                                <td>{p.id}</td>
+                                <td>{p.name}</td>
+                                <td>{p.duration}</td>
+                                <td>{p.description}</td>
+                                <td>{p.price}</td>
                             </tr>
                         </tbody>
                     )}
@@ -191,6 +216,7 @@ export default class ListService extends React.Component {
                             <div class='modal-body'>
                                 <Form>
                                     <Form.Row>
+                                        {/* Input field for customer */}
                                         <Form.Group as={Col} md='12' controlId='formGridName'>
                                             <Form.Label>Customer name:</Form.Label>
                                             <Form.Control type='text' placeholder='Enter your name'
@@ -198,49 +224,50 @@ export default class ListService extends React.Component {
                                                 onChange={this.handleChange.bind(this)}
                                             />
                                         </Form.Group>
-
+                                        {/* Select field for services */}
                                         <Form.Group as={Col} md='6' controlId='formGridServices'>
-                                            <Form.Label>Select service</Form.Label>
+                                            <Form.Label>Select services</Form.Label>
                                             <select class='browser-default custom-select'
-                                                name="ser_name" value={this.state.ser_name} id="ser_name"
+                                                name="name" value={this.state.name} id="name"
                                                 onChange={this.handleChange.bind(this)}
                                             >
                                                 <option selected>Choose your options</option>
                                                 {this.state.listServices.map(p =>
-                                                    <option value={p.ser_name}>{p.ser_name}</option>
+                                                    <option value={p.name}>{p.name}</option>
                                                 )}
                                             </select>
                                         </Form.Group>
-
+                                        {/* Select field for employees */}
                                         <Form.Group as={Col} md='6' controlId='formGridEmployees'>
-                                            <Form.Label>Select employee</Form.Label>
+                                            <Form.Label>Select employees</Form.Label>
                                             <select class='browser-default custom-select'
                                                 name="e_name" value={this.state.e_name} id="e_name"
                                                 onChange={this.handleChange.bind(this)}
                                             >
                                                 <option selected>Choose your options</option>
                                                 {this.state.listEmployees.map(p =>
-                                                    <option value={p.e_name}>{p.e_name}</option>
+                                                    <option value={p.name}>{p.name}</option>
                                                 )}
                                             </select>
                                         </Form.Group>
-
+                                        {/* Input area for description, note */}
                                         <Form.Group as={Col} controlId='formGridDescription'>
                                             <Form.Label>Notes:</Form.Label>
                                             <Form.Control as='textarea' rows="4"
-                                                name='ser_descriptions' value={this.state.ser_descriptions}
+                                                name='description' value={this.state.description}
                                                 onChange={this.handleChange.bind(this)}
                                             />
                                         </Form.Group>
                                     </Form.Row>
                                 </Form>
-                                
+
                                 {/* Button add to booking appointment back-end */}
                                 <div class='text-right'>
                                     <button type='button' className='btn btn-success btn-md' onClick={this.handleAddToAppointment.bind(this)}>
                                         Add
                                     </button>
                                     <span> </span>
+
                                     {/* <button type='button' className='btn btn-success btn-md' onClick={this.handleClear.bind(this)}>Clear</button> */}
                                 </div>
 
@@ -277,6 +304,20 @@ export default class ListService extends React.Component {
                     </div>
                 </div>
 
+                {/* <Form>
+                    <Form.Row>
+                        <Form.Group as={Col} md='12' controlId='formGridservice'>
+                            <Form.Label>services name:</Form.Label>
+                            <Form.Control type='text' placeholder='Enter your name'
+                                name='name' value={this.state.name}
+                                onChange={this.handleChange.bind(this)}
+                            />
+                        </Form.Group>
+                    </Form.Row>
+                </Form>
+                <button type='button' className='btn btn-success btn-md' onClick={this.handleAddService.bind(this)}>
+                    Add
+                </button> */}
 
             </div>
 
