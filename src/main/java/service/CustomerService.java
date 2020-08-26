@@ -1,6 +1,7 @@
 package service;
 
 
+
 import model.Customer;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
+
 public class CustomerService {
 
     @Autowired
@@ -25,8 +27,10 @@ public class CustomerService {
 
     // add customer
     public void addCustomer(Customer customer){
-        sessionFactory.getCurrentSession().save(customer);
-
+        if (customer.getRole() == null) {
+            customer.setRole("CUSTOMER");
+        }
+        sessionFactory.getCurrentSession().saveOrUpdate(customer);
     }
 
     // update customer
@@ -42,5 +46,18 @@ public class CustomerService {
         sessionFactory.getCurrentSession().delete(customer);
     }
 
+    //check username of customer
+    //querying username from Customer table
+    //if username exist --> return true
 
+    public boolean checkUsername(Customer customer){
+        String username = customer.getUsername();
+        Query query = sessionFactory.getCurrentSession().createQuery("From Customer where username = :username");
+        query.setString("username",username);
+        Customer checkCustomerUsername = (Customer) query.uniqueResult();
+        if(checkCustomerUsername != null){
+            return true;
+        }
+        return false;
+    }
 }
