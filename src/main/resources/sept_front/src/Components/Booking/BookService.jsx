@@ -73,10 +73,9 @@ export default class BookService extends React.Component {
 
     render() {
         return (
-            <div>
                 <StyledHeader className='navbar sticky-top'>
                     <h2>Booking List</h2>
-                </StyledHeader>
+                
 
                 {/* Function view list of booked appointment as a table */}
                 <table className='table table-hover text-center'>
@@ -107,7 +106,7 @@ export default class BookService extends React.Component {
                         </tbody>
                     ))}
                 </table>
-            </div>
+                </StyledHeader>
         )
     }
 }

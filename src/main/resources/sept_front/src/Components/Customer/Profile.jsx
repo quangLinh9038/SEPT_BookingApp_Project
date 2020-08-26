@@ -1,6 +1,33 @@
 import React from 'react';
 import BookService from '../Booking/BookService';
 import { Form, Col, CardColumns, Card, Row } from 'react-bootstrap'
+import styled from 'styled-components'
+const Styled = styled.div`
+div{
+    margin:0;
+    padding:0;
+    box-sizing:border-box
+}
+// Nav style
+nav{
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    border-bottom: 5px double grey;
+    font-family: 'Bebas Neue', cursive; 
+}
+
+// TABLE
+table{
+    margin: 10px auto 0px
+    width:95%
+}
+
+`
+
+
+
+
 const lru = 'http://localhost:8080/customers'
 export default class Profile extends React.Component {
     constructor() {
@@ -45,17 +72,14 @@ export default class Profile extends React.Component {
 
     render() {
         return (
-            <div className='row'>
-                <div className='col-4'>
-                    <div className='user-card' style={{ width: '18rem' }} >
-                        <div class="card" >
-                            <img class="card-img-top" src="https://cdn4.iconfinder.com/data/icons/user-avatar-flat-icons/512/User_Avatar-36-512.png" alt="Card image" />
-                        </div>
+            <Styled>
+                <nav>
+                    <div className="nav-title">
+                        <h1>Customer List</h1>
                     </div>
-                </div>
-
+                </nav>
                 {/* View list of customers function as a table */}
-                <div className='col-8'>
+                
                     <table className='table table-hover text-center'>
                         <thead className='thead-dark'>
                             <tr>
@@ -93,8 +117,8 @@ export default class Profile extends React.Component {
                     <button type='button' className='btn btn-success btn-md' onClick={this.handleAddCustomer.bind(this)}>
                         Add
                     </button> */}
-                </div>
-            </div>
+                
+            </Styled>
 
         )
     }
