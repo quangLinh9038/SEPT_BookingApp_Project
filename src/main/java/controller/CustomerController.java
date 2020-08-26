@@ -37,7 +37,7 @@ public class CustomerController {
         HttpStatus httpStatus;
         try {
             //username available --> return OK status and save new username
-            if (!customerService.checkUsername(customer) && !customerService.checkPassword(customer)){
+            if (!customerService.checkUsername(customer)){
                 result = "Create account successfully!";
                 httpStatus = HttpStatus.OK;
                 customerService.addCustomer(customer);
@@ -61,7 +61,7 @@ public class CustomerController {
         HttpStatus httpStatus;
         try {
             //username available --> return OK status and save new username
-            if (!customerService.checkUsername(customer) && !customerService.checkPassword(customer)){
+            if (customerService.checkLogin(customer)){
                 result = "Login successfully!";
                 httpStatus = HttpStatus.OK;
             }

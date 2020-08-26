@@ -7,14 +7,16 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Transactional
 
 public class CustomerService {
+    private List<Customer> customerList = new ArrayList<>();
+
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -54,20 +56,15 @@ public class CustomerService {
         Query query = sessionFactory.getCurrentSession().createQuery("from Customer where username =:username");
         query.setString("username",username);
         Customer checkCustomerUsername = (Customer) query.uniqueResult();
-        if(checkCustomerUsername != null){
-            return true;
-        }
-        return false;
+        return checkCustomerUsername != null;
     }
 
-    public boolean checkPassword(Customer customer){
+    public boolean checkLogin(Customer customer){
+        String username = customer.getUsername();
         String password = customer.getPassword();
-        Query query = sessionFactory.getCurrentSession().createQuery("from Customer where password =:password");
-        query.setString("password",password);
-        Customer checkCustomerPassword = (Customer) query.uniqueResult();
-        if(checkCustomerPassword != null){
-            return true;
-        }
-        return false;
+        Query query = sessionFactory.getCurrentSession().createQuery("from Customer where username =:username and password =:password");
+        query.setString("username",username).setString("password",password);
+        Customer checkCustomerExist = (Customer) query.uniqueResult();
+        return checkCustomerExist != null;
     }
 }
