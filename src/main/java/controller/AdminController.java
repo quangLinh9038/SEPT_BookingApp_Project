@@ -31,16 +31,14 @@ public class AdminController {
 
 
     //add new admin path
-    @RequestMapping(path = "admin", method =  RequestMethod.POST)
+    @RequestMapping(path = "post/admin", method =  RequestMethod.POST)
     @ResponseBody
-
-
     public ResponseEntity<String> addAdmin (@RequestBody Admin admin){
         String result = "";
         Gson g = new Gson();
         HttpStatus httpStatus;
         try {
-            if (!adminService.checkUsername(admin)) {
+            if (!adminService.checkUsername(admin) && !adminService.checkPassword(admin)) {
                 result = "Successfully";
                 httpStatus = HttpStatus.OK;
                 adminService.saveAdmin(admin);
