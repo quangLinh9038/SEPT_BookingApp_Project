@@ -55,7 +55,7 @@ public class CustomerController {
 
     @RequestMapping(path = "login/customers", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> addCustomer(@RequestBody Customer customer){
+    public ResponseEntity<String> loginCustomer(@RequestBody Customer customer){
         String result = "";
         Gson g = new Gson();
         HttpStatus httpStatus;

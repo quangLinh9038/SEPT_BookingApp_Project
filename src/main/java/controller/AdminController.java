@@ -56,7 +56,7 @@ public class AdminController {
 
     @RequestMapping(path = "login/admin", method =  RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> addAdmin (@RequestBody Admin admin){
+    public ResponseEntity<String> loginAdmin (@RequestBody Admin admin){
         String result = "";
         Gson g = new Gson();
         HttpStatus httpStatus;

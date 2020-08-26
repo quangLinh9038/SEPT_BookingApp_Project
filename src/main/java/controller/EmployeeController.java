@@ -56,7 +56,7 @@ public class EmployeeController {
 
     @RequestMapping(path = "login/employees", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> addEmployee(@RequestBody Employee employee){
+    public ResponseEntity<String> loginEmployee(@RequestBody Employee employee){
         String result = "";
         Gson g = new Gson();
         HttpStatus httpStatus;
