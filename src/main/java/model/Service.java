@@ -20,7 +20,7 @@ public class Service {
     private String name;
 
     @Column
-    private Timestamp duration;
+    private String duration;
 
     @Column
     private String description;
@@ -58,11 +58,11 @@ public class Service {
         this.name = name;
     }
 
-    public Timestamp getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Timestamp duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
