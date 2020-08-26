@@ -38,7 +38,7 @@ public class EmployeeController {
         Gson g = new Gson();
         HttpStatus httpStatus;
         try {
-            if (!employeeService.checkUsername(employee) && !employeeService.checkPassword(employee)){
+            if (!employeeService.checkUsername(employee)){
                 result = "Create account successfully!";
                 httpStatus = HttpStatus.OK;
                 employeeService.addEmployee(employee);
@@ -61,7 +61,7 @@ public class EmployeeController {
         Gson g = new Gson();
         HttpStatus httpStatus;
         try {
-            if (!employeeService.checkUsername(employee) && !employeeService.checkPassword(employee)){
+            if (!employeeService.checkLogin(employee)){
                 result = "Login successfully!";
                 httpStatus = HttpStatus.OK;
             }

@@ -60,14 +60,12 @@ public class EmployeeService {
     }
 
     // check password
-    public boolean checkPassword(Employee employee){
+    public boolean checkLogin(Employee employee){
+        String username = employee.getUsername();
         String password = employee.getPassword();
-        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where password =:password");
-        query.setString("password",password);
-        Employee checkEmployeePassword = (Employee) query.uniqueResult();
-        if(checkEmployeePassword != null){
-            return true;
-        }
-        return false;
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where username =:username and password =:password");
+        query.setString("username",username).setString("password",password);
+        Employee checkEmployeeExist = (Employee) query.uniqueResult();
+        return checkEmployeeExist != null;
     }
 }
