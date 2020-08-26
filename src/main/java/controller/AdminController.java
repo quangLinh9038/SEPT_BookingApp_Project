@@ -39,7 +39,7 @@ public class AdminController {
         HttpStatus httpStatus;
         try {
             if (!adminService.checkUsername(admin) && !adminService.checkPassword(admin)) {
-                result = "Create account sucessfully!";
+                result = "Create account successfully!";
                 httpStatus = HttpStatus.OK;
                 adminService.saveAdmin(admin);
             }
@@ -62,7 +62,7 @@ public class AdminController {
         HttpStatus httpStatus;
         try {
             if (!adminService.checkUsername(admin) && !adminService.checkPassword(admin)) {
-                result = "Valid account!";
+                result = "Login successfully!";
                 httpStatus = HttpStatus.OK;
             }
             else{
