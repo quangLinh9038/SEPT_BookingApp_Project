@@ -1,5 +1,5 @@
 /target/
 /.idea/
-/AppConfig/
+/AppConfig.java/
 /sept_front/
 /SampleHibernateSpringMVC.iml/
