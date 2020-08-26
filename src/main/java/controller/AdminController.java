@@ -31,17 +31,15 @@ public class AdminController {
 
 
     //add new admin path
-    @RequestMapping(path = "admin", method =  RequestMethod.POST)
+    @RequestMapping(path = "post/admin", method =  RequestMethod.POST)
     @ResponseBody
-
-
     public ResponseEntity<String> addAdmin (@RequestBody Admin admin){
         String result = "";
         Gson g = new Gson();
         HttpStatus httpStatus;
         try {
-            if (!adminService.checkUsername(admin)) {
-                result = "Successfully";
+            if (!adminService.checkUsername(admin)){
+                result = "Create account successfully!";
                 httpStatus = HttpStatus.OK;
                 adminService.saveAdmin(admin);
             }
@@ -50,7 +48,29 @@ public class AdminController {
                 httpStatus = HttpStatus.BAD_REQUEST;
             }
         } catch (Exception ex){
-            result = "Server error";
+            result = "Server error!";
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return  new ResponseEntity<>(g.toJson(result), httpStatus);
+    }
+
+    @RequestMapping(path = "login/admin", method =  RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> loginAdmin (@RequestBody Admin admin){
+        String result = "";
+        Gson g = new Gson();
+        HttpStatus httpStatus;
+        try {
+            if (adminService.checkLogin(admin)) {
+                result = "Login successfully!";
+                httpStatus = HttpStatus.OK;
+            }
+            else{
+                result = "Username or password is invalid!";
+                httpStatus = HttpStatus.BAD_REQUEST;
+            }
+        } catch (Exception ex){
+            result = "Server error!";
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
         return  new ResponseEntity<>(g.toJson(result), httpStatus);
@@ -59,7 +79,7 @@ public class AdminController {
     //get admin by name path
     @RequestMapping(path = "admin/{name}", method = RequestMethod.GET)
     public void findAdmin(@PathVariable String name) {
-        adminService.findAdmin(name);
+        adminService.findAdminByName(name);
     }
 
     //update path

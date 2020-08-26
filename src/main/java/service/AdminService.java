@@ -48,11 +48,12 @@ public class AdminService {
         sessionFactory.getCurrentSession().saveOrUpdate(admin);
     }
 
-    //get admin
-    public Admin getAdmin(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id=:id");
+    //get admin by id
+    public Admin getAdminById(int id) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id =:id");
         query.setInteger("id", id);
-        return (Admin) query.uniqueResult();
+        Admin admin = (Admin) query.uniqueResult();
+        return admin;
     }
 
 
@@ -63,10 +64,11 @@ public class AdminService {
     }
 
     //find admin by name
-    public List<Admin> findAdmin(String name){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where name=:name");
-        query.setString("name", "%"+name+"%");
-        return query.list();
+    public Admin findAdminByName(String name){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where name =:name");
+        query.setString("name", name);
+        Admin admin = (Admin) query.uniqueResult();
+        return admin;
     }
 
     //update admin
@@ -76,7 +78,7 @@ public class AdminService {
 
     //delete admin by id
     public void deleteAdmin(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id:id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id =:id");
         query.setInteger("id",id);
         Admin admin = (Admin) query.uniqueResult();
         sessionFactory.getCurrentSession().delete(admin);
@@ -86,13 +88,23 @@ public class AdminService {
     //check admin username
     public boolean checkUsername(Admin admin){
         String username = admin.getUsername();
-        Query query = sessionFactory.getCurrentSession().createQuery("From Admin where username = :username");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where username =:username");
         query.setString("username",username);
         Admin checkAdminUsername = (Admin) query.uniqueResult();
         if(checkAdminUsername != null){
             return true;
         }
         return false;
+    }
+
+    public boolean checkLogin(Admin admin){
+        String username = admin.getUsername();
+        String password = admin.getPassword();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where username =:username and password =:password");
+        query.setString("username",username).setString("password", password);
+        Admin checkAdminExist = (Admin) query.uniqueResult();
+        return checkAdminExist != null;
+
     }
 }
 

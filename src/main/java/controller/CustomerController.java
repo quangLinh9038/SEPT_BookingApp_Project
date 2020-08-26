@@ -29,7 +29,7 @@ public class CustomerController {
         return customerService.getAllCustomers();
     }
 
-    @RequestMapping(path = "customers", method = RequestMethod.POST)
+    @RequestMapping(path = "post/customers", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> addCustomer(@RequestBody Customer customer){
         String result = "";
@@ -37,8 +37,8 @@ public class CustomerController {
         HttpStatus httpStatus;
         try {
             //username available --> return OK status and save new username
-            if (!customerService.checkUsername(customer)) {
-                result = "Successfully";
+            if (!customerService.checkUsername(customer)){
+                result = "Create account successfully!";
                 httpStatus = HttpStatus.OK;
                 customerService.addCustomer(customer);
             }
@@ -47,11 +47,34 @@ public class CustomerController {
                 httpStatus = HttpStatus.BAD_REQUEST;
             }
             } catch (Exception ex){
-            result = "Server error";
+            result = "Server error!";
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
         return  new ResponseEntity<>(g.toJson(result), httpStatus);
+    }
+
+    @RequestMapping(path = "login/customers", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> loginCustomer(@RequestBody Customer customer){
+        String result = "";
+        Gson g = new Gson();
+        HttpStatus httpStatus;
+        try {
+            //username available --> return OK status and save new username
+            if (customerService.checkLogin(customer)){
+                result = "Login successfully!";
+                httpStatus = HttpStatus.OK;
+            }
+            else{
+                result = "Username or password is invalid!";
+                httpStatus = HttpStatus.BAD_REQUEST;
+            }
+            } catch (Exception ex){
+            result = "Server error!";
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
+        return  new ResponseEntity<>(g.toJson(result), httpStatus);
+    }
 
 
     @RequestMapping(path = "customers", method = RequestMethod.PUT)
