@@ -38,7 +38,7 @@ public class AdminController {
         Gson g = new Gson();
         HttpStatus httpStatus;
         try {
-            if (!adminService.checkUsername(admin) && !adminService.checkPassword(admin)) {
+            if (!adminService.checkUsername(admin)){
                 result = "Create account successfully!";
                 httpStatus = HttpStatus.OK;
                 adminService.saveAdmin(admin);
@@ -61,7 +61,7 @@ public class AdminController {
         Gson g = new Gson();
         HttpStatus httpStatus;
         try {
-            if (!adminService.checkUsername(admin) && !adminService.checkPassword(admin)) {
+            if (adminService.checkLogin(admin)) {
                 result = "Login successfully!";
                 httpStatus = HttpStatus.OK;
             }

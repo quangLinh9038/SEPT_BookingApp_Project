@@ -97,15 +97,13 @@ public class AdminService {
         return false;
     }
 
-    public boolean checkPassword(Admin admin){
+    public boolean checkLogin(Admin admin){
+        String username = admin.getUsername();
         String password = admin.getPassword();
-        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where password =:password");
-        query.setString("password", password);
-        Admin checkAdminPassword = (Admin) query.uniqueResult();
-        if(checkAdminPassword != null){
-            return true;
-        }
-        return false;
+        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where username =:username and password =:password");
+        query.setString("username",username).setString("password", password);
+        Admin checkAdminExist = (Admin) query.uniqueResult();
+        return checkAdminExist != null;
 
     }
 }
