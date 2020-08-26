@@ -21,7 +21,7 @@ public class EmployeeService {
 
     // get all employees
     public List<Employee> getAllEmployees(){
-        Query query = sessionFactory.getCurrentSession().createQuery("From Employee");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee");
         return query.list();
     }
 
@@ -40,7 +40,7 @@ public class EmployeeService {
 
     // delete employee
     public void deleteEmployee(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("From Employee where id = :id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where id =:id");
         query.setInteger("id", id);
         Employee employee = (Employee) query.uniqueResult();
         sessionFactory.getCurrentSession().delete(employee);
@@ -50,7 +50,7 @@ public class EmployeeService {
     //check username of employee
     public boolean checkUsername(Employee employee){
         String username = employee.getUsername();
-        Query query = sessionFactory.getCurrentSession().createQuery("From Employee where username = :username");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where username =:username");
         query.setString("username",username);
         Employee checkEmployeeUsername = (Employee) query.uniqueResult();
         if(checkEmployeeUsername != null){
@@ -59,4 +59,15 @@ public class EmployeeService {
         return false;
     }
 
+    // check password
+    public boolean checkPassword(Employee employee){
+        String password = employee.getPassword();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where password =:password");
+        query.setString("password",password);
+        Employee checkEmployeePassword = (Employee) query.uniqueResult();
+        if(checkEmployeePassword != null){
+            return true;
+        }
+        return false;
+    }
 }

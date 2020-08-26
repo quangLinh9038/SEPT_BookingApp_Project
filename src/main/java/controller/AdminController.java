@@ -70,7 +70,7 @@ public class AdminController {
                 httpStatus = HttpStatus.BAD_REQUEST;
             }
         } catch (Exception ex){
-            result = "Server error";
+            result = "Server error!";
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
         return  new ResponseEntity<>(g.toJson(result), httpStatus);

@@ -31,15 +31,15 @@ public class EmployeeController {
     }
 
 
-    @RequestMapping(path = "employees", method = RequestMethod.POST)
+    @RequestMapping(path = "post/employees", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> addEmployee(@RequestBody Employee employee){
         String result = "";
         Gson g = new Gson();
         HttpStatus httpStatus;
         try {
-            if (!employeeService.checkUsername(employee)) {
-                result = "Successfully";
+            if (!employeeService.checkUsername(employee) && !employeeService.checkPassword(employee)){
+                result = "Create account successfully!";
                 httpStatus = HttpStatus.OK;
                 employeeService.addEmployee(employee);
             }
@@ -48,11 +48,32 @@ public class EmployeeController {
                 httpStatus = HttpStatus.BAD_REQUEST;
             }
         } catch (Exception ex){
-            result = "Server error";
+            result = "Server error!";
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
         return  new ResponseEntity<>(g.toJson(result), httpStatus);
+    }
 
+    @RequestMapping(path = "login/employees", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> addEmployee(@RequestBody Employee employee){
+        String result = "";
+        Gson g = new Gson();
+        HttpStatus httpStatus;
+        try {
+            if (!employeeService.checkUsername(employee) && !employeeService.checkPassword(employee)){
+                result = "Login successfully!";
+                httpStatus = HttpStatus.OK;
+            }
+            else{
+                result = "Username or password is invalid!";
+                httpStatus = HttpStatus.BAD_REQUEST;
+            }
+        } catch (Exception ex){
+            result = "Server error!";
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return  new ResponseEntity<>(g.toJson(result), httpStatus);
     }
 
 
