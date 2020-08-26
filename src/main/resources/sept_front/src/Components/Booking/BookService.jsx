@@ -18,14 +18,13 @@ export default class BookService extends React.Component {
         this.state = {
             listBooking: [],
             listEmployees: [],
+            listCustomers: [],
             note: '',
-            date_created: '',
+            date_bookded: '',
             status: '',
             time: ''
         }
     }
-
-
 
     // fetch list of services
     fetchListServices() {
