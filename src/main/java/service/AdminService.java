@@ -94,6 +94,18 @@ public class AdminService {
         }
         return false;
     }
+
+    public boolean checkPassword(Admin admin){
+        String password = admin.getPassword();
+        Query query = sessionFactory.getCurrentSession().createQuery("From Admin where password =:password");
+        query.setString("password", password);
+        Admin checkAdminPassword = (Admin) query.uniqueResult();
+        if(checkAdminPassword != null){
+            return true;
+        }
+        return false;
+
+    }
 }
 
 
