@@ -39,9 +39,31 @@ public class AdminController {
         HttpStatus httpStatus;
         try {
             if (!adminService.checkUsername(admin) && !adminService.checkPassword(admin)) {
-                result = "Successfully";
+                result = "Create account sucessfully!";
                 httpStatus = HttpStatus.OK;
                 adminService.saveAdmin(admin);
+            }
+            else{
+                result = "Username or password is invalid!";
+                httpStatus = HttpStatus.BAD_REQUEST;
+            }
+        } catch (Exception ex){
+            result = "Server error!";
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return  new ResponseEntity<>(g.toJson(result), httpStatus);
+    }
+
+    @RequestMapping(path = "login/admin", method =  RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> addAdmin (@RequestBody Admin admin){
+        String result = "";
+        Gson g = new Gson();
+        HttpStatus httpStatus;
+        try {
+            if (!adminService.checkUsername(admin) && !adminService.checkPassword(admin)) {
+                result = "Valid account!";
+                httpStatus = HttpStatus.OK;
             }
             else{
                 result = "Username or password is invalid!";
