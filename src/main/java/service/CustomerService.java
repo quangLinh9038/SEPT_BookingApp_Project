@@ -40,7 +40,7 @@ public class CustomerService {
 
     // delete customer
     public void deleteCustomer(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("From Customer where id = :id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Customer where id =:id");
         query.setInteger("id", id);
         Customer customer = (Customer) query.uniqueResult();
         sessionFactory.getCurrentSession().delete(customer);
@@ -49,13 +49,23 @@ public class CustomerService {
     //check username of customer
     //querying username from Customer table
     //if username exist --> return true
-
     public boolean checkUsername(Customer customer){
         String username = customer.getUsername();
-        Query query = sessionFactory.getCurrentSession().createQuery("From Customer where username = :username");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Customer where username =:username");
         query.setString("username",username);
         Customer checkCustomerUsername = (Customer) query.uniqueResult();
         if(checkCustomerUsername != null){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkPassword(Customer customer){
+        String password = customer.getPassword();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Customer where password =:password");
+        query.setString("password",password);
+        Customer checkCustomerPassword = (Customer) query.uniqueResult();
+        if(checkCustomerPassword != null){
             return true;
         }
         return false;
