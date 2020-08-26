@@ -76,7 +76,7 @@ public class AdminService {
 
     //delete admin by id
     public void deleteAdmin(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id:id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id =:id");
         query.setInteger("id",id);
         Admin admin = (Admin) query.uniqueResult();
         sessionFactory.getCurrentSession().delete(admin);
@@ -86,7 +86,7 @@ public class AdminService {
     //check admin username
     public boolean checkUsername(Admin admin){
         String username = admin.getUsername();
-        Query query = sessionFactory.getCurrentSession().createQuery("From Admin where username = :username");
+        Query query = sessionFactory.getCurrentSession().createQuery("From Admin where username =:username");
         query.setString("username",username);
         Admin checkAdminUsername = (Admin) query.uniqueResult();
         if(checkAdminUsername != null){
