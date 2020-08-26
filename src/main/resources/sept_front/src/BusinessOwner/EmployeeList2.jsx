@@ -2,18 +2,187 @@ import React from 'react'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Form, Col, CardColumns, Card, Row } from 'react-bootstrap'
-const StyledHeader = styled.div`
-display:;
-margin-bottom:20px;
-margin-left:20px;
+const Styled = styled.div`
+div{
+    margin:0;
+    padding:0;
+    box-sizing:border-box
+}
+// Nav style
+nav{
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    border-bottom: 5px double grey;
+    font-family: 'Bebas Neue', cursive; 
+}
+
+// Title style
+.nav-title h1{
+    font-weight:bold
+    font-size:45px
+    // text-transform:uppercase
+    letter-spacing:15px;
+    text-decoration:none;
+}
+
+// Nav items style
+.nav-links{
+    display:flex;
+    // background-color:red;
+    justify-content: space-around;
+    width:15%;
+}
+
+li{
+    list-style:none;
+}
+
+// Input style
+
+input{
+    padding-left:10px
+}
+
+.search .form-control{
+    position:absolute
+    max-width:170px
+    top:68px
+    right:30px
+}
+
+// Button style
+form .btn{
+    position:absolute;
+    top:76px
+    right:38px
+}
+
+.no2 .btn{
+    display:block;
+    border:2px solid #fb2274;
+    :hover{
+        background-color:red
+        color:white
+    }
+    width:110px;
+    height:35px;
+    line-height:35px;
+    word-spacing:0;
+    text-decoration:none;
+    font-size:20px;
+    margin: 0 auto;
+    border-radius: 25px
+}
+
+.no2 .btn i{
+    padding:0
+    margin:0
+    letter-spacing:10px
+}
+
+.nav-links-mobile{
+    display:none;
+    position:absolute;
+    top:15px;
+    right:15px;
+}
+
+.nav-links-mobile i{
+    color:#9FFFCB
+    font-size:15px
+}
+
+.lists-button {
+    display:flex
+    gap:5px
+    justify-content:center
+}
+
+.lists-button .btn{
+    background-color: #00BFFF
+    :hover{
+        background-color:red
+        color:white
+    }
+    width:50px;
+    height:30px;
+    line-height:30px;
+    word-spacing:0;
+    text-decoration:none;
+    font-size:15px;
+    margin: 3px auto 5px;
+    border-radius: 10px
+}
+
+
+// MODAL
+.modal{
+    margin-left: 35%
+    font-family: 'Bebas Neue', cursive;
+}
+
+.modal .modal-body form{
+    margin:0px;
+    padding:0px;
+
+}
+
+.modal-header .modal-title{
+    margin:0;
+    padding:0;
+    padding-left:10px
+}
+
+.form-label{
+    padding: 0 5px
+    font-weight:bold;
+}
+
+// TABLE
+table{
+    margin: 10px auto 0px
+    width:95%
+}
+
+// Mobile view
+@media screen and (max-width:960px){
+    .nav-links{
+        display:none
+    }
+
+    .nav-title h1{
+        font-size: 15px;
+        letter-spacing:10px
+        margin: 5px 0
+    }
+
+    .nav-links-mobile{
+        display:block
+    }
+
+    .modal{
+        margin-left:17%
+    }
+    
+    .modal-body .form-label{
+        padding: 0 5px
+    }
+
+    .modal .modal-body .form-group{
+        padding: 5px
+    }
+
+}
+
 `
-const url = 'https://5f2d05928085690016922b96.mockapi.io/Employee'
+const url = 'http://localhost:8080/employees'
 export default class ViewEmployeeList2 extends React.Component {
     constructor() {
         super()
         this.state = {
-            lists: [],
-            e_ID: '', e_name: '', e_schedule: '', input: ''
+            listsEmployees: [],
+            id: '', name: '', schedule: '', input: '', admin_admin_id: '', business_bu_id: ''
         }
     }
 
@@ -21,7 +190,7 @@ export default class ViewEmployeeList2 extends React.Component {
     fetchListEmployee() {
         fetch(url)
             .then(res => res.json())
-            .then(json => this.setState({ lists: json }))
+            .then(json => this.setState({ listsEmployees: json }))
     }
 
     componentDidMount() {
@@ -37,7 +206,7 @@ export default class ViewEmployeeList2 extends React.Component {
     // Function add employee
     handleAddEmployee() {
         let emp = {
-            e_ID: this.state.e_ID, e_name: this.state.e_name, e_schedule: this.state.e_schedule
+            id: this.state.id, name: this.state.name, schedule: this.state.schedule
         }
         fetch(url, {
             headers: {
@@ -52,12 +221,12 @@ export default class ViewEmployeeList2 extends React.Component {
 
     // Function edit employee
     handleEditEmployee(id, name, schedule) {
-        this.setState({ e_ID: id, e_name: name, e_schedule: schedule })
+        this.setState({ id: id, name: name, schedule: schedule })
     }
 
     // Function clear employee
     handleClearEmployee() {
-        this.setState({ e_ID: '', e_name: '', e_schedule: '' })
+        this.setState({ ID: '', name: '', schedule: '' })
     }
 
     // handleDeleteEmployeeById(id){
@@ -74,42 +243,51 @@ export default class ViewEmployeeList2 extends React.Component {
         fetch(url)
             .then(res => res.json())
             .then(json => {
-                let data = json.filter((d, i) => d.e_name == this.state.input)
-                this.setState({ lists: data })
+                let data = json.filter((d, i) => d.name == this.state.input)
+                this.setState({ listsEmployees: data })
             })
     }
 
     render() {
         return (
-            <div >
-                <StyledHeader className='navbar sticky-top'>
-                    <h2>Employee List</h2>
-                    <ul class='row' style={{ gap: '15px' }}>
-                        <li class='nav-item'>
+            <Styled>
+                <nav>
+                    <div className="nav-title">
+                        <h1>Employee List</h1>
+                    </div>
 
+                    <ul class='nav-links'>
+                        <li class='nav-item no1'>
                             {/* Search field */}
-                            <form action="" className='input-group md-form form-sm form-2 pl-0'>
+                            <form class='search'>
                                 <input class='form-control' placeholder='Enter name of employee'
                                     name='input' value={this.state.input}
                                     onChange={this.handleChange.bind(this)}
                                 />
-                                <div class='input-group-append'>
-                                    <button class='input-group-text' type='button'>
-                                        <i class='fa fa-search' aria-hidden='true'
-                                            onClick={this.search.bind(this)}
-                                        />
-                                    </button>
+                                <div className='btn' >
+                                    <i class='fa fa-search' aria-hidden='true'
+                                        onClick={this.search.bind(this)}
+                                    />
                                 </div>
                             </form>
                         </li>
-                        {/* Button add new employee */}
-                        <button type='button' className='btn btn-success' data-toggle='modal' data-target='#formEmployee' >
-                            <i className='fa fa-address-book' style={{ paddingRight: '10px' }} />
-                            New
-                        </button>
 
+                        <li className='nav-item no2'>
+                            {/* Button add new employee */}
+                            <div className='btn' data-toggle='modal' data-target='#formEmployee' >
+                                <i className='fa fa-address-book' />
+                                New
+                            </div>
+                        </li>
                     </ul>
-                </StyledHeader>
+
+                    {/* Add button for mobile */}
+                    <div className="nav-links-mobile">
+                        <div className='btn' data-toggle='modal' data-target='#formEmployee' >
+                            <i className='fa fa-address-book' />
+                        </div>
+                    </div>
+                </nav>
 
                 {/* View employee as table */}
                 <table className='table table-hover text-center'>
@@ -120,12 +298,12 @@ export default class ViewEmployeeList2 extends React.Component {
                             <th>SCHEDULE</th>
                         </tr>
                     </thead>
-                    {this.state.lists.map(p =>
+                    {this.state.listsEmployees.map(p =>
                         <tbody>
                             <tr>
-                                <td>{p.e_ID}</td>
-                                <td>{p.e_name}</td>
-                                <td>{p.e_schedule}</td>
+                                <td>{p.id}</td>
+                                <td>{p.name}</td>
+                                <td>{p.schedule}</td>
                             </tr>
                         </tbody>
                     )}
@@ -136,44 +314,46 @@ export default class ViewEmployeeList2 extends React.Component {
                     <div class='modal-dialog modal-dialog-centered' role='document'>
                         <div class='modal-content'>
                             <div class='modal-header'>
-                                <h5 class='modal-title' id='formEmployeeLongTitle'>Manage employee</h5>
-                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                                    <span aria-hidden='true'>x</span>
-                                </button>
+                                <h4 class='modal-title' id='formEmployeeLongTitle'>Manage employee</h4>
                             </div>
 
                             <div class='modal-body'>
                                 <Form>
-                                    <Form.Row>
-                                        <Form.Group as={Col} md='6' controlId='formGridName'>
+                                    {/* <Form.Row> */}
+                                        <Form.Group as={Col} md='11' controlId='formGridName'>
                                             <Form.Label>Name:</Form.Label>
                                             <Form.Control type='text' placeholder='Enter name'
-                                                name='e_name' value={this.state.e_name}
+                                                name='name' value={this.state.name}
                                                 onChange={this.handleChange.bind(this)}
                                             />
                                         </Form.Group>
 
-                                        <Form.Group as={Col} md='6' controlId='formGridSchedule'>
+                                        <Form.Group as={Col} md='11' controlId='formGridSchedule'>
                                             <Form.Label>Schedule:</Form.Label>
                                             <Form.Control type='text' placeholder='Enter schedule'
-                                                name='e_schedule' value={this.state.e_schedule}
+                                                name='schedule' value={this.state.schedule}
                                                 onChange={this.handleChange.bind(this)}
                                             />
                                         </Form.Group>
-                                    </Form.Row>
+                                    {/* </Form.Row> */}
                                 </Form>
-                                <div className='text-center'>
+                                
+                                    <ul className='lists-button'>
+                                        <li>
+                                            <div className='btn' onClick={this.handleAddEmployee.bind(this)}>Add</div>
+                                        </li>
 
-                                    <button type='button' className='btn btn-success btn-md' onClick={this.handleAddEmployee.bind(this)}>Add</button>
-                                    <span> </span>
-                                    <button type='button' className='btn btn-success btn-md' onClick={this.handleClearEmployee.bind(this)}>Clear</button>
-
-                                </div>
+                                        <li>
+                                            <div className='btn' onClick={this.handleClearEmployee.bind(this)}>Clear</div>
+                                        </li>
+                                    </ul>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Styled>
+
         )
     }
 }

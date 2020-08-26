@@ -8,68 +8,50 @@ margin-bottom:20px;
 margin-left:20px;
 `
 
-const URL = 'https://5f2d05928085690016922b96.mockapi.io/Services'
-const url = 'https://5f2d05928085690016922b96.mockapi.io/employee'
-const lru = 'https://5f2d05928085690016922b96.mockapi.io/customer'
-const LRU = 'https://5f2d05928085690016922b96.mockapi.io/Booking'
+const urlServices = 'http://localhost:8080/services'
+const urlEmployees = 'http://localhost:8080/employees'
+const urlCustomers = 'http://localhost:8080/customers'
+const urlBooking = 'http://localhost:8080/booking'
 export default class BookService extends React.Component {
     constructor() {
         super()
         this.state = {
             listBooking: [],
-            name: '',
-            ser_ID: '',
-            ser_name: '',
-            ser_duration: '',
-            ser_descriptions: '',
-            ser_price: '',
-            input: '',
-            e_name: '',
-            cus_name: '',
-            cus_ID: '',
-            e_ID: '',
-
-            bookingEmployee: {
-                name: ''
-            },
-            bookingService: {
-                name: ''
-            },
-            bookingCustomer: {
-                name: ''
-            },
-
-            descriptions: '',
-            date_created: '',
-            status: ''
+            listEmployees: [],
+            listCustomers: [],
+            note: '',
+            date_bookded: '',
+            status: '',
+            time: ''
         }
     }
 
     // fetch list of services
     fetchListServices() {
-        fetch(URL)
+        fetch(urlServices)
             .then(res => res.json())
             .then(json => this.setState({ listServices: json }))
     }
 
     // fetch list of employees
     fetchListEmployees() {
-        fetch(url)
+        fetch(urlEmployees)
             .then(res => res.json())
             .then(json => this.setState({ listEmployees: json }))
     }
 
     // fetch list of customers
     fetchCustomers() {
-        fetch(lru)
+        fetch(urlCustomers)
             .then(res => res.json())
             .then(json => this.setState({ listCustomers: json }))
     }
 
     // fetch list of booking appointments
     fetchBooking() {
-        fetch(LRU)
+        fetch(urlBooking)
             .then(res => res.json())
+            // .then(json => console.log(json))
             .then(json => this.setState({ listBooking: json }))
     }
 
@@ -90,37 +72,40 @@ export default class BookService extends React.Component {
 
     render() {
         return (
-            <div>
                 <StyledHeader className='navbar sticky-top'>
                     <h2>Booking List</h2>
-                </StyledHeader>
+                
 
                 {/* Function view list of booked appointment as a table */}
                 <table className='table table-hover text-center'>
                     <thead className='thead-dark'>
                         <tr>
+                            <th>#</th>
                             <th>Customer name</th>
                             <th>Service name</th>
                             <th>Employee name</th>
-                            <th>Appointment date</th>
-                            <th>Notes</th>
+                            <th>Date created</th>
+                            <th>Time</th>
+                            <th>Description</th>
                             <th>Status</th>
                         </tr>
                     </thead>
-                    {this.state.listBooking.map(p =>
+                    {this.state.listBooking.filter(p => !p.status).map(p => (
                         <tbody>
                             <tr>
-                                <td>{p.bookingCustomer.name}</td>
-                                <td>{p.bookingService.name}</td>
-                                <td>{p.bookingEmployee.name}</td>
+                                <td>{p.id}</td>
+                                <td>{p.customer.name}</td>
+                                <td>{p.service.name}</td>
+                                <td>{p.employee.name}</td>
                                 <td>{p.date_created}</td>
-                                <td>{p.descriptions}</td>
+                                <td>{p.time}</td>
+                                <td>{p.note}</td>
                                 <td>{p.status}</td>
                             </tr>
                         </tbody>
-                    )}
+                    ))}
                 </table>
-            </div>
+                </StyledHeader>
         )
     }
 }

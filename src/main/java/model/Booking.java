@@ -19,7 +19,7 @@ public class Booking {
     private String date_booked;
 
     @Column
-    private Time time;
+    private String time;
 
     @Column
     private boolean status;
@@ -69,11 +69,11 @@ public class Booking {
         this.note = note;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

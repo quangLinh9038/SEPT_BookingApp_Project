@@ -1,6 +1,7 @@
 package service;
 
 
+import model.Admin;
 import model.Customer;
 import model.Employee;
 import org.hibernate.Query;
@@ -26,7 +27,10 @@ public class EmployeeService {
 
     // add employee
     public void addEmployee(Employee employee){
-        sessionFactory.getCurrentSession().save(employee);
+        if(employee.getRole() == null){
+            employee.setRole("EMPLOYEE");
+        }
+        sessionFactory.getCurrentSession().saveOrUpdate(employee);
     }
 
     // update employee
@@ -42,5 +46,17 @@ public class EmployeeService {
         sessionFactory.getCurrentSession().delete(employee);
     }
 
+
+    //check username of employee
+    public boolean checkUsername(Employee employee){
+        String username = employee.getUsername();
+        Query query = sessionFactory.getCurrentSession().createQuery("From Employee where username = :username");
+        query.setString("username",username);
+        Employee checkEmployeeUsername = (Employee) query.uniqueResult();
+        if(checkEmployeeUsername != null){
+            return true;
+        }
+        return false;
+    }
 
 }

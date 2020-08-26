@@ -8,13 +8,9 @@ import java.util.List;
 
 @Entity
 @Table(name ="Customer")
-public class Customer {
+public class Customer extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(unique = true)
+    @Column(name = "cus_name")
     private String name;
 
     @Column
@@ -32,14 +28,6 @@ public class Customer {
     private List<Booking> bookings = new ArrayList<>();
 
     public Customer() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -81,7 +69,6 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", contact='" + contact + '\'' +
