@@ -29,6 +29,10 @@ public class AdminController {
         return adminService.getAllAdmin();
     }
 
+    @RequestMapping(path = "admin", method = RequestMethod.POST)
+    public void addAdminWithoutLogin (@RequestBody Admin admin){
+        adminService.saveAdmin(admin);
+    }
 
     //add new admin path
     @RequestMapping(path = "post/admin", method =  RequestMethod.POST)

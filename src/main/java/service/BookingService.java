@@ -78,13 +78,21 @@ public class BookingService {
         return (Booking) query.uniqueResult();
     }
 
-    //get list of bookings
+    // get list of bookings
     public List<Booking> getAllBooking(){
         Query query = sessionFactory.getCurrentSession().createQuery("from Booking");
         return query.list();
     }
 
-    //delete booking by id
+    // get list of bookings by Admin ID
+    public List<Booking> getBookingsByAdminId(int id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Booking where admin_id =:id");
+        query.setInteger("id",id);
+        return query.list();
+    }
+
+
+    // delete booking by id
     public void deleteBooking(int id){
         Query query = sessionFactory.getCurrentSession().createQuery("from Booking where id =:id");
         query.setInteger("id", id);

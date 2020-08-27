@@ -32,12 +32,12 @@ public class ServiceController {
     }
 
     @RequestMapping(path = "services", method = RequestMethod.PUT)
-    public void updateCustomer(@RequestBody Service service){
+    public void updateService(@RequestBody Service service){
         serviceService.updateService(service);
     }
 
     @RequestMapping(path = "services/delete/{id}", method = RequestMethod.DELETE)
-    public void deleteCustomer(@PathVariable int id){
+    public void deleteService(@PathVariable int id){
         serviceService.deleteService(id);
     }
 }
