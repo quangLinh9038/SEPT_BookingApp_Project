@@ -38,8 +38,7 @@ public class AdminService {
         // Admin and Business have one-to-one relationship
         if(admin.getBusiness()!=null ){
             int business_id = admin.getBusiness().getId();
-            System.out.println((business_id));
-            Query query = sessionFactory.getCurrentSession().createQuery("from Business where id= :id");
+            Query query = sessionFactory.getCurrentSession().createQuery("from Business where id =:id");
             query.setInteger("id",business_id);
             Business business = (Business) query.uniqueResult();
             admin.setBusiness(business);
