@@ -31,11 +31,9 @@ public class BusinessService {
     public void saveBusiness (Business business){
         if (business.getAdmin()!=null){
             int admin_id = business.getAdmin().getId();
-            System.out.println((admin_id));
             Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id =:id");
             query.setInteger("id",admin_id);
             Admin admin = (Admin) query.uniqueResult();
-            business.setAdmin(admin);
             admin.setBusiness(business);
         }
 
