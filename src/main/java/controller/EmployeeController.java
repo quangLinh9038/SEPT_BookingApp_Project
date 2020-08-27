@@ -30,8 +30,13 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
+    @RequestMapping(path = "employees", method = RequestMethod.POST)
+    public void addEmployeeWithoutLogin (@RequestBody Employee employee){
+        adminService.addEmployee(employee);
+    }
 
-    @RequestMapping(path = "post/employees", method = RequestMethod.POST)
+
+    @RequestMapping(path = "employees/register", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> addEmployee(@RequestBody Employee employee){
         String result = "";
@@ -54,7 +59,7 @@ public class EmployeeController {
         return  new ResponseEntity<>(g.toJson(result), httpStatus);
     }
 
-    @RequestMapping(path = "login/employees", method = RequestMethod.POST)
+    @RequestMapping(path = "employees/login", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> loginEmployee(@RequestBody Employee employee){
         String result = "";

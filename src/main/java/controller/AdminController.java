@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     //add new admin path
-    @RequestMapping(path = "post/admin", method =  RequestMethod.POST)
+    @RequestMapping(path = "admin/register", method =  RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> addAdmin (@RequestBody Admin admin){
         String result = "";
@@ -58,7 +58,7 @@ public class AdminController {
         return  new ResponseEntity<>(g.toJson(result), httpStatus);
     }
 
-    @RequestMapping(path = "login/admin", method =  RequestMethod.POST)
+    @RequestMapping(path = "admin/login", method =  RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> loginAdmin (@RequestBody Admin admin){
         String result = "";

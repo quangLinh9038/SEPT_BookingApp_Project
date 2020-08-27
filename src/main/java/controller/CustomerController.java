@@ -29,7 +29,12 @@ public class CustomerController {
         return customerService.getAllCustomers();
     }
 
-    @RequestMapping(path = "post/customers", method = RequestMethod.POST)
+    @RequestMapping(path = "customers", method = RequestMethod.POST)
+    public void addCustomerWithoutLogin (@RequestBody Customer customer){
+        adminService.addCustomer(customer);
+    }
+
+    @RequestMapping(path = "customers/register", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> addCustomer(@RequestBody Customer customer){
         String result = "";
@@ -53,7 +58,7 @@ public class CustomerController {
         return  new ResponseEntity<>(g.toJson(result), httpStatus);
     }
 
-    @RequestMapping(path = "login/customers", method = RequestMethod.POST)
+    @RequestMapping(path = "customers/login", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> loginCustomer(@RequestBody Customer customer){
         String result = "";
