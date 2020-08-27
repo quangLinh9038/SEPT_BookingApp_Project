@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name ="Customer")
 public class Customer extends User{
 
-    @Column(name = "cus_name")
+    @Column
     private String name;
 
     @Column

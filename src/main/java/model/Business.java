@@ -13,7 +13,7 @@ public class Business {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //generate id incrementally
-    @Column(name = "bu_id")
+    @Column
     private int id;
 
     // generate unique name in Business table

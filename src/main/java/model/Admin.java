@@ -22,7 +22,6 @@ public class Admin extends User {
     //business mapping
     @OneToOne(cascade = CascadeType.ALL)
     @JsonIgnore
-//    @PrimaryKeyJoinColumn
     private Business business;
 
     //one-to-many relationship with Employees table
