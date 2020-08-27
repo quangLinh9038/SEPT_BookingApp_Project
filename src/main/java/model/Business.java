@@ -32,6 +32,7 @@ public class Business {
     //MAPPING
     //admin mapping
     @OneToOne
+    @JsonIgnore
     @PrimaryKeyJoinColumn
     private Admin admin;
 
