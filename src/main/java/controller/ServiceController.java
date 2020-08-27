@@ -36,8 +36,8 @@ public class ServiceController {
         serviceService.updateService(service);
     }
 
-    @RequestMapping(path = "services/delete", method = RequestMethod.DELETE)
-    public void deleteCustomer(@RequestParam int id){
+    @RequestMapping(path = "services/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteCustomer(@PathVariable int id){
         serviceService.deleteService(id);
     }
 }

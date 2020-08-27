@@ -82,8 +82,8 @@ public class CustomerController {
         customerService.updateCustomer(customer);
     }
 
-    @RequestMapping(path = "customers/delete", method = RequestMethod.DELETE)
-    public void deleteCustomer(@RequestParam int id){
+    @RequestMapping(path = "customers/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteCustomer(@PathVariable int id){
         customerService.deleteCustomer(id);
     }
 }

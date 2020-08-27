@@ -89,7 +89,7 @@ public class AdminController {
     }
 
     //delete admin path
-    @RequestMapping(path = "admin/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "admin/delete/{id}", method = RequestMethod.DELETE)
     public void deleteAdmin (@PathVariable int id){
         adminService.deleteAdmin(id);
     }

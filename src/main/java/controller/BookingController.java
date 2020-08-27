@@ -37,8 +37,8 @@ public class BookingController {
         bookingService.addBooking(booking);
     }
 
-    @RequestMapping(path = "booking/delete", method = RequestMethod.DELETE)
-    public void deleteCustomer(@RequestParam int id){
+    @RequestMapping(path = "booking/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteCustomer(@PathVariable int id){
         bookingService.deleteBooking(id);
     }
 }
