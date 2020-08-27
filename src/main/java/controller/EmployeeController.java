@@ -32,7 +32,7 @@ public class EmployeeController {
 
     @RequestMapping(path = "employees", method = RequestMethod.POST)
     public void addEmployeeWithoutLogin (@RequestBody Employee employee){
-        adminService.addEmployee(employee);
+        employeeService.addEmployee(employee);
     }
 
 

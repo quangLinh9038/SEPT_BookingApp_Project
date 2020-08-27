@@ -31,7 +31,7 @@ public class CustomerController {
 
     @RequestMapping(path = "customers", method = RequestMethod.POST)
     public void addCustomerWithoutLogin (@RequestBody Customer customer){
-        adminService.addCustomer(customer);
+        customerService.addCustomer(customer);
     }
 
     @RequestMapping(path = "customers/register", method = RequestMethod.POST)
