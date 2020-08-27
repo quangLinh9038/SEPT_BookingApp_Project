@@ -26,9 +26,9 @@ public class ServiceService {
     // add service
     public void addService(Service service){
         if(service.getBusiness() != null){
-            String business_name = service.getBusiness().getName();
-            Query query = sessionFactory.getCurrentSession().createQuery("from Business where name =:name");
-            query.setString("name",business_name);
+            int business_id = service.getBusiness().getId();
+            Query query = sessionFactory.getCurrentSession().createQuery("from Business where id =:id");
+            query.setInteger("id",business_id);
             Business business = (Business) query.uniqueResult();
             service.setBusiness(business);
         }
