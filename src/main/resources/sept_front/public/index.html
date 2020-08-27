@@ -14,11 +14,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@300;500&display=swap"
     rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -59,7 +60,7 @@
     -->
 </body>
 <script>
-
+  // SideNav toggle +burger
   const navSlide = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.sidenav');
@@ -84,7 +85,35 @@
   }
 
   navSlide();
+</script>
 
+<script>
+  // Card + List View function
+  var li_links = document.querySelectorAll(".dropdown-content ul li")
+  var view_wraps = document.querySelectorAll(".portfolio-items-wrapper")
+  
+  li_links.forEach(function(link){
+    link.addEventListener('click',function(){
+      // li_links.forEach(function(item){
+      //   item.classList.remove('active')
+      // })
+
+      // link.classList.add('active');
+
+      var li_view=link.getAttribute("data-view");
+
+      view_wraps.forEach(function(view){
+        view.style.display = "none"
+      })
+
+      if(li_view == 'card-view'){
+        document.querySelector("." + li_view).style.display = "grid";
+      }
+      else{
+        document.querySelector("." + li_view).style.display = "block";
+      }
+    })
+  })
 </script>
 
 </html>
