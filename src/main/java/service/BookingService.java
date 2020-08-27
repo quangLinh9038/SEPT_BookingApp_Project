@@ -44,7 +44,7 @@ public class BookingService {
 
         //Booking can add Customer by name stored already in database
         if(booking.getCustomer() != null){
-            String customer_id = booking.getCustomer().getId();
+            int customer_id = booking.getCustomer().getId();
             Query query = sessionFactory.getCurrentSession().createQuery("from Customer where id =:id");         //querying Business name from database
             query.setInteger("id",customer_id);
             Customer customer = (Customer) query.uniqueResult();
