@@ -97,6 +97,18 @@ public class BookingService {
         Query query = sessionFactory.getCurrentSession().createQuery("from Booking where id =:id");
         query.setInteger("id", id);
         Booking booking = (Booking) query.uniqueResult();
+        if (booking.getAdmin()!=null){
+            booking.setAdmin(null);
+        }
+        if (booking.getCustomer()!=null){
+            booking.setCustomer(null);
+        }
+        if (booking.getService()!=null){
+            booking.setService(null);
+        }
+        if (booking.getEmployee()!=null){
+            booking.setEmployee(null);
+        }
         sessionFactory.getCurrentSession().delete(booking);
     }
 }

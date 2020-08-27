@@ -15,7 +15,7 @@ public class Admin extends User {
 
     //mapping one-to-many relationship to Booking table
     // ignore json
-    @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();
 
