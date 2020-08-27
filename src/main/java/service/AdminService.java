@@ -2,6 +2,7 @@ package service;
 
 import model.Admin;
 import model.Business;
+import model.Customer;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,19 +31,22 @@ public class AdminService {
     // save admin
     public void saveAdmin(Admin admin) {
         System.out.println(admin.getBusiness());
+        if (admin.getRole() == null){
+            admin.setRole("ADMIN");
+        }
 
         // Admin and Business have one-to-one relationship
-        if (admin.getBusiness()!=null){
+        if(admin.getBusiness()!=null ){
             int business_id = admin.getBusiness().getId();
             System.out.println((business_id));
             Query query = sessionFactory.getCurrentSession().createQuery("from Business where id= :id");
             query.setInteger("id",business_id);
             Business business = (Business) query.uniqueResult();
             admin.setBusiness(business);
-        }
-        sessionFactory.getCurrentSession().save(admin);
-    }
 
+        }
+        sessionFactory.getCurrentSession().saveOrUpdate(admin);
+    }
 
     //get admin
     public Admin getAdmin(int id) {
@@ -78,6 +82,18 @@ public class AdminService {
         sessionFactory.getCurrentSession().delete(admin);
     }
 
+
+    //check admin username
+    public boolean checkUsername(Admin admin){
+        String username = admin.getUsername();
+        Query query = sessionFactory.getCurrentSession().createQuery("From Admin where username = :username");
+        query.setString("username",username);
+        Admin checkAdminUsername = (Admin) query.uniqueResult();
+        if(checkAdminUsername != null){
+            return true;
+        }
+        return false;
+    }
 }
 
 

@@ -36,14 +36,12 @@ export default class BookService extends React.Component {
             listEmployees: [],
             listServices:[],
             note: '',
-            date_created: '',
+            date_bookded: '',
             status: '',
             time: '',
             approve:true,
         }
     }
-
-
 
     // fetch list of services
     fetchListServices() {

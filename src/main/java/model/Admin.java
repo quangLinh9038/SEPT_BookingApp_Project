@@ -8,15 +8,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "Admin")
-public class Admin {
+public class Admin extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //generate ID for admin incrementally
-    @Column(name = "admin_id")
-    private int id;
-
-
-    @Column(name = "admin_name", unique = true) //unique name in the table
+    @Column
     private String name;
 
     //mapping one-to-many relationship to Booking table
@@ -37,14 +31,6 @@ public class Admin {
     private List<Employee> employees = new ArrayList<>();
 
     public Admin() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -82,7 +68,6 @@ public class Admin {
     @Override
     public String toString() {
         return "Admin{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", bookings=" + bookings +
                 ", business=" + business +

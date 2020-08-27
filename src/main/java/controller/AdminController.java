@@ -1,8 +1,11 @@
 package controller;
 
 
+import com.google.gson.Gson;
 import model.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import service.AdminService;
 
@@ -26,11 +29,31 @@ public class AdminController {
         return adminService.getAllAdmin();
     }
 
+
     //add new admin path
     @RequestMapping(path = "admin", method =  RequestMethod.POST)
-    public void addAdmin (@RequestBody Admin admin){
-        System.out.println(admin);
-        adminService.saveAdmin(admin);
+    @ResponseBody
+
+
+    public ResponseEntity<String> addAdmin (@RequestBody Admin admin){
+        String result = "";
+        Gson g = new Gson();
+        HttpStatus httpStatus;
+        try {
+            if (!adminService.checkUsername(admin)) {
+                result = "Successfully";
+                httpStatus = HttpStatus.OK;
+                adminService.saveAdmin(admin);
+            }
+            else{
+                result = "Username or password is invalid!";
+                httpStatus = HttpStatus.BAD_REQUEST;
+            }
+        } catch (Exception ex){
+            result = "Server error";
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return  new ResponseEntity<>(g.toJson(result), httpStatus);
     }
 
     //get admin by name path
