@@ -40,7 +40,7 @@ public class BookingController {
 
     @RequestMapping(path = "booking", method = RequestMethod.PUT)
     public void updateBooking(@RequestBody Booking booking){
-        bookingService.addBooking(booking);
+        bookingService.updateBooking(booking);
     }
 
     @RequestMapping(path = "booking/delete/{id}", method = RequestMethod.DELETE)

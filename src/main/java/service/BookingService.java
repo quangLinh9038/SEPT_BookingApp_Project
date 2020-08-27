@@ -71,6 +71,15 @@ public class BookingService {
         sessionFactory.getCurrentSession().saveOrUpdate(booking);
     }
 
+    public void updateBooking(Booking booking){
+        if(booking.getDate_booked() == null){
+            Date date = new Date();
+            SimpleDateFormat formatterDate = new SimpleDateFormat("dd-MM-yyyy");
+            booking.setDate_booked(formatterDate.format(date));
+        }
+        sessionFactory.getCurrentSession().update(booking);
+    }
+
     // get booking by querying booking's ID
     public Booking getBooking (int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Booking where id =:id");
