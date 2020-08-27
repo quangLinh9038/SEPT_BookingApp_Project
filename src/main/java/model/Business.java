@@ -24,7 +24,7 @@ public class Business {
     private String contact;
 
     @Column
-    private String descriptions;
+    private String description;
 
     @Column
     private String schedule;
@@ -32,7 +32,6 @@ public class Business {
     //MAPPING
     //admin mapping
     @OneToOne
-//    @MapsId
     @PrimaryKeyJoinColumn
     private Admin admin;
 
@@ -66,12 +65,12 @@ public class Business {
         this.name = name;
     }
 
-    public String getDescriptions() {
-        return descriptions;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getContact() {
@@ -120,7 +119,7 @@ public class Business {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", contact='" + contact + '\'' +
-                ", descriptions='" + descriptions + '\'' +
+                ", description='" + description + '\'' +
                 ", schedule='" + schedule + '\'' +
                 ", admin=" + admin +
                 ", services=" + services +
