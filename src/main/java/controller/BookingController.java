@@ -32,7 +32,7 @@ public class BookingController {
         return bookingService.getBookingsByAdminId(id);
     }
 
-    @RequestMapping(path = "booking/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "booking", method = RequestMethod.POST)
     public void addBooking(@RequestBody Booking booking){
         bookingService.addBooking(booking);
     }
