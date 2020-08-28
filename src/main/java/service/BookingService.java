@@ -4,8 +4,10 @@ package service;
 import model.*;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
+import java.awt.print.Book;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -78,6 +80,20 @@ public class BookingService {
             booking.setDate_booked(formatterDate.format(date));
         }
         sessionFactory.getCurrentSession().update(booking);
+    }
+
+    public void acceptStatusBooking(int id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Booking where id =:id");
+        query.setInteger("id",id);
+        Booking booking = (Booking) query.uniqueResult();
+        booking.setStatus(true);
+    }
+
+    public void rejectStatusBooking(int id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Booking where id =:id");
+        query.setInteger("id",id);
+        Booking booking = (Booking) query.uniqueResult();
+        booking.setStatus(false);
     }
 
     // get booking by querying booking's ID

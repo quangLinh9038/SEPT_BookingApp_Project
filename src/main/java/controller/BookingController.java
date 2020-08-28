@@ -32,10 +32,19 @@ public class BookingController {
         return bookingService.getBookingsByAdminId(id);
     }
 
-
-    @RequestMapping(path = "booking", method = RequestMethod.POST)
+    @RequestMapping(path = "booking/{id}", method = RequestMethod.PUT)
     public void addBooking(@RequestBody Booking booking){
         bookingService.addBooking(booking);
+    }
+
+    @RequestMapping(path = "booking/accept/{id}", method = RequestMethod.PUT)
+    public void acceptStatusBooking(@PathVariable int id){
+        bookingService.acceptStatusBooking(id);
+    }
+
+    @RequestMapping(path = "booking/reject/{id}", method = RequestMethod.PUT)
+    public void rejectStatusBooking(@PathVariable int id){
+        bookingService.rejectStatusBooking(id);
     }
 
     @RequestMapping(path = "booking", method = RequestMethod.PUT)
