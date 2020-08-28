@@ -4,10 +4,8 @@ package service;
 import model.*;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
-import java.awt.print.Book;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +34,8 @@ public class BookingService {
             booking.setDate_booked(formatterDate.format(date));
         }
 
+        //set admin_id in booking
+        //
         if(booking.getAdmin() != null){
             int id = booking.getAdmin().getId();
             Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id =:id");
@@ -44,7 +44,8 @@ public class BookingService {
             booking.setAdmin(admin);
         }
 
-        //Booking can add Customer by name stored already in database
+        //set customer id in booking details
+        //query data of customers
         if(booking.getCustomer() != null){
             int customer_id = booking.getCustomer().getId();
             Query query = sessionFactory.getCurrentSession().createQuery("from Customer where id =:id");         //querying Business name from database
@@ -59,7 +60,7 @@ public class BookingService {
             Query query = sessionFactory.getCurrentSession().createQuery("from Employee where name =:name");
             query.setParameter("name",employee_name);
             Employee employee = (Employee) query.uniqueResult();
-            booking.setEmployee(employee);
+            booking.setEmployee(employee);                                                                          //set employee id
         }
 
         // Booking can add service by service's name
@@ -82,6 +83,9 @@ public class BookingService {
         sessionFactory.getCurrentSession().update(booking);
     }
 
+    //query booking_id
+    //then set booking status = true
+    //means that booking is approved
     public void acceptStatusBooking(int id){
         Query query = sessionFactory.getCurrentSession().createQuery("from Booking where id =:id");
         query.setInteger("id",id);
@@ -89,6 +93,9 @@ public class BookingService {
         booking.setStatus(true);
     }
 
+    //the same pattern as accept service
+    //status of booking set as false
+    //booking is rejected
     public void rejectStatusBooking(int id){
         Query query = sessionFactory.getCurrentSession().createQuery("from Booking where id =:id");
         query.setInteger("id",id);

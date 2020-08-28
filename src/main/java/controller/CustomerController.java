@@ -65,8 +65,9 @@ public class CustomerController {
         Gson g = new Gson();
         HttpStatus httpStatus;
         try {
-            //username available --> return OK status and save new username
-            if (customerService.checkLogin(customer)){
+
+            if (customerService.checkLogin(customer)){                      //username available
+                                                                            // --> return OK status and save new username
                 result = "Login successfully!";
                 httpStatus = HttpStatus.OK;
             }
