@@ -1,0 +1,10 @@
+language: java
+jdk:
+  - openjdk10
+  - openjdk11
+
+os:
+  - linux
+
+dist:
+  - precise
