@@ -2,65 +2,242 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Form, Col, CardColumns, Card, Row } from 'react-bootstrap'
-const StyledHeader = styled.div`
-display:;
-margin-bottom:20px;
-margin-left:20px;
+const Styled = styled.div`
+div{
+    margin:0;
+    padding:0;
+    box-sizing:border-box
+}
+
+// Nav style
+nav{
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    border-bottom: 5px double grey;
+    font-family: 'Bebas Neue', cursive; 
+}
+
+.nav-title h1{
+    font-weight:bold
+    font-size:45px
+    // text-transform:uppercase
+    letter-spacing:15px;
+    text-decoration:none;  
+}
+
+.nav-list-items{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    margin:0px;
+    padding:0px;
+}
+
+.nav-list-items-mobile{
+    display:none;
+    justify-content:space-around;
+    align-items:center;
+    margin:0px;
+    padding:0px;
+    letter-spacing: 20px
+    position:absolute;
+    top:15px;
+    right:15px;
+}
+
+.nav-list-items-mobile i{
+    color:#9FFFCB
+    font-size:15px
+}
+
+
+li{
+    list-style:none;
+}
+
+.nav-item .btn{
+    display:block;
+    border:2px solid #fb2274;
+    :hover{
+        background-color:red
+        color:white
+    }
+    width:110px;
+    height:35px;
+    line-height:35px;
+    word-spacing:0;
+    text-decoration:none;
+    font-size:20px;
+    margin: 0 auto;
+    border-radius: 25px
+}
+
+.nav-item .btn i{
+    padding:0
+    margin:0
+    letter-spacing:10px
+}
+
+.nav-item .btn a{
+    text-decoration:none
+}
+
+input{
+    padding-left:10px
+}
+
+// MODAL
+.modal{
+    margin-left: 35%
+    font-family: 'Bebas Neue', cursive;
+}
+
+.modal .modal-body form{
+    margin:0px;
+    padding:0px
+}
+
+.modal-header .modal-title{
+    margin:0;
+    padding:0;
+    padding-left:10px
+}
+
+.form-label{
+    padding: 0 5px
+    font-weight:bold;
+}
+
+// TABLE
+table{
+    margin: 10px auto 0px
+    width:95%
+}
+
+
+// BUTTON
+.lists-button {
+    display:flex
+    gap:5px
+    justify-content:center
+}
+
+.lists-button .btn{
+    background-color: #00BFFF
+    :hover{
+        background-color:red
+        color:white
+    }
+    width:50px;
+    height:30px;
+    line-height:30px;
+    word-spacing:0;
+    text-decoration:none;
+    font-size:15px;
+    margin: 3px auto 5px;
+    border-radius: 10px
+}
+
+
+@media screen and (max-width:960px){
+    .modal{
+        margin-left:17%
+    }
+    
+    .modal-body .form-label{
+        padding: 0 5px
+    }
+
+    .modal .modal-body .form-group{
+        padding: 5px
+    }
+
+    .nav-title h1{
+        font-size: 15px;
+        letter-spacing:10px
+        margin: 5px 0
+    }
+
+    .nav-list-items{
+        display: none
+    }
+
+    .nav-list-items-mobile{
+        display:flex
+    }
+}
+
+
+
 `
 
-const URL = 'https://5f2d05928085690016922b96.mockapi.io/Services'
-const url = 'https://5f2d05928085690016922b96.mockapi.io/Employee'
-const lru = 'https://5f2d05928085690016922b96.mockapi.io/customer'
-const LRU = 'https://5f2d05928085690016922b96.mockapi.io/Booking'
+const urlServices = 'http://localhost:8080/services'
+const urlEmployees = 'http://localhost:8080/employees'
+const urlCustomers = 'http://localhost:8080/customers'
+const urlBooking = 'http://localhost:8080/booking'
 export default class ListService extends React.Component {
     constructor() {
         super()
         this.state = {
-            listServices: [],
-            listEmployees: [],
-            listCustomers: [],
             listBooking: [],
-            ser_ID: '', ser_name: '', ser_duration: '', ser_descriptions: '', ser_price: '', input: '', e_name: '', cus_name: '', cus_ID: '',
-            e_ID: '', e_schedule: '',
 
-            bookingEmployee: {
-                name: ''
-            },
-            bookingService: {
-                name: ''
-            },
-            bookingCustomer: {
-                name: ''
-            },
+            listServices: [{
+                name:''
+            }],
 
-            descriptions: ''
+            listEmployees: [
+                {
+                    name: ''
+                }
+            ],
+
+            listCustomers: [
+                {
+                    name:''
+                }
+            ],
+
+            id: '', name: '', description: '', duration: '', price: '', business_bu_id: '', note: '', 
+            e_name: '', cus_name: '', time: '', ser_name:'', cus_id:'',
+
+            employee: {
+                name: ''
+            },
+            service: {
+                name: ''
+            },
+            customer: {
+                name: ''
+            },
         }
     }
 
     // fetch list of services
     fetchListServices() {
-        fetch(URL)
+        fetch(urlServices)
             .then(res => res.json())
+            // .then(json=>console.log(json))
             .then(json => this.setState({ listServices: json }))
     }
 
     // fetch list of employees
     fetchListEmployees() {
-        fetch(url)
+        fetch(urlEmployees)
             .then(res => res.json())
             .then(json => this.setState({ listEmployees: json }))
     }
 
     // fetch list of customers
     fetchCustomers() {
-        fetch(lru)
+        fetch(urlCustomers)
             .then(res => res.json())
             .then(json => this.setState({ listCustomers: json }))
     }
 
     // fetch list of booking appointment
     fetchBooking() {
-        fetch(LRU)
+        fetch(urlBooking)
             .then(res => res.json())
             .then(json => this.setState({ listBooking: json }))
     }
@@ -68,7 +245,11 @@ export default class ListService extends React.Component {
     componentDidMount() {
         this.fetchListServices()
         this.fetchListEmployees()
-        this.fetchCustomers()
+        this.fetchBooking()
+        let data = sessionStorage.getItem('mydata')
+        data = JSON.parse(data)
+        // console.log(data)
+        this.setState({listCustomers:data})
     }
 
     // Take change function
@@ -80,7 +261,7 @@ export default class ListService extends React.Component {
 
     // search function
     search() {
-        fetch(URL)
+        fetch(urlServices)
             .then(res => res.json())
             .then(json => {
                 let data = json.filter((d, i) => d.ser_name == this.state.input)
@@ -88,21 +269,37 @@ export default class ListService extends React.Component {
             })
     }
 
+    handleAddService() {
+        let emp = {
+            name: this.state.name
+        }
+        fetch(urlServices, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'post',
+            body: JSON.stringify(emp)
+        })
+            .then(res => this.fetchListServices())
+    }
+
     // Function add to booking appointment back-end
     handleAddToAppointment() {
         let emp = {
-            bookingCustomer: {
-                name: this.state.cus_name
-            },
-            bookingEmployee: {
+            employee: {
                 name: this.state.e_name
             },
-            bookingService: {
+            service: {
                 name: this.state.ser_name
             },
-            descriptions: this.state.ser_descriptions
+            customer: {
+                id: this.state.cus_id
+            },
+            note: this.state.description,
+            time: this.state.time
         }
-        fetch(LRU, {
+        fetch(urlBooking, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -115,43 +312,45 @@ export default class ListService extends React.Component {
 
     render() {
         return (
-            <div>
-                <StyledHeader className='navbar sticky-top'>
-                    <h2>List of services</h2>
 
-                    {/* Search field */}
-                    <ul class='row' style={{ gap: '15px' }}>
-                        <li class='nav-item'>
-                            <form action="" className='input-group md-form form-sm form-2 pl-0'>
-                                <input class='form-control' placeholder='Enter name of service'
-                                    name='input' value={this.state.input}
-                                    onChange={this.handleChange.bind(this)}
-                                />
-                                <div class='input-group-append'>
-                                    <button class='input-group-text' type='button'>
-                                        <i class='fa fa-search' aria-hidden='true'
-                                            onClick={this.search.bind(this)}
-                                        />
-                                    </button>
-                                </div>
-                            </form>
+            <Styled>
+                <nav>
+                    <div className="nav-title">
+                        <h1>List of services</h1>
+                    </div>
+
+                    <ul className='nav-list-items-mobile'>
+                        <li>
+                            <div className="btn" data-toggle='modal' data-target='#formBooking'>
+                                <i className='fa fa-address-book' />
+                            </div>
                         </li>
 
-                        {/* Button to book appointment */}
-                        <button type='button' className='btn btn-success' data-toggle='modal' data-target='#formBooking' >
-                            <i className='fa fa-address-book' style={{ paddingRight: '10px' }} />
-                            Book
-                        </button>
-
-                        {/* Button to view list of booked appointment */}
-                        <Link to={`/BusinessOwner/BookingList`}>
-                            <button type='button' className='btn btn-danger'>
-                                <i className='fa fa-list' style={{ paddingRight: '10px' }} />
-                            View
-                        </button>
-                        </Link>
+                        <li>
+                            <Link to={`/Components/Booking/BookService`} style={{ textDecoration: 'none' }}>
+                                <div className="btn">
+                                    <i className='fa fa-list' />
+                                </div>
+                            </Link>
+                        </li>
                     </ul>
-                </StyledHeader>
+                    <ul className='nav-list-items'>
+                        <li className='nav-item no1'>
+                            <div className="btn" data-toggle='modal' data-target='#formBooking'>
+                                <i className='fa fa-address-book' />
+                                    Book
+                            </div>
+                        </li>
+                        <li className='nav-item no2'>
+                            <Link to={`/Components/Booking/BookService`} style={{ textDecoration: 'none' }}>
+                                <div className="btn">
+                                    <i className='fa fa-list' />
+                                    View
+                                </div>
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
 
                 {/* Function view list of services */}
                 <table className='table table-hover text-center'>
@@ -161,18 +360,18 @@ export default class ListService extends React.Component {
                             <th>Name</th>
                             <th>Duration</th>
                             <th>Descriptions</th>
-                            <th>Price</th>
+                            <th>Price (VND)</th>
                         </tr>
                     </thead>
 
                     {this.state.listServices.map(p =>
                         <tbody>
                             <tr>
-                                <td>{p.ser_ID}</td>
-                                <td>{p.ser_name}</td>
-                                <td>{p.ser_duration}</td>
-                                <td>{p.ser_descriptions}</td>
-                                <td>{p.ser_price}</td>
+                                <td>{p.id}</td>
+                                <td>{p.name}</td>
+                                <td>{p.duration}</td>
+                                <td>{p.description}</td>
+                                <td>{p.price}</td>
                             </tr>
                         </tbody>
                     )}
@@ -183,102 +382,103 @@ export default class ListService extends React.Component {
                         <div class='modal-content'>
                             <div class='modal-header'>
                                 <h4 class='modal-title' id='formBookingLongTitle'><b>Booking form</b></h4>
-                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+
+                                {/* <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                                     <span aria-hidden='true'>x</span>
-                                </button>
+                                </button> */}
+
                             </div>
 
                             <div class='modal-body'>
                                 <Form>
                                     <Form.Row>
-                                        <Form.Group as={Col} md='12' controlId='formGridName'>
-                                            <Form.Label>Customer name:</Form.Label>
-                                            <Form.Control type='text' placeholder='Enter your name'
-                                                name='cus_name' value={this.state.cus_name}
-                                                onChange={this.handleChange.bind(this)}
-                                            />
-                                        </Form.Group>
+                                    {/* Input field for customer */}
+                                    <Form.Group as={Col} md='11' controlId='formGridID'>
+                                        <Form.Label>Customer name</Form.Label>
+                                        <select class='browser-default custom-select'
+                                            name="cus_id" value={this.state.cus_id} 
+                                            onChange={this.handleChange.bind(this)}
+                                        >
+                                            <option selected>Choose your options</option>
+                                            {this.state.listCustomers.map(p =>
+                                                <option value={p.id}>{p.name}</option>
+                                            )}
+                                        </select>
+                                    </Form.Group>
 
-                                        <Form.Group as={Col} md='6' controlId='formGridServices'>
-                                            <Form.Label>Select service</Form.Label>
-                                            <select class='browser-default custom-select'
-                                                name="ser_name" value={this.state.ser_name} id="ser_name"
-                                                onChange={this.handleChange.bind(this)}
-                                            >
-                                                <option selected>Choose your options</option>
-                                                {this.state.listServices.map(p =>
-                                                    <option value={p.ser_name}>{p.ser_name}</option>
-                                                )}
-                                            </select>
-                                        </Form.Group>
+                                    {/* <Form.Group as={Col} md='11' controlId='formGridID'>
+                                        <Form.Label>ID:</Form.Label>
+                                        <Form.Control type='input' placeholder='Enter your date'
+                                            name='cus_id' value={this.state.cus_id}
+                                            onChange={this.handleChange.bind(this)}
+                                        />
+                                    </Form.Group> */}
 
-                                        <Form.Group as={Col} md='6' controlId='formGridEmployees'>
-                                            <Form.Label>Select employee</Form.Label>
-                                            <select class='browser-default custom-select'
-                                                name="e_name" value={this.state.e_name} id="e_name"
-                                                onChange={this.handleChange.bind(this)}
-                                            >
-                                                <option selected>Choose your options</option>
-                                                {this.state.listEmployees.map(p =>
-                                                    <option value={p.e_name}>{p.e_name}</option>
-                                                )}
-                                            </select>
-                                        </Form.Group>
+                                    {/* Select field for book date */}
+                                    <Form.Group as={Col} md='11' controlId='formGridTime'>
+                                        <Form.Label for='time'>Time:</Form.Label>
+                                        <Form.Control type='date' placeholder='Enter your date'
+                                            name='time' value={this.state.time}
+                                            onChange={this.handleChange.bind(this)}
+                                        />
+                                    </Form.Group>
 
-                                        <Form.Group as={Col} controlId='formGridDescription'>
-                                            <Form.Label>Notes:</Form.Label>
-                                            <Form.Control as='textarea' rows="4"
-                                                name='ser_descriptions' value={this.state.ser_descriptions}
-                                                onChange={this.handleChange.bind(this)}
-                                            />
-                                        </Form.Group>
+                                    {/* Select field for services */}
+                                    <Form.Group as={Col} md='11' controlId='formGridServices'>
+                                        <Form.Label>Select services</Form.Label>
+                                        <select class='browser-default custom-select'
+                                            name="ser_name" value={this.state.ser_name} 
+                                            onChange={this.handleChange.bind(this)}
+                                        >
+                                            <option selected>Choose your options</option>
+                                            {this.state.listServices.map(p =>
+                                                <option value={p.name}>{p.name}</option>
+                                            )}
+                                        </select>
+                                    </Form.Group>
+                                    {/* Select field for employees */}
+                                    <Form.Group as={Col} md='11' controlId='formGridEmployees'>
+                                        <Form.Label>Select employees</Form.Label>
+                                        <select class='browser-default custom-select'
+                                            name="e_name" value={this.state.e_name} 
+                                            onChange={this.handleChange.bind(this)}
+                                        >
+                                            <option selected>Choose your options</option>
+                                            {this.state.listEmployees.map(p =>
+                                                <option value={p.name}>{p.name}</option>
+                                            )}
+                                        </select>
+                                    </Form.Group>
+                                    {/* Input area for description, note */}
+                                    <Form.Group as={Col} md='11' controlId='formGridDescription'>
+                                        <Form.Label>Notes:</Form.Label>
+                                        <Form.Control as='textarea' rows="4"
+                                            name='description' value={this.state.description}
+                                            onChange={this.handleChange.bind(this)}
+                                        />
+                                    </Form.Group>
                                     </Form.Row>
                                 </Form>
-                                
+
                                 {/* Button add to booking appointment back-end */}
-                                <div class='text-right'>
-                                    <button type='button' className='btn btn-success btn-md' onClick={this.handleAddToAppointment.bind(this)}>
-                                        Add
-                                    </button>
-                                    <span> </span>
-                                    {/* <button type='button' className='btn btn-success btn-md' onClick={this.handleClear.bind(this)}>Clear</button> */}
-                                </div>
-
-
-
-
-                                {/* <div class='modal fade' id='confirmGo' tabIndex='-1' role='dialog' aria-labelledby='confirmGoTitle' aria-hidden='true'>
-                                    <div class='modal-dialog modal-dialog-centered' role='document'>
-                                        <div class='modal-content'>
-                                            <div class='modal-header'>
-                                                <h5 class='modal-title' id='confirmGoLongTitle'>Confirmation</h5>
-                                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                                                    <span aria-hidden='true'>x</span>
-                                                </button>
-                                            </div>
-
-                                            <div class='modal-body'>
-                                                Do you want to view booking page?
-                                <div class='text-right'>
-                                                    <Link to={`/BusinessOwner/BookingList`}>
-                                                        <button type='button' className='btn btn-success btn-md'>Yes</button>
-                                                    </Link>
-                                                    <span> </span>
-                                                    <button type='button' className='btn btn-success btn-md' data-dismiss='modal' aria-label='Close'>No</button>
-                                                </div>
-                                            </div>
+                                <ul class='lists-button'>
+                                    <li>
+                                        <div type='button' class='btn' onClick={this.handleAddToAppointment.bind(this)}>
+                                            Add
                                         </div>
-                                    </div>
-                                </div> */}
+                                    </li>
 
-
+                                    {/* <li>
+                                        <button type='button' className='btn btn-success btn-md' onClick={this.handleClear.bind(this)}>Clear</button>
+                                    </li> */}
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+            
+            </Styled>
 
-
-            </div>
 
         )
     }

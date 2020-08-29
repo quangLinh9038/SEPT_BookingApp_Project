@@ -19,10 +19,10 @@ public class Booking {
     private String date_booked;
 
     @Column
-    private Time time;
+    private String time;
 
     @Column
-    private boolean status;
+    private Boolean status;
 
     @Column
     private String note;
@@ -69,11 +69,11 @@ public class Booking {
         this.note = note;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -81,7 +81,11 @@ public class Booking {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

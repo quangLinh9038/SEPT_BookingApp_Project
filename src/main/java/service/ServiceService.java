@@ -1,6 +1,7 @@
 package service;
 
 
+import model.Business;
 import model.Service;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -18,13 +19,20 @@ public class ServiceService {
 
     // get all service
     public List<Service> getAllServices(){
-        Query query = sessionFactory.getCurrentSession().createQuery("From Service");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Service");
         return query.list();
     }
 
-    // ad service
+    // add service
     public void addService(Service service){
-        this.sessionFactory.getCurrentSession().save(service);
+        if(service.getBusiness() != null){
+            int business_id = service.getBusiness().getId();
+            Query query = sessionFactory.getCurrentSession().createQuery("from Business where id =:id");
+            query.setInteger("id",business_id);
+            Business business = (Business) query.uniqueResult();
+            service.setBusiness(business);
+        }
+        sessionFactory.getCurrentSession().save(service);
 
     }
 
@@ -35,7 +43,7 @@ public class ServiceService {
 
     // delete service
     public void deleteService(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("From Service where id = :id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Service where id =:id");
         query.setInteger("id", id);
         Service service = (Service) query.uniqueResult();
         sessionFactory.getCurrentSession().delete(service);

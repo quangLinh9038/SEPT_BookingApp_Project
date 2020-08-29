@@ -8,13 +8,9 @@ import java.util.List;
 
 @Entity
 @Table(name ="Customer")
-public class Customer {
+public class Customer extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(unique = true)
+    @Column
     private String name;
 
     @Column
@@ -27,19 +23,11 @@ public class Customer {
     private String email;
 
     // 1 Customer can create many Bookings
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();
 
     public Customer() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -81,7 +69,6 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", contact='" + contact + '\'' +

@@ -23,22 +23,37 @@ public class BookingController {
     private BookingService bookingService;
 
     @RequestMapping(path = "booking", method = RequestMethod.GET)
-    public List<Booking> getAllCustomer(){
+    public List<Booking> getAllBooking(){
         return bookingService.getAllBooking();
     }
 
+    @RequestMapping(path = "booking/admin/{id}", method = RequestMethod.GET)
+    public List<Booking> getBookingsByAdminId(@PathVariable int id){
+        return bookingService.getBookingsByAdminId(id);
+    }
+
     @RequestMapping(path = "booking", method = RequestMethod.POST)
-    public void addCustomer(@RequestBody Booking booking){
+    public void addBooking(@RequestBody Booking booking){
         bookingService.addBooking(booking);
+    }
+
+    @RequestMapping(path = "booking/accept/{id}", method = RequestMethod.PUT)
+    public void acceptStatusBooking(@PathVariable int id){
+        bookingService.acceptStatusBooking(id);
+    }
+
+    @RequestMapping(path = "booking/reject/{id}", method = RequestMethod.PUT)
+    public void rejectStatusBooking(@PathVariable int id){
+        bookingService.rejectStatusBooking(id);
     }
 
     @RequestMapping(path = "booking", method = RequestMethod.PUT)
-    public void updateCustomer(@RequestBody Booking booking){
-        bookingService.addBooking(booking);
+    public void updateBooking(@RequestBody Booking booking){
+        bookingService.updateBooking(booking);
     }
 
-    @RequestMapping(path = "booking/delete", method = RequestMethod.DELETE)
-    public void deleteCustomer(@RequestParam int id){
+    @RequestMapping(path = "booking/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteBooking(@PathVariable int id){
         bookingService.deleteBooking(id);
     }
 }

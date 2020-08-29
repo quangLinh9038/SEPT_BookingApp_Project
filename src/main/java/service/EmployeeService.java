@@ -1,6 +1,7 @@
 package service;
 
 
+import model.Admin;
 import model.Customer;
 import model.Employee;
 import org.hibernate.Query;
@@ -20,13 +21,16 @@ public class EmployeeService {
 
     // get all employees
     public List<Employee> getAllEmployees(){
-        Query query = sessionFactory.getCurrentSession().createQuery("From Employee");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee");
         return query.list();
     }
 
     // add employee
     public void addEmployee(Employee employee){
-        sessionFactory.getCurrentSession().save(employee);
+        if(employee.getRole() == null){
+            employee.setRole("EMPLOYEE");
+        }
+        sessionFactory.getCurrentSession().saveOrUpdate(employee);
     }
 
     // update employee
@@ -36,11 +40,33 @@ public class EmployeeService {
 
     // delete employee
     public void deleteEmployee(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("From Employee where id = :id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where id =:id");
         query.setInteger("id", id);
         Employee employee = (Employee) query.uniqueResult();
         sessionFactory.getCurrentSession().delete(employee);
     }
 
 
+    //check username of employee
+    public boolean checkUsername(Employee employee){
+        String username = employee.getUsername();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where username =:username");
+        query.setString("username",username);
+        Employee checkEmployeeUsername = (Employee) query.uniqueResult();
+        if(checkEmployeeUsername != null){
+            return true;
+        }
+        return false;
+    }
+
+    // check username and password
+    // whether matching database
+    public boolean checkLogin(Employee employee){
+        String username = employee.getUsername();
+        String password = employee.getPassword();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where username =:username and password =:password");
+        query.setString("username",username).setString("password",password);
+        Employee checkEmployeeExist = (Employee) query.uniqueResult();
+        return checkEmployeeExist != null;
+    }
 }

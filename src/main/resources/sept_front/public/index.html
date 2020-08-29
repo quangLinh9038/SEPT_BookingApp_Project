@@ -6,17 +6,19 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@300;500&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -28,17 +30,17 @@
       Learn how to configure a non-root public URL by running `npm run build`.
 
     -->
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <title>App Booking</title>
 </head>
 
@@ -56,5 +58,61 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 </body>
+<script>
+  // SideNav toggle +burger
+  const navSlide = () => {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.sidenav');
+    const sideNavItem = document.querySelectorAll('.sidenav li');
+    burger.addEventListener('click', () => {
+      // Toggle Nav
+      nav.classList.toggle('nav-active')
+
+      // Animate item
+      sideNavItem.forEach((link, index) => {
+        if (link.style.animation) {
+          link.style.animation = ''
+        }
+        else {
+          link.style.animation = `sideNavFade 0.5s ease forwards ${index / 7 + 0.75}s`;
+        }
+      })
+
+      // Burger Animation
+      burger.classList.toggle('toggle');
+    });
+  }
+
+  navSlide();
+</script>
+
+<script>
+  // Card + List View function
+  var li_links = document.querySelectorAll(".dropdown-content ul li")
+  var view_wraps = document.querySelectorAll(".portfolio-items-wrapper")
+  
+  li_links.forEach(function(link){
+    link.addEventListener('click',function(){
+      // li_links.forEach(function(item){
+      //   item.classList.remove('active')
+      // })
+
+      // link.classList.add('active');
+
+      var li_view=link.getAttribute("data-view");
+
+      view_wraps.forEach(function(view){
+        view.style.display = "none"
+      })
+
+      if(li_view == 'card-view'){
+        document.querySelector("." + li_view).style.display = "grid";
+      }
+      else{
+        document.querySelector("." + li_view).style.display = "block";
+      }
+    })
+  })
+</script>
 
 </html>
