@@ -21,7 +21,7 @@ public class EmployeeService {
 
     // get all employees
     public List<Employee> getAllEmployees(){
-        Query query = sessionFactory.getCurrentSession().createQuery("From Employee");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee");
         return query.list();
     }
 
@@ -40,7 +40,7 @@ public class EmployeeService {
 
     // delete employee
     public void deleteEmployee(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("From Employee where id = :id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where id =:id");
         query.setInteger("id", id);
         Employee employee = (Employee) query.uniqueResult();
         sessionFactory.getCurrentSession().delete(employee);
@@ -50,7 +50,7 @@ public class EmployeeService {
     //check username of employee
     public boolean checkUsername(Employee employee){
         String username = employee.getUsername();
-        Query query = sessionFactory.getCurrentSession().createQuery("From Employee where username = :username");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where username =:username");
         query.setString("username",username);
         Employee checkEmployeeUsername = (Employee) query.uniqueResult();
         if(checkEmployeeUsername != null){
@@ -59,4 +59,14 @@ public class EmployeeService {
         return false;
     }
 
+    // check username and password
+    // whether matching database
+    public boolean checkLogin(Employee employee){
+        String username = employee.getUsername();
+        String password = employee.getPassword();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Employee where username =:username and password =:password");
+        query.setString("username",username).setString("password",password);
+        Employee checkEmployeeExist = (Employee) query.uniqueResult();
+        return checkEmployeeExist != null;
+    }
 }

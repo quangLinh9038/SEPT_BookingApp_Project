@@ -30,6 +30,11 @@ public class CustomerController {
     }
 
     @RequestMapping(path = "customers", method = RequestMethod.POST)
+    public void addCustomerWithoutLogin (@RequestBody Customer customer){
+        customerService.addCustomer(customer);
+    }
+
+    @RequestMapping(path = "customers/register", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> addCustomer(@RequestBody Customer customer){
         String result = "";
@@ -37,8 +42,8 @@ public class CustomerController {
         HttpStatus httpStatus;
         try {
             //username available --> return OK status and save new username
-            if (!customerService.checkUsername(customer)) {
-                result = "Successfully";
+            if (!customerService.checkUsername(customer)){
+                result = "Create account successfully!";
                 httpStatus = HttpStatus.OK;
                 customerService.addCustomer(customer);
             }
@@ -47,11 +52,35 @@ public class CustomerController {
                 httpStatus = HttpStatus.BAD_REQUEST;
             }
             } catch (Exception ex){
-            result = "Server error";
+            result = "Server error!";
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
         return  new ResponseEntity<>(g.toJson(result), httpStatus);
+    }
+
+    @RequestMapping(path = "customers/login", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> loginCustomer(@RequestBody Customer customer){
+        String result = "";
+        Gson g = new Gson();
+        HttpStatus httpStatus;
+        try {
+
+            if (customerService.checkLogin(customer)){                      //username available
+                                                                            // --> return OK status and save new username
+                result = "Login successfully!";
+                httpStatus = HttpStatus.OK;
+            }
+            else{
+                result = "Username or password is invalid!";
+                httpStatus = HttpStatus.BAD_REQUEST;
+            }
+            } catch (Exception ex){
+            result = "Server error!";
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
+        return  new ResponseEntity<>(g.toJson(result), httpStatus);
+    }
 
 
     @RequestMapping(path = "customers", method = RequestMethod.PUT)
@@ -59,8 +88,8 @@ public class CustomerController {
         customerService.updateCustomer(customer);
     }
 
-    @RequestMapping(path = "customers/delete", method = RequestMethod.DELETE)
-    public void deleteCustomer(@RequestParam int id){
+    @RequestMapping(path = "customers/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteCustomer(@PathVariable int id){
         customerService.deleteCustomer(id);
     }
 }

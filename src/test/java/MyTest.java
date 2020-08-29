@@ -1,11 +1,5 @@
-package test;
-
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import model.Admin;
-import org.junit.Assert;
 import org.junit.Test;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +7,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 
 public class MyTest {
 
@@ -21,7 +14,7 @@ public class MyTest {
     public void test1() throws IOException {
 
         try{
-	        URL url = new URL(TestConfig.URL+"admin");
+	        URL url = new URL(ConfigTest.URL+"admin");
 	        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 	        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
 	        String line = "";

@@ -7,14 +7,16 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Transactional
 
 public class CustomerService {
+    private List<Customer> customerList = new ArrayList<>();
+
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -26,6 +28,8 @@ public class CustomerService {
     }
 
     // add customer
+    // and set role for customer
+    // if customer's is null
     public void addCustomer(Customer customer){
         if (customer.getRole() == null) {
             customer.setRole("CUSTOMER");
@@ -38,9 +42,10 @@ public class CustomerService {
         sessionFactory.getCurrentSession().update(customer);
     }
 
-    // delete customer
+    // delete customer by id
+    // following path: customer/{id}
     public void deleteCustomer(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("From Customer where id = :id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Customer where id =:id");
         query.setInteger("id", id);
         Customer customer = (Customer) query.uniqueResult();
         sessionFactory.getCurrentSession().delete(customer);
@@ -48,16 +53,20 @@ public class CustomerService {
 
     //check username of customer
     //querying username from Customer table
-    //if username exist --> return true
-
     public boolean checkUsername(Customer customer){
         String username = customer.getUsername();
-        Query query = sessionFactory.getCurrentSession().createQuery("From Customer where username = :username");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Customer where username =:username");
         query.setString("username",username);
         Customer checkCustomerUsername = (Customer) query.uniqueResult();
-        if(checkCustomerUsername != null){
-            return true;
-        }
-        return false;
+        return checkCustomerUsername != null;
+    }
+
+    public boolean checkLogin(Customer customer){
+        String username = customer.getUsername();
+        String password = customer.getPassword();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Customer where username =:username and password =:password");
+        query.setString("username",username).setString("password",password);
+        Customer checkCustomerExist = (Customer) query.uniqueResult();
+        return checkCustomerExist != null;
     }
 }
