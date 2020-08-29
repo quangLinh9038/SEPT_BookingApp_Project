@@ -22,7 +22,7 @@ public class Booking {
     private String time;
 
     @Column
-    private boolean status;
+    private Boolean status;
 
     @Column
     private String note;
@@ -81,7 +81,11 @@ public class Booking {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
