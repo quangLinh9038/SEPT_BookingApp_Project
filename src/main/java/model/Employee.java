@@ -27,7 +27,7 @@ public class Employee extends User {
     private Admin admin;
 
     //1 employee can be assigned for many bookings
-    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();
 
