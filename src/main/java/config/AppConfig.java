@@ -29,7 +29,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("/WEB-INF/classes/static/");
     }
 
-
     @Bean
     public LocalSessionFactoryBean sessionFactory(){
 
@@ -46,7 +45,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
 
         sessionFactoryBean.setPackagesToScan("model");
-
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/group7");
@@ -64,6 +62,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         HibernateTransactionManager tx = new HibernateTransactionManager(sessionFactory);
         return tx;
     }
+
+
 
 }
 

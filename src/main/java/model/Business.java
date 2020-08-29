@@ -12,10 +12,11 @@ import java.util.List;
 public class Business {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "bu_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //generate id incrementally
+    @Column
     private int id;
 
+    // generate unique name in Business table
     @Column(unique = true)
     private String name;
 
@@ -23,22 +24,25 @@ public class Business {
     private String contact;
 
     @Column
-    private String descriptions;
+    private String description;
 
     @Column
     private String schedule;
 
-
+    //MAPPING
     //admin mapping
     @OneToOne
-//    @MapsId
+    @JsonIgnore
     @PrimaryKeyJoinColumn
     private Admin admin;
 
+    //one-to-many relationship with service table
+    // 1 business may have more than 1 service
     @OneToMany(mappedBy = "business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Service> services = new ArrayList<>();
 
+    // 1 business have more than employee
     @OneToMany(mappedBy = "business", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Employee> employees = new ArrayList<>();
@@ -62,12 +66,12 @@ public class Business {
         this.name = name;
     }
 
-    public String getDescriptions() {
-        return descriptions;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getContact() {
@@ -116,7 +120,7 @@ public class Business {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", contact='" + contact + '\'' +
-                ", descriptions='" + descriptions + '\'' +
+                ", description='" + description + '\'' +
                 ", schedule='" + schedule + '\'' +
                 ", admin=" + admin +
                 ", services=" + services +

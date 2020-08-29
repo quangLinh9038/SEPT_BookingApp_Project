@@ -19,13 +19,14 @@ public class Booking {
     private String date_booked;
 
     @Column
-    private Time time;
+    private String time;
 
     @Column
-    private boolean status;
+    private Boolean status;
 
     @Column
     private String note;
+
 
     //MAPPING
     @ManyToOne
@@ -52,11 +53,11 @@ public class Booking {
         this.id = id;
     }
 
-    public String getDate_created() {
+    public String getDate_booked() {
         return date_booked;
     }
 
-    public void setDate_created(String date_created) {
+    public void setDate_booked(String date_booked) {
         this.date_booked = date_booked;
     }
 
@@ -68,11 +69,11 @@ public class Booking {
         this.note = note;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -80,7 +81,11 @@ public class Booking {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

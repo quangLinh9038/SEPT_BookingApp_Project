@@ -15,46 +15,63 @@ import MediaCart from './Components/Home/HomepageBS';
 import Profile from './Components/Customer/Profile'
 import styled from 'styled-components';
 import ListService from './Components/Booking/ListService';
+import ViewEmployeeList2 from './BusinessOwner/EmployeeList2';
+import BookService from './Components/Booking/BookService';
+import TopNav from './Components/NavBar/TopNav';
 
 const GridWrapper = styled.div`
-font-family: Georgia, serif;
-  grid-gap: 10px;
-  margin-top: 1em;
-  margin-left: 6em;
-  margin-right: 6em;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: minmax(25px, auto);
-`; 
+  // font-family: 'Allura', cursive;
+  // grid-gap: 10px;
+  // margin-top: 1em;
+  // margin-left: 4.5em;
+  // margin-right: 3em;
+  // grid-template-columns: repeat(12, 1fr);
+  // grid-auto-rows: minmax(25px, auto);
+
+  // Mobile view
+  *{
+    margin: 0px;
+    padding:0px;
+    box-sizing:border-box;
+  }
+
+  // Desktop view
+  @media screen and (min-width:960px){
+    *{
+      margin:5px 10px 0px 25px
+      padding:0px;
+    }
+  }
+`;
 
 
 function App() {
   return (
     <React.Fragment>
       <Router>
-        <NavigationBar />
-        <Sidebar/>
+        {/* <NavigationBar /> */}
+        <TopNav/>
+        {/* <Sidebar /> */}
         <GridWrapper>
-        
-        <Route exact path={`/`} render={() =>
+
+          <Route exact path={`/`} render={() =>
             <div><MediaCart /></div>
           } />
 
-<Route exact path={`/Customer/Profile`} render={() =>
+          <Route exact path={`/Customer/Profile`} render={() =>
             <div><Profile /></div>
           } />
 
-<Route exact path={`/Booking/ListService`} render={() =>
+          <Route exact path={`/Booking/ListService`} render={() =>
             <div><ListService /></div>
           } />
-
-
 
           <Route exact path={`/BusinessOwner/BookingList`} render={() =>
             <div><ViewBookingList /></div>
           } />
 
-          <Route exact path={`/BusinessOwner/EmployeeList`} render={() =>
-            <div><ViewEmployeeList /></div>
+          <Route exact path={`/BusinessOwner/EmployeeList2`} render={() =>
+            <div><ViewEmployeeList2 /></div>
           } />
 
           <Route exact path={`/BusinessOwner/EmployeeMana`} render={() =>
@@ -64,11 +81,12 @@ function App() {
           <Route exact path={`/Employee/Owner`} render={() =>
             <div><OwnerPage /></div>
           } />
-          
-          
-          
 
-         
+<Route exact path={`/Components/Booking/BookService`} render={() =>
+            <div><BookService /></div>
+          } />
+
+
         </GridWrapper>
       </Router>
     </React.Fragment>

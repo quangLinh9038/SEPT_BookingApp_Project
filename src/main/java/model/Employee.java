@@ -9,11 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Employee")
-public class Employee {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Employee extends User {
 
     @Column(unique = true)
     private String name;
@@ -25,11 +21,13 @@ public class Employee {
     @JsonIgnore
     private Business business;
 
+    //an employee can be an admin in the system
     @ManyToOne
     @JsonIgnore
     private Admin admin;
 
-    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //1 employee can be assigned for many bookings
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Booking> bookings = new ArrayList<>();
 
@@ -40,13 +38,7 @@ public class Employee {
     public Employee() {
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -99,7 +91,6 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", schedule='" + schedule + '\'' +
                 ", business=" + business +
