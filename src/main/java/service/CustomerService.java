@@ -28,6 +28,8 @@ public class CustomerService {
     }
 
     // add customer
+    // and set role for customer
+    // if customer's is null
     public void addCustomer(Customer customer){
         if (customer.getRole() == null) {
             customer.setRole("CUSTOMER");
@@ -40,7 +42,8 @@ public class CustomerService {
         sessionFactory.getCurrentSession().update(customer);
     }
 
-    // delete customer
+    // delete customer by id
+    // following path: customer/{id}
     public void deleteCustomer(int id){
         Query query = sessionFactory.getCurrentSession().createQuery("from Customer where id =:id");
         query.setInteger("id", id);
@@ -50,7 +53,6 @@ public class CustomerService {
 
     //check username of customer
     //querying username from Customer table
-    //if username exist --> return true
     public boolean checkUsername(Customer customer){
         String username = customer.getUsername();
         Query query = sessionFactory.getCurrentSession().createQuery("from Customer where username =:username");

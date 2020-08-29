@@ -29,6 +29,7 @@ public class BusinessService {
 
     //save(add) business
     public void saveBusiness (Business business){
+        //set admin id into business's table
         if (business.getAdmin()!=null){
             int admin_id = business.getAdmin().getId();
             Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id =:id");
@@ -36,7 +37,7 @@ public class BusinessService {
             Admin admin = (Admin) query.uniqueResult();
             admin.setBusiness(business);
         }
-
+        //set employee id
         if (business.getEmployees()!=null){
             for(Employee employee: business.getEmployees()){
                 int employee_id = employee.getId();
@@ -46,7 +47,7 @@ public class BusinessService {
                 business.getEmployees().add(employee);
             }
         }
-
+        //set service id
         if (business.getServices()!=null){
             for(Service service: business.getServices()){
                 int service_id = service.getId();

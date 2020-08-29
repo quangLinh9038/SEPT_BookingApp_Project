@@ -32,10 +32,13 @@ public class AdminService {
     public void saveAdmin(Admin admin) {
         System.out.println(admin.getBusiness());
         if (admin.getRole() == null){
-            admin.setRole("ADMIN");
+            admin.setRole("ADMIN");                               //if admin get no role
+                                                                    //automated set role
         }
 
         // Admin and Business have one-to-one relationship
+        //in case admin set none of business_id
+        //set bu_id in admin details
         if(admin.getBusiness()!=null ){
             int business_id = admin.getBusiness().getId();
             Query query = sessionFactory.getCurrentSession().createQuery("from Business where id =:id");
@@ -47,7 +50,7 @@ public class AdminService {
         sessionFactory.getCurrentSession().saveOrUpdate(admin);
     }
 
-    //get admin by id
+    //querying admin by id
     public Admin getAdminById(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id =:id");
         query.setInteger("id", id);
@@ -76,6 +79,7 @@ public class AdminService {
     }
 
     //delete admin by id
+    //following /admin{id}
     public void deleteAdmin(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Admin where id =:id");
         query.setInteger("id",id);
@@ -90,7 +94,7 @@ public class AdminService {
         Query query = sessionFactory.getCurrentSession().createQuery("from Admin where username =:username");
         query.setString("username",username);
         Admin checkAdminUsername = (Admin) query.uniqueResult();
-        if(checkAdminUsername != null){
+        if(checkAdminUsername != null){                                 //if admin's username exist
             return true;
         }
         return false;
@@ -99,9 +103,11 @@ public class AdminService {
     public boolean checkLogin(Admin admin){
         String username = admin.getUsername();
         String password = admin.getPassword();
+        //querying username and pwd
         Query query = sessionFactory.getCurrentSession().createQuery("from Admin where username =:username and password =:password");
         query.setString("username",username).setString("password", password);
         Admin checkAdminExist = (Admin) query.uniqueResult();
+        //if username and pwd match
         return checkAdminExist != null;
 
     }

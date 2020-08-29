@@ -59,7 +59,8 @@ public class EmployeeService {
         return false;
     }
 
-    // check password
+    // check username and password
+    // whether matching database
     public boolean checkLogin(Employee employee){
         String username = employee.getUsername();
         String password = employee.getPassword();

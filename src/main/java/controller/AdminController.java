@@ -37,25 +37,26 @@ public class AdminController {
     //add new admin path
     @RequestMapping(path = "admin/register", method =  RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> addAdmin (@RequestBody Admin admin){
+    public ResponseEntity<String> addAdmin (@RequestBody Admin admin){      //ResponseEntity represent HTTP status
         String result = "";
         Gson g = new Gson();
         HttpStatus httpStatus;
         try {
-            if (!adminService.checkUsername(admin)){
+            if (!adminService.checkUsername(admin)){                        //check existing admin's username
                 result = "Create account successfully!";
                 httpStatus = HttpStatus.OK;
-                adminService.saveAdmin(admin);
+                adminService.saveAdmin(admin);                              //after checkUserName successfully
+                                                                            //add new Admin and return confirmation
             }
             else{
                 result = "Username or password is invalid!";
-                httpStatus = HttpStatus.BAD_REQUEST;
+                httpStatus = HttpStatus.BAD_REQUEST;                        //if username is existed
             }
         } catch (Exception ex){
             result = "Server error!";
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
-        return  new ResponseEntity<>(g.toJson(result), httpStatus);
+        return  new ResponseEntity<>(g.toJson(result), httpStatus);         //represent HTTP status as json
     }
 
     @RequestMapping(path = "admin/login", method =  RequestMethod.POST)
@@ -65,7 +66,7 @@ public class AdminController {
         Gson g = new Gson();
         HttpStatus httpStatus;
         try {
-            if (adminService.checkLogin(admin)) {
+            if (adminService.checkLogin(admin)) {                           //check username whether matching username in database
                 result = "Login successfully!";
                 httpStatus = HttpStatus.OK;
             }
