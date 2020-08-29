@@ -39,9 +39,13 @@ The project run on local server; therefore it is neccessary to follow some steps
    mvn jetty:run
    ```
  - Front-end: 
+   - Make sure that you have node.js and npm
    - cd resource/sept-front
+   - run App.js in terminal
    ```
-   mvn jetty:run
+   npm install
+  
+   npm start
    ```
 
 ## Contributing
