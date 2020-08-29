@@ -1,6 +1,3 @@
-package test;
-
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import model.Admin;
@@ -31,7 +28,7 @@ public class URLTest {
     public void adminURLTest(){
 
         try{
-            URL adminURLTest = new URL(TestConfig.URL+"admin");
+            URL adminURLTest = new URL(ConfigTest.URL+"admin");
             httpURLConnection = (HttpURLConnection) adminURLTest.openConnection();
             bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
             String line = "";
@@ -58,7 +55,7 @@ public class URLTest {
     @Test
     public void  EmployeeURLTest(){
         try {
-            URL EmployeeURLTest = new URL(TestConfig.URL+"employees");
+            URL EmployeeURLTest = new URL(ConfigTest.URL+"employees");
             httpURLConnection = (HttpURLConnection) EmployeeURLTest.openConnection();
             bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
             String line = "";
@@ -78,7 +75,7 @@ public class URLTest {
     @Test
     public void  CustomerURLTest(){
         try {
-            URL CustomerURLTest = new URL(TestConfig.URL+"customers");
+            URL CustomerURLTest = new URL(ConfigTest.URL+"customers");
             httpURLConnection = (HttpURLConnection) CustomerURLTest.openConnection();
             bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
             String line = "";
@@ -98,7 +95,7 @@ public class URLTest {
     @Test
     public void  ServiceURLTest(){
         try {
-            URL ServiceURLTest = new URL(TestConfig.URL+"services");
+            URL ServiceURLTest = new URL(ConfigTest.URL+"services");
             httpURLConnection = (HttpURLConnection) ServiceURLTest.openConnection();
             bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
             String line = "";
@@ -118,7 +115,7 @@ public class URLTest {
     @Test
     public void  BookingURLTest(){
         try {
-            URL BookingURLTest = new URL(TestConfig.URL+"booking");
+            URL BookingURLTest = new URL(ConfigTest.URL+"booking");
             httpURLConnection = (HttpURLConnection) BookingURLTest.openConnection();
             bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
             String line = "";
