@@ -16,6 +16,8 @@ nav{
     align-items:center;
     border-bottom: 5px double grey;
     font-family: 'Bebas Neue', cursive; 
+    margin-left:80px
+    margin-right:20px
 }
 
 .nav-title h1{
@@ -75,6 +77,7 @@ nav{
     box-shadow:8px 16px 32px 8px rgba(0,0,0,0.2);
     padding:0;
     margin:0px;
+    left:10px
     z-index:1;
     border: 1px solid #DCDCDC;
     border-radius: 25px 25px 25px 25px 
@@ -89,6 +92,7 @@ nav{
     height:5px;
     background-color:black;
     border-radius: 25px
+    margin-left:80px
 }
 
 .dropdown-content li{
@@ -129,8 +133,6 @@ nav{
     margin: 0px;
     padding:0px;
     box-sizing:border-box;
-    padding-left:10px
-    padding-top:10px
     width:100%;
     font-family: 'Libre Caslon Display', serif;
     font-size:16px
@@ -144,6 +146,7 @@ nav{
 
 .portfolio-item-wrapper{
     position:relative;
+    margin:10px 10px 0 80px
 }
 
 .portfolio-background{
@@ -243,7 +246,8 @@ nav{
 
 // Table
 table{
-    width:95%
+    width:93.5%
+    margin:10px 10px 0 80px
 }
 // Mobile view
 @media screen and (max-width:960px){
@@ -295,7 +299,7 @@ table{
 `
 const urlBusiness = 'http://localhost:8080/business'
 const urlService = 'http://localhost:8080/services'
-export default class Homepage extends React.Component {
+export default class HomepageCustomer extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -345,8 +349,8 @@ export default class Homepage extends React.Component {
                         </span>
                     </div>
 
-                    {/* <div className="nav-links">
-                        <Link to='./Booking/ListService' style={{ textDecoration: 'none' }}>
+                    <div className="nav-links">
+                        <Link to='/Components/Home/Booking/ListService' style={{ textDecoration: 'none' }}>
                             <div className="btn">
                                 List services
                             </div>
@@ -357,7 +361,7 @@ export default class Homepage extends React.Component {
                         <Link to='./Booking/ListService' style={{ textDecoration: 'none' }}>
                             <i className='fa fa-list' />
                         </Link>
-                    </div> */}
+                    </div>
 
 
                 </nav>

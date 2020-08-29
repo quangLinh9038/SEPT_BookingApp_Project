@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
+import BookingList from '../BusinessOwner/BookingList';
 const Styled = styled.div`
 div{
     margin:0px;
@@ -22,58 +23,113 @@ div{
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
-.card{
-    max-width:500px
+.wrapper{
+    height:auto;
+    width:100%;
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
     border:1px solid
     border-radius: 10px
+    margin-top: 10px
+    margin-left:80px
+    overflow:hidden
+    background-color:#fff
+    justify-content:center
     align-items:center
-    margin:10px 0px 0px 20px
+    text-align:center
+}
+
+.wrapper img{
+    margin:0px;
+    padding:10px;
+    height:auto
+    width: 100%
+    // :hover{
+    //     transition: 1s ease
+    //     transform: scale(1.4)
+    // }
+}
+
+
+.btn{
+    border:2px solid #fb2274;
     :hover{
-        box-shadow:8px 16px 32px 8px rgba(0,0,0,0.2);
-        transition: 1s ease
-        border-radius: 10px;
-        transform:translateX(30px) scale(1.2)
+        background-color:red
+        color:white
     }
-    over-flow:hidden
+    width:80px;
+    height:35px;
+    line-height:35px;
+    word-spacing:0;
+    text-decoration:none;
+    font-size:15px;
+    margin: 0 auto;
+    border-radius: 25px
+    font-family: 'Libre Caslon Display', serif;
+    font-weight:bold
 }
 
-.card img{
-    max-width: 300px
+.btns{
+    padding:10px
 }
 
-// .card img:hover{
-//     transform: scale(1.1)
-// }
-
-.card-body{
-    background-color: #f5f5f5
-    padding-bottom: 10px
-}
 
 `;
+
+
+const urlAdmin = 'http://localhost:8080/admin'
 export default class OwnerPage extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            admin: [],
+            name:'',id:''
+        }
+    }
+
+    fetchAdmins(id) {
+        fetch(urlAdmin + '/' + id)
+            .then(res => res.json())
+            .then(json => this.setState({
+                id: json.id, name: json.name
+            }))
+    }
+
+    componentDidMount() {
+        this.fetchAdmins()
+    }
+
     render() {
         return (
             <Styled>
                 <div className="row">
-                    <div className="col-3">
-                        <div class='card'>
-                            <img class='card-img-top' src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRk8cyUrYvHcRDy0ogeHCORJ4TnGpXq1PYpwQ&usqp=CAU&fbclid=IwAR3ZARxNt_76xhIDvGxdVCCG_cHDmFQPPfbGjvjKsDOJlVQXvgowDLDrLE0 " alt="card image cap" />
-                            <div class='card-body'>
-                                <h4 class='card-title'>Nguyen Van A</h4>
-                                <p class='card-text'><b>Owner ID:</b> 3872263 </p>
-                                <p class='card-text'><b>Phone:</b> 0931234567 </p>
-                                <p class='card-text'><b>Address:</b> District 7, HCMC </p>
+                    <div className="col-2">
+                        <div class='wrapper'>
+                            <img className='img-wrapper' src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRk8cyUrYvHcRDy0ogeHCORJ4TnGpXq1PYpwQ&usqp=CAU&fbclid=IwAR3ZARxNt_76xhIDvGxdVCCG_cHDmFQPPfbGjvjKsDOJlVQXvgowDLDrLE0 " alt="card image cap" />
+                            <div className="title">
+                                {this.props.match.params.name}
+                            </div>
+                            <div className="btns">
+                                <Link to={`/BusinessOwner/EmployeeList2`} style={{ textDecoration: 'none' }}>
+                                    <div className="btn">
+                                        Employee
+                                        </div>
+                                </Link>
 
-                                {/* Button to link to list of employee and list of booking page for owner */}
-                                {/* <Link to={`/BusinessOwner/EmployeeList2`}><button type='button' class='btn btn-primary btn-sm'> Employee List</button></Link> */}
-                                
-                                {/* <Link to={`/BusinessOwner/BookingList`}><button type='button' class='btn btn-primary btn-sm'> Booking List</button></Link> */}
+                                {/* <Link to={`/Components/Booking/BookService`} style={{ textDecoration: 'none' }}>
+                                    <div className="btn">
+                                        History
+                                        </div>
+                                </Link> */}
                             </div>
                         </div>
                     </div>
-                </div>
 
+                    <div className="col-10">
+                        <BookingList />
+                    </div>
+                </div>
             </Styled>
         )
     }
