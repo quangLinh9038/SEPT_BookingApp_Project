@@ -23,8 +23,7 @@ nav{
     font-size:45px
     // text-transform:uppercase
     letter-spacing:15px;
-    text-decoration:none;
-    
+    text-decoration:none;  
 }
 
 .nav-list-items{
@@ -294,7 +293,7 @@ export default class ListService extends React.Component {
                 name: this.state.cus_name
             },
             note: this.state.description,
-            // time: this.state.time
+            time: this.state.time
         }
         fetch(urlBooking, {
             headers: {
@@ -324,7 +323,7 @@ export default class ListService extends React.Component {
                         </li>
 
                         <li>
-                            <Link to={`/BusinessOwner/BookingList`} style={{ textDecoration: 'none' }}>
+                            <Link to={`/Components/Booking/BookService`} style={{ textDecoration: 'none' }}>
                                 <div className="btn">
                                     <i className='fa fa-list' />
                                 </div>
@@ -339,7 +338,7 @@ export default class ListService extends React.Component {
                             </div>
                         </li>
                         <li className='nav-item no2'>
-                            <Link to={`/BusinessOwner/BookingList`} style={{ textDecoration: 'none' }}>
+                            <Link to={`/Components/Booking/BookService`} style={{ textDecoration: 'none' }}>
                                 <div className="btn">
                                     <i className='fa fa-list' />
                                     View
@@ -357,7 +356,7 @@ export default class ListService extends React.Component {
                             <th>Name</th>
                             <th>Duration</th>
                             <th>Descriptions</th>
-                            <th>Price</th>
+                            <th>Price (VND)</th>
                         </tr>
                     </thead>
 
@@ -460,21 +459,6 @@ export default class ListService extends React.Component {
                         </div>
                     </div>
                 </div>
-            
-            {/* <Form>
-                <Form.Row>
-                    <Form.Group as={Col} md='12' controlId='formGridservice'>
-                        <Form.Label>services name:</Form.Label>
-                        <Form.Control type='text' placeholder='Enter your name'
-                            name='name' value={this.state.name}
-                            onChange={this.handleChange.bind(this)}
-                        />
-                    </Form.Group>
-                </Form.Row>
-            </Form>
-            <button type='button' className='btn btn-success btn-md' onClick={this.handleAddService.bind(this)}>
-                Add
-            </button>  */}
             
             </Styled>
 

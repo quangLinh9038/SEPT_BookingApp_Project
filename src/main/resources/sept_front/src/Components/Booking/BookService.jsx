@@ -17,10 +17,48 @@ nav{
     font-family: 'Bebas Neue', cursive; 
 }
 
+.nav-title h1{
+    font-weight:bold
+    font-size:45px
+    // text-transform:uppercase
+    letter-spacing:15px;
+    text-decoration:none;  
+}
+
 // TABLE
 table{
     margin: 10px auto 0px 36px
     width:95%
+}
+
+@media screen and (max-width:960px){
+    .nav-title h1{
+        font-size: 15px;
+        letter-spacing:10px
+        margin: 5px 0
+    }
+
+    .nav-list-items-mobile{
+        display:flex
+    }
+
+    table{
+        margin:10px 0px 0px 30px;
+    }
+}
+
+@media screen and (max-width:900px){
+    table{
+        font-size:10px
+        margin:10px 0px 0px 26px;
+    }
+}
+
+@media screen and (max-width:700px){
+    table{
+        font-size:9px
+        margin:10px 0px 0px 22px;
+    }
 }
 `
 
@@ -34,12 +72,19 @@ export default class BookService extends React.Component {
         this.state = {
             listBooking: [],
             listEmployees: [],
-            listServices:[],
+            listServices: [],
+            idCheck: '',
             note: '',
-            date_bookded: '',
+            date_booked: '',
             status: '',
             time: '',
-            approve:true,
+            approve: true,
+            decline: false,
+
+            admin: {},
+            customer: {},
+            service: {},
+            employee: {}
         }
     }
 
@@ -69,7 +114,7 @@ export default class BookService extends React.Component {
         fetch(urlBooking)
             .then(res => res.json())
             .then(json => this.setState({ listBooking: json }))
-            // .then(json => console.log(json))
+        // .then(json => console.log(json))
     }
 
     componentDidMount() {
@@ -86,79 +131,59 @@ export default class BookService extends React.Component {
         this.setState(obj)
     }
 
-    handleApprove(id) {
-        let emp = {
-            status: this.state.approve
+    statusReturn(s) {
+        if (s == null) {
+            return ('IN PROGRESS')
+        } else if (s == true) {
+            return ('APPROVED')
+        } else {
+            return ("DECLINED")
         }
-        fetch(urlBooking + '/' + id, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: 'put',
-            body: JSON.stringify(emp)
-        })
-        .then(res=>console.log(res))
-            // .then(res => this.fetchBooking())
     }
-
-    handleDelete(){
-        fetch(urlBooking + '/delete',{
-            method:'delete'
-        })
-        .then(res=>console.log(res))
-        // .then(res=>this.fetchBooking())
-    }
-
 
     render() {
         return (
-                <Styled>
-                    <nav>
-                        <div className="nav-title">
-                            <h1>Booking List</h1>
-                        </div>
-                    </nav>
-                
+            <Styled>
+                <nav>
+                    <div className="nav-title">
+                        <h1>Booking History</h1>
+                    </div>
+                </nav>
+
 
                 {/* Function view list of booked appointment as a table */}
                 <table className='table table-hover text-center'>
                     <thead className='thead-dark'>
                         <tr>
                             <th>#</th>
-                            <th>Service name</th>
-                            <th>Employee name</th>
-                            <th>Date created</th>
-                            <th>Time</th>
+                            <th>Booked date</th>
+                            <th>Arrival date</th>
+                            <th>Status</th>
                             <th>Description</th>
-                            {/* <th>Status</th> */}
-                            <th>Confirmation</th>
+                            <th>Customer</th>
+                            <th>Service</th>
+                            <th>Employee</th>  
                         </tr>
                     </thead>
-                    {this.state.listBooking.filter(status=>status.status == false).map(p => (
+                   
+                    {this.state.listBooking.map(p => (
                         <tbody>
                             <tr>
                                 <td>{p.id}</td>
+                                <td>{p.date_booked}</td>
+                                <td>{p.time}</td>
+                                <td>
+                                   <b>{this.statusReturn(p.status)}</b> 
+                                </td>
+                                <td>{p.note}</td>
+                                <td>{p.customer?.name}</td>
                                 <td>{p.service?.name}</td>
                                 <td>{p.employee?.name}</td>
-                                <td>{p.date_created}</td>
-                                <td>{p.time}</td>
-                                <td>{p.note}</td>
-                                {/* <td>{p.status}</td> */}
-                                <th>
-                                    <div className="btn" onClick={this.handleApprove.bind(this,p.id)}>
-                                        Approve
-                                    </div>
-                                    /
-                                    <div className="btn" onClick={this.handleDelete.bind(this)}>
-                                        Decline
-                                    </div>
-                                </th>
                             </tr>
                         </tbody>
-                    ))}
+                    ))}    
                 </table>
-                </Styled>
+            </Styled>
         )
     }
 }

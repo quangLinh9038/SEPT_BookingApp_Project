@@ -39,10 +39,12 @@ export default class Profile extends React.Component {
     }
 
     // fetch Customer api to front-end
-    fetchCustomers() {
-        fetch(lru)
+    fetchCustomers(id) {
+        fetch(lru + '/' + id)
             .then(res => res.json())
-            .then(json => this.setState({ listCustomers: json }))
+            .then(json => this.setState({
+                id: json.id, name: json.name
+            }))
     }
 
     componentDidMount() {
@@ -55,21 +57,6 @@ export default class Profile extends React.Component {
         this.setState(obj)
     }
 
-    handleAddCustomer() {
-        let emp = {
-            name: this.state.name
-        }
-        fetch(lru, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: 'post',
-            body: JSON.stringify(emp)
-        })
-            .then(res => this.fetchCustomers())
-    }
-
     render() {
         return (
             <Styled>
@@ -79,18 +66,18 @@ export default class Profile extends React.Component {
                     </div>
                 </nav>
                 {/* View list of customers function as a table */}
-                
-                    <table className='table table-hover text-center'>
-                        <thead className='thead-dark'>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Contact</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        {this.state.listCustomers.map(p =>
+
+                <table className='table table-hover text-center'>
+                    <thead className='thead-dark'>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    {/* {this.state.listCustomers.map(p =>
                             <tbody>
                                 <tr>
                                     <td>{p.id}</td>
@@ -100,24 +87,20 @@ export default class Profile extends React.Component {
                                     <td>{p.email}</td>
                                 </tr>
                             </tbody>
-                        )}
-                    </table>
+                        )} */}
 
-                    {/* <Form>
-                        <Form.Row>
-                            <Form.Group as={Col} md='12' controlId='formGridcustomer'>
-                                <Form.Label>cus name:</Form.Label>
-                                <Form.Control type='text' placeholder='Enter your name'
-                                    name='name' value={this.state.name}
-                                    onChange={this.handleChange.bind(this)}
-                                />
-                            </Form.Group>
-                        </Form.Row>
-                    </Form>
-                    <button type='button' className='btn btn-success btn-md' onClick={this.handleAddCustomer.bind(this)}>
-                        Add
-                    </button> */}
-                
+                    <tbody>
+                        <tr>
+                            <td>
+                            {this.props.match.params.id}
+                            </td>
+                            <td>
+                            {this.props.match.params.name}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </Styled>
 
         )

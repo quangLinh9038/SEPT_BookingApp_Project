@@ -132,7 +132,7 @@ nav{
     width:100%;
     font-family: 'Libre Caslon Display', serif;
     font-size:16px
-    overflow-x:hidden
+    overflow:hidden
 }
 
 .portfolio-items-wrapper{
@@ -204,6 +204,7 @@ nav{
     box-sizing:border-box;
     font-weight:600;
 }
+
 .subtitle{
     margin:0px;
     padding:0px;
@@ -220,13 +221,14 @@ nav{
     padding:0px;
     box-sizing:border-box;
 }
+
 .subtitle .listofservices{
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr
+    grid-template-columns: repeat(2,1fr) 
 }
 
 .listofservice{
-    display:flex;
+    display:grid;
     margin:0;
     border-style:none;
     justify-content:center
@@ -269,7 +271,7 @@ table{
     .portfolio-items-wrapper{
         display:grid;
         grid-gap:5px;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 1fr;
     }
 
     .portfolio-background{
@@ -297,7 +299,7 @@ export default class MediaCart extends React.Component {
         this.state = {
             listBusinesses: [],
             listServices: [],
-            id: '', name: '', contact: '', descriptions: '', schedule: ''
+            id: '', name: '', contact: '', description: '', schedule: ''
         }
     }
     // fetch Business api to front-end
@@ -358,7 +360,7 @@ export default class MediaCart extends React.Component {
 
                 </nav>
 
-                {/* View function as a card for business */}
+                {/* Card view */}
                 <div className="content-wrapper">
                     <div className="portfolio-items-wrapper card-view">
                         {this.state.listBusinesses.map(p =>
@@ -373,9 +375,9 @@ export default class MediaCart extends React.Component {
                                     </div>
 
                                     <div className="subtitle">
-                                        <p>~ Contact: {p.contact}</p>
-                                        <p>~ Description: {p.descriptions}</p>
-                                        <p>~ Schedule: {p.schedule}</p>
+                                        <p>~ Contact:  {p.contact}</p>
+                                        <p>~ Description:  {p.description}</p>
+                                        <p>~ Schedule:  {p.schedule}</p>
                                         <p>~ List of services:
                                             {this.state.listServices.filter(q => q.business?.id == p.id).map(q =>
                                             <ul className='listofservices'>
@@ -388,6 +390,8 @@ export default class MediaCart extends React.Component {
                             </div>
                         )}
                     </div>
+
+                    {/* List view*/}
                     <div className="portfolio-items-wrapper list-view" style={{display:'none'}}>
                         <table className='table table-hover text-center'>
                             <thead className='thead-dark'>
@@ -407,7 +411,7 @@ export default class MediaCart extends React.Component {
                                         <td>{p.id}</td>
                                         <td>{p.name}</td>
                                         <td>{p.contact}</td>
-                                        <td>{p.descriptions}</td>
+                                        <td>{p.description}</td>
                                         <td>{p.schedule}</td>
                                         <td className='listofservice'>
                                             {this.state.listServices.filter(q => q.business?.id == p.id).map(q =>                

@@ -17,7 +17,9 @@ import styled from 'styled-components';
 import ListService from './Components/Booking/ListService';
 import ViewEmployeeList2 from './BusinessOwner/EmployeeList2';
 import BookService from './Components/Booking/BookService';
+import BookingList from './BusinessOwner/BookingList';
 import TopNav from './Components/NavBar/TopNav';
+import Login from './Authentication/Login';
 
 const GridWrapper = styled.div`
   // font-family: 'Allura', cursive;
@@ -58,8 +60,8 @@ function App() {
             <div><MediaCart /></div>
           } />
 
-          <Route exact path={`/Customer/Profile`} render={() =>
-            <div><Profile /></div>
+          <Route exact path={`/Customer/Profile/:id/:name`} render={(props) =>
+            <div><Profile {...props} /></div>
           } />
 
           <Route exact path={`/Booking/ListService`} render={() =>
@@ -82,8 +84,16 @@ function App() {
             <div><OwnerPage /></div>
           } />
 
-<Route exact path={`/Components/Booking/BookService`} render={() =>
+          <Route exact path={`/Components/Booking/BookService`} render={() =>
             <div><BookService /></div>
+          } />
+
+          <Route exact path={`/BusinessOwner/BookingList`} render={()=>
+          <div><BookingList/> </div>
+          }/>
+
+          <Route exact path={`/Authentication/Login`} render={() =>
+            <div><Login /></div>
           } />
 
 

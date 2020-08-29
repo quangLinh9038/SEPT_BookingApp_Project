@@ -107,7 +107,7 @@ nav{
     height: 100%;
     width: 60px;     /* Set the width of the sidebar */
     z-index: 1;      /* Stay on top of everything */
-    top: 3.3em;      /* Stay at the top */
+    top: 2.5em;      /* Stay at the top */
     background-color: #424949; 
     overflow-x: hidden;     /* Disable horizontal scroll */    
 }
@@ -182,7 +182,7 @@ export default class TopNav extends React.Component {
                         </li>
 
                         <li>
-                            <Link to ={`/Customer/Profile`}><i className='fas fa-user-circle' /></Link>
+                            <Link to ={`/Authentication/Login`}><i className='fas fa-user-circle' /></Link>
                         </li>
 
                         <li style={{marginTop:'27em'}}>
