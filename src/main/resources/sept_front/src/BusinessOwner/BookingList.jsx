@@ -15,6 +15,8 @@ nav{
     align-items:center;
     border-bottom: 5px double grey;
     font-family: 'Bebas Neue', cursive; 
+    margin-left:100px
+    margin-right:20px
 }
 
 // MODAL
@@ -43,8 +45,8 @@ nav{
 
 // TABLE
 table{
-    margin: 10px auto 0px 36px
-    width:95%
+    margin: 10px auto 0px 100px
+    width:90.5%
 }
 `
 

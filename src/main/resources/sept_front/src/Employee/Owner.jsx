@@ -31,7 +31,8 @@ div{
     background-repeat: no-repeat;
     border:1px solid
     border-radius: 10px
-    margin:10px 0px 0px 20px
+    margin-top: 10px
+    margin-left:80px
     overflow:hidden
     background-color:#fff
     justify-content:center
@@ -70,8 +71,9 @@ div{
 }
 
 .btns{
-    padding-bottom:10px
+    padding:10px
 }
+
 
 `;
 
@@ -81,18 +83,21 @@ export default class OwnerPage extends React.Component {
     constructor() {
         super()
         this.state = {
-            admin: []
+            admin: [],
+            name:'',id:''
         }
     }
 
-    fetchAdmin() {
-        fetch(urlAdmin)
+    fetchAdmins(id) {
+        fetch(urlAdmin + '/' + id)
             .then(res => res.json())
-            .then(json => this.setState({ admin: json }))
+            .then(json => this.setState({
+                id: json.id, name: json.name
+            }))
     }
 
     componentDidMount() {
-        this.fetchAdmin()
+        this.fetchAdmins()
     }
 
     render() {
@@ -103,33 +108,28 @@ export default class OwnerPage extends React.Component {
                         <div class='wrapper'>
                             <img className='img-wrapper' src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRk8cyUrYvHcRDy0ogeHCORJ4TnGpXq1PYpwQ&usqp=CAU&fbclid=IwAR3ZARxNt_76xhIDvGxdVCCG_cHDmFQPPfbGjvjKsDOJlVQXvgowDLDrLE0 " alt="card image cap" />
                             <div className="title">
-                                {this.state.admin.map(p =>
-                                    <div>
-                                        {p.name}
-                                    </div>
-                                )}
+                                {this.props.match.params.name}
                             </div>
                             <div className="btns">
-                                    <Link to ={`/BusinessOwner/EmployeeList2`} style={{textDecoration:'none'}}>
-                                        <div className="btn">
-                                            Employee
+                                <Link to={`/BusinessOwner/EmployeeList2`} style={{ textDecoration: 'none' }}>
+                                    <div className="btn">
+                                        Employee
                                         </div>
-                                    </Link>
+                                </Link>
 
-                                    <Link to ={`/Components/Booking/BookService`} style={{textDecoration:'none'}}>
-                                        <div className="btn">
-                                            History
+                                {/* <Link to={`/Components/Booking/BookService`} style={{ textDecoration: 'none' }}>
+                                    <div className="btn">
+                                        History
                                         </div>
-                                    </Link>        
+                                </Link> */}
                             </div>
                         </div>
                     </div>
 
                     <div className="col-10">
-                        <BookingList/>
+                        <BookingList />
                     </div>
                 </div>
-
             </Styled>
         )
     }

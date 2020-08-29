@@ -194,11 +194,12 @@ export default class ListService extends React.Component {
 
             listCustomers: [
                 {
-                    name: ''
+                    name:''
                 }
             ],
 
-            id: '', name: '', description: '', duration: '', price: '', business_bu_id: '', note: '', e_name: '', cus_name: '', time: '', ser_name:'',
+            id: '', name: '', description: '', duration: '', price: '', business_bu_id: '', note: '', 
+            e_name: '', cus_name: '', time: '', ser_name:'', cus_id:'',
 
             employee: {
                 name: ''
@@ -244,8 +245,11 @@ export default class ListService extends React.Component {
     componentDidMount() {
         this.fetchListServices()
         this.fetchListEmployees()
-        this.fetchCustomers()
         this.fetchBooking()
+        let data = sessionStorage.getItem('mydata')
+        data = JSON.parse(data)
+        // console.log(data)
+        this.setState({listCustomers:data})
     }
 
     // Take change function
@@ -290,7 +294,7 @@ export default class ListService extends React.Component {
                 name: this.state.ser_name
             },
             customer: {
-                name: this.state.cus_name
+                id: this.state.cus_id
             },
             note: this.state.description,
             time: this.state.time
@@ -389,18 +393,31 @@ export default class ListService extends React.Component {
                                 <Form>
                                     <Form.Row>
                                     {/* Input field for customer */}
-                                    <Form.Group as={Col} md='11' controlId='formGridName'>
-                                        <Form.Label>Customer name:</Form.Label>
-                                        <Form.Control type='text' placeholder='Enter your name'
-                                            name='cus_name' value={this.state.cus_name}
+                                    <Form.Group as={Col} md='11' controlId='formGridID'>
+                                        <Form.Label>Customer name</Form.Label>
+                                        <select class='browser-default custom-select'
+                                            name="cus_id" value={this.state.cus_id} 
+                                            onChange={this.handleChange.bind(this)}
+                                        >
+                                            <option selected>Choose your options</option>
+                                            {this.state.listCustomers.map(p =>
+                                                <option value={p.id}>{p.name}</option>
+                                            )}
+                                        </select>
+                                    </Form.Group>
+
+                                    {/* <Form.Group as={Col} md='11' controlId='formGridID'>
+                                        <Form.Label>ID:</Form.Label>
+                                        <Form.Control type='input' placeholder='Enter your date'
+                                            name='cus_id' value={this.state.cus_id}
                                             onChange={this.handleChange.bind(this)}
                                         />
-                                    </Form.Group>
+                                    </Form.Group> */}
 
                                     {/* Select field for book date */}
                                     <Form.Group as={Col} md='11' controlId='formGridTime'>
                                         <Form.Label for='time'>Time:</Form.Label>
-                                        <Form.Control type='date' placeholder='Enter your name'
+                                        <Form.Control type='date' placeholder='Enter your date'
                                             name='time' value={this.state.time}
                                             onChange={this.handleChange.bind(this)}
                                         />

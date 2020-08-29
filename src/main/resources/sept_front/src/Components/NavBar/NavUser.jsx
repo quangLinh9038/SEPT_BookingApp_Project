@@ -146,7 +146,7 @@ nav{
 
 `
 
-export default class TopNav extends React.Component {
+export default class NavUser extends React.Component {
     render() {     
         return (
             <TopNavStyle>
@@ -167,11 +167,16 @@ export default class TopNav extends React.Component {
                         <li><i className='fa fa-facebook' /></li>
                         <li><i className='fa fa-twitter' /></li>
                         <li><i className='fa fa-instagram' /></li>
+                        <li>
+                            <Link to={`/Authentication/LoginByRole`} style={{fontSize:'20px'}}>
+                                log in
+                            </Link>
+                        </li>
                     </ul>
 
                 </nav>
   
-                <div className="sidenav">    
+                {/* <div className="sidenav">    
                     <ul>
                         <li>
                             <Link to ={`/Components/Home/HomepageBS`}><i className='fas fa-home' /> </Link>
@@ -189,7 +194,7 @@ export default class TopNav extends React.Component {
                             <i style={{color:'white'}} className='fa fa-power-off'/>
                         </li>
                     </ul>   
-                </div>       
+                </div>        */}
                 
             </TopNavStyle>
         )

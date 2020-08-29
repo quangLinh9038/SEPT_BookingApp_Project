@@ -15,6 +15,8 @@ nav{
     align-items:center;
     border-bottom: 5px double grey;
     font-family: 'Bebas Neue', cursive; 
+    margin-left:80px
+    margin-right:20px
 }
 
 // Title style
@@ -47,14 +49,14 @@ input{
 .search .form-control{
     position:absolute
     max-width:170px
-    top:68px
+    top:61px
     right:30px
 }
 
 // Button style
 form .btn{
     position:absolute;
-    top:76px
+    top:66px
     right:38px
 }
 
@@ -141,8 +143,8 @@ form .btn{
 
 // TABLE
 table{
-    margin: 10px auto 0px
-    width:95%
+    margin: 10px 0 0 100px
+    width:90%
 }
 
 // Mobile view
