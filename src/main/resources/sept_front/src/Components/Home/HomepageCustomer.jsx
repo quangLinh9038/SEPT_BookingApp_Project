@@ -372,7 +372,7 @@ export default class HomepageCustomer extends React.Component {
                         {this.state.listBusinesses.map(p =>
                             <div className="portfolio-item-wrapper">
                                 <div className='portfolio-background'>
-                                    <img className="portfolio-img-background" src="https://static.dentaldepartures.com/clinics/dd_201610051019_57f519f1084de.jpg" alt="Card image cap" />
+                                    <img className="portfolio-img-background" src="https://kientrucnhat.com/wp-content/uploads/du-an-coffee-shop-classic-CBS-Viet-Nam-03.jpg" alt="Card image cap" />
                                 </div>
 
                                 <div className="img-text-wrapper">
