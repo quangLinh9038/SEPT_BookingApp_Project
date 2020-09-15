@@ -9,3 +9,11 @@ os:
 dist:
   - precise
   - trusty
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: KEY
+  app: booking-app1
+  on:
+    repo: quangLinh9038/booking-app
