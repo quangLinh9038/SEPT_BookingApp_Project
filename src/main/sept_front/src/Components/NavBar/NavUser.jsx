@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
-import LoginByCustomer from '../../Authentication/LoginByCustomer'
 const TopNavStyle = styled.div`
 *{
     margin: 0px;
@@ -32,7 +31,8 @@ nav{
     justify-content: space-around;
     width:15%;
     position:absolute;
-    right:15px
+    left:15px
+    top:14px
 }
 
 .nav-links li{
@@ -146,35 +146,8 @@ nav{
 }
 
 `
-const urlCustomers = 'http://localhost:8080/customers'
-export default class NavCustomer extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            listCustomers: [],
-            username: '', password: ''
-        }
-    }
 
-    fetch
-
-    handleChange(e) {
-        let obj = {}
-        obj[e.target.name] = e.target.value
-        this.setState(obj)
-    }
-
-    componentDidMount(){
-        let data = sessionStorage.getItem('mydata')
-        data = JSON.parse(data)
-        this.setState({listCustomers:data})
-        // data = JSON.parse(data)
-        
-        // console.log(data)
-    }
-
-
-
+export default class NavUser extends React.Component {
     render() {     
         return (
             <TopNavStyle>
@@ -186,7 +159,7 @@ export default class NavCustomer extends React.Component {
                     </div>
 
                     <div className="logo">
-                        <Link style={{textDecoration:'none'}}>
+                        <Link to ={`/`} style={{textDecoration:'none'}}>
                             <h4>Bookin'</h4>
                         </Link>
                     </div>
@@ -194,15 +167,21 @@ export default class NavCustomer extends React.Component {
                     <ul className='nav-links'>
                         <li><i className='fa fa-facebook' /></li>
                         <li><i className='fa fa-twitter' /></li>
-                        <li><i className='fa fa-instagram' /></li>
+                        <li><i className='fa fa-instagram' /></li>   
                     </ul>
-
+                        
+                    <Link to={`/Authentication/LoginByRole`} 
+                    style={{fontSize:'25px',position:'absolute',
+                    letterSpacing:'4px',color:'#9FFFCB', right:'15px',
+                    textDecoration:'none'}}>
+                            login
+                    </Link>
                 </nav>
   
-                <div className="sidenav">    
+                {/* <div className="sidenav">    
                     <ul>
-                        {/* <li>
-                            <Link to ={`/Components/Home/HomepageCustomer`}><i className='fas fa-home' /> </Link>
+                        <li>
+                            <Link to ={`/Components/Home/HomepageBS`}><i className='fas fa-home' /> </Link>
                         </li>
 
                         <li>
@@ -210,20 +189,14 @@ export default class NavCustomer extends React.Component {
                         </li>
 
                         <li>
-                        {this.state.listCustomers.map(p=>
-                            <Link to ={`/Customer/Profile/${p.id}/${p.name}`}><i className='fas fa-user-circle' /></Link>
-                            )}
-                        </li> */}
+                            <Link to ={`/Authentication/LoginByCustomer`}><i className='fas fa-user-circle' /></Link>
+                        </li>
 
-                    
-
-                        <li style={{marginTop:'38em'}}>
-                           <Link to ={`/`}>
-                           <i style={{color:'white'}} className='fa fa-power-off'/>
-                           </Link> 
+                        <li style={{marginTop:'27em'}}>
+                            <i style={{color:'white'}} className='fa fa-power-off'/>
                         </li>
                     </ul>   
-                </div>       
+                </div>        */}
                 
             </TopNavStyle>
         )

@@ -8,6 +8,7 @@ div{
     padding:0;
     box-sizing:border-box
 }
+
 // Nav style
 nav{
     display:flex;
@@ -19,12 +20,37 @@ nav{
     margin-right:20px
 }
 
+.nav-title h1{
+    font-weight:bold
+    font-size:45px
+    // text-transform:uppercase
+    letter-spacing:15px;
+    text-decoration:none;
+}
+
 // TABLE
 table{
     margin-top: 10px
     margin-left:80px
     width:93%
 }
+
+// Mobile view
+@media screen and (max-width:960px){
+    nav{
+        margin:0px
+    }
+    .nav-title h1{
+        font-size: 15px;
+        letter-spacing:10px
+        margin: 5px 0
+    }
+    table{
+        margin:10px auto
+        width:100%
+    }
+}
+
 
 `
 
@@ -101,7 +127,7 @@ export default class Profile extends React.Component {
             <Styled>
                 <nav>
                     <div className="nav-title">
-                        <h1>Customer List</h1>
+                        <h1>Customer</h1>
                     </div>
                 </nav>
                 {/* View list of customers function as a table */}

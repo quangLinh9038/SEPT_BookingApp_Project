@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import LoginByCustomer from '../../Authentication/LoginByCustomer'
 const TopNavStyle = styled.div`
 *{
     margin: 0px;
@@ -145,8 +146,33 @@ nav{
 }
 
 `
+const urlCustomers = 'http://localhost:8080/customers'
+export default class NavCustomer extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            listCustomers: [],
+            username: '', password: ''
+        }
+    }
 
-export default class NavUser extends React.Component {
+    handleChange(e) {
+        let obj = {}
+        obj[e.target.name] = e.target.value
+        this.setState(obj)
+    }
+
+    componentDidMount(){
+        let data = sessionStorage.getItem('mydata')
+        data = JSON.parse(data)
+        this.setState({listCustomers:data})
+        // data = JSON.parse(data)
+        
+        // console.log(data)
+    }
+
+
+
     render() {     
         return (
             <TopNavStyle>
@@ -158,7 +184,7 @@ export default class NavUser extends React.Component {
                     </div>
 
                     <div className="logo">
-                        <Link to ={`/`} style={{textDecoration:'none'}}>
+                        <Link to ={`/Components/Home/HomepageCustomer`} style={{textDecoration:'none'}}>
                             <h4>Bookin'</h4>
                         </Link>
                     </div>
@@ -167,34 +193,39 @@ export default class NavUser extends React.Component {
                         <li><i className='fa fa-facebook' /></li>
                         <li><i className='fa fa-twitter' /></li>
                         <li><i className='fa fa-instagram' /></li>
-                        <li>
-                            <Link to={`/Authentication/LoginByRole`} style={{fontSize:'20px'}}>
-                                log in
-                            </Link>
-                        </li>
                     </ul>
 
                 </nav>
   
-                {/* <div className="sidenav">    
+                <div className="sidenav">    
                     <ul>
                         <li>
-                            <Link to ={`/Components/Home/HomepageBS`}><i className='fas fa-home' /> </Link>
+                            <Link to ={`/Components/Home/HomepageCustomer`}
+                            data-toggle="popover" data-trigger="hover" title='HOME' data-content="Home page" data-placement="bottom"
+                            ><i className='fas fa-home'  /> </Link>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <Link to ={`/Employee/Owner`}><i className='fas fa-user-tie' /> </Link>
-                        </li>
+                        </li> */}
 
                         <li>
-                            <Link to ={`/Authentication/LoginByCustomer`}><i className='fas fa-user-circle' /></Link>
+                        {this.state.listCustomers.map(p=>
+                            <Link to ={`/Customer/Profile/${p.id}/${p.name}/${p.address}/${p.contact}/${p.email}/${p.username}/${p.password}`}
+                            data-toggle="popover" data-trigger="hover" title='Profile' data-content="Profile page" data-placement="bottom"
+                            ><i className='fas fa-user-circle' /></Link>
+                            )}
                         </li>
 
-                        <li style={{marginTop:'27em'}}>
-                            <i style={{color:'white'}} className='fa fa-power-off'/>
+                    
+
+                        <li style={{marginTop:'29em'}}>
+                           <Link to ={`/Home`}>
+                           <i style={{color:'white'}} className='fa fa-power-off'/>
+                           </Link> 
                         </li>
                     </ul>   
-                </div>        */}
+                </div>       
                 
             </TopNavStyle>
         )

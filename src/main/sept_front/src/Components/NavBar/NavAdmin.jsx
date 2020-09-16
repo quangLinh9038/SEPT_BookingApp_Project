@@ -156,6 +156,8 @@ export default class NavCustomer extends React.Component {
         }
     }
 
+    fetch
+
     handleChange(e) {
         let obj = {}
         obj[e.target.name] = e.target.value
@@ -184,7 +186,7 @@ export default class NavCustomer extends React.Component {
                     </div>
 
                     <div className="logo">
-                        <Link to ={`/Components/Home/HomepageCustomer`} style={{textDecoration:'none'}}>
+                        <Link style={{textDecoration:'none'}}>
                             <h4>Bookin'</h4>
                         </Link>
                     </div>
@@ -199,24 +201,24 @@ export default class NavCustomer extends React.Component {
   
                 <div className="sidenav">    
                     <ul>
-                        <li>
+                        {/* <li>
                             <Link to ={`/Components/Home/HomepageCustomer`}><i className='fas fa-home' /> </Link>
                         </li>
 
-                        {/* <li>
+                        <li>
                             <Link to ={`/Employee/Owner`}><i className='fas fa-user-tie' /> </Link>
-                        </li> */}
+                        </li>
 
                         <li>
                         {this.state.listCustomers.map(p=>
-                            <Link to ={`/Customer/Profile/${p.id}/${p.name}/${p.address}/${p.contact}/${p.email}/${p.username}/${p.password}`}><i className='fas fa-user-circle' /></Link>
+                            <Link to ={`/Customer/Profile/${p.id}/${p.name}`}><i className='fas fa-user-circle' /></Link>
                             )}
-                        </li>
+                        </li> */}
 
                     
 
-                        <li style={{marginTop:'29em'}}>
-                           <Link to ={`/`}>
+                        <li style={{marginTop:'38em'}}>
+                           <Link to ={`/Home`}>
                            <i style={{color:'white'}} className='fa fa-power-off'/>
                            </Link> 
                         </li>

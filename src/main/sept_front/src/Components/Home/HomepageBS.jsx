@@ -78,6 +78,7 @@ nav{
     z-index:1;
     border: 1px solid #DCDCDC;
     border-radius: 25px 25px 25px 25px 
+    
 }
 
 .dropdown:hover .dropdown-content{
@@ -85,10 +86,11 @@ nav{
 }
 
 .dropdown div.dot{
-    width:5px;
-    height:5px;
+    width:6px;
+    height:6px;
     background-color:black;
     border-radius: 25px
+    margin-top:2px
 }
 
 .dropdown-content li{
@@ -243,7 +245,7 @@ nav{
 
 // Table
 table{
-    width:95%
+    width:99%
 }
 // Mobile view
 @media screen and (max-width:960px){

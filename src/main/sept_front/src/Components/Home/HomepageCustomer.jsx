@@ -88,11 +88,12 @@ nav{
 }
 
 .dropdown div.dot{
-    width:5px;
-    height:5px;
+    width:6px;
+    height:6px;
     background-color:black;
     border-radius: 25px
     margin-left:80px
+    margin-top:2px
 }
 
 .dropdown-content li{
@@ -244,6 +245,25 @@ nav{
     padding-left:5px
 }
 
+.linkservices{
+    opacity:0;
+    text-decoration:none
+    color:lightblue
+    :hover{
+        font-size:100px;
+        font-weight:;
+        text-decoration: underline
+        color: #ff105f
+        transition: 1s ease
+        // transform: rotate(360deg) translate(-5px,-6px);
+        padding-left:110px
+    }
+}
+
+.portfolio-item-wrapper:hover .linkservices{
+    opacity:100 
+}
+
 // Table
 table{
     width:93.5%
@@ -251,9 +271,13 @@ table{
 }
 // Mobile view
 @media screen and (max-width:960px){
+    nav{
+        margin:0
+    }
     .content-wrapper{
         padding:5px
         font-size:12px
+        margin:0
     }
 
     .nav-links{
@@ -278,6 +302,10 @@ table{
         display:grid;
         grid-gap:5px;
         grid-template-columns: 1fr 1fr;
+    }
+
+    .portfolio-item-wrapper{
+        margin:10px 30px
     }
 
     .portfolio-background{
@@ -387,7 +415,13 @@ export default class HomepageCustomer extends React.Component {
                                         <p>~ List of services:
                                             {this.state.listServices.filter(q => q.business?.id == p.id).map(q =>
                                             <ul className='listofservices'>
-                                                <li>{q.name}</li>
+                                                <li>
+                                                    <Link to={`/ServiceFilter/${q.id}/${q.name}/${q.duration}/${q.description}/${q.price}`}
+                                                    className='linkservices'
+                                                    >
+                                                        {q.name}
+                                                    </Link>
+                                                </li>
                                             </ul>
                                         )}
                                         </p>

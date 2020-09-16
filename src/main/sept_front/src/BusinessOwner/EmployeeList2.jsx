@@ -265,6 +265,7 @@ export default class ViewEmployeeList2 extends React.Component {
                                 <input class='form-control' placeholder='Enter name of employee'
                                     name='input' value={this.state.input}
                                     onChange={this.handleChange.bind(this)}
+                                    required
                                 />
                                 <div className='btn' >
                                     <i class='fa fa-search' aria-hidden='true'
@@ -274,54 +275,54 @@ export default class ViewEmployeeList2 extends React.Component {
                             </form>
                         </li>
 
-                        <li className='nav-item no2'>
-                            {/* Button add new employee */}
-                            <div className='btn' data-toggle='modal' data-target='#formEmployee' >
-                                <i className='fa fa-address-book' />
+                            <li className='nav-item no2'>
+                                {/* Button add new employee */}
+                                <div className='btn' data-toggle='modal' data-target='#formEmployee' >
+                                    <i className='fa fa-address-book' />
                                 New
                             </div>
-                        </li>
+                            </li>
                     </ul>
 
-                    {/* Add button for mobile */}
-                    <div className="nav-links-mobile">
-                        <div className='btn' data-toggle='modal' data-target='#formEmployee' >
-                            <i className='fa fa-address-book' />
+                        {/* Add button for mobile */}
+                        <div className="nav-links-mobile">
+                            <div className='btn' data-toggle='modal' data-target='#formEmployee' >
+                                <i className='fa fa-address-book' />
+                            </div>
                         </div>
-                    </div>
                 </nav>
 
-                {/* View employee as table */}
-                <table className='table table-hover text-center'>
-                    <thead className='thead-dark'>
-                        <tr>
-                            <th>#</th>
-                            <th>NAME</th>
-                            <th>SCHEDULE</th>
-                        </tr>
-                    </thead>
-                    {this.state.listsEmployees.map(p =>
-                        <tbody>
+                    {/* View employee as table */}
+                    <table className='table table-hover text-center'>
+                        <thead className='thead-dark'>
                             <tr>
-                                <td>{p.id}</td>
-                                <td>{p.name}</td>
-                                <td>{p.schedule}</td>
+                                <th>#</th>
+                                <th>NAME</th>
+                                <th>SCHEDULE</th>
                             </tr>
-                        </tbody>
-                    )}
-                </table>
+                        </thead>
+                        {this.state.listsEmployees.map(p =>
+                            <tbody>
+                                <tr>
+                                    <td>{p.id}</td>
+                                    <td>{p.name}</td>
+                                    <td>{p.schedule}</td>
+                                </tr>
+                            </tbody>
+                        )}
+                    </table>
 
-                {/* Pop-up form to add new employee */}
-                <div class='modal fade' id='formEmployee' tabIndex='-1' role='dialog' aria-labelledby='formEmployeeTitle' aria-hidden='true'>
-                    <div class='modal-dialog modal-dialog-centered' role='document'>
-                        <div class='modal-content'>
-                            <div class='modal-header'>
-                                <h4 class='modal-title' id='formEmployeeLongTitle'>Manage employee</h4>
-                            </div>
+                    {/* Pop-up form to add new employee */}
+                    <div class='modal fade' id='formEmployee' tabIndex='-1' role='dialog' aria-labelledby='formEmployeeTitle' aria-hidden='true'>
+                        <div class='modal-dialog modal-dialog-centered' role='document'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h4 class='modal-title' id='formEmployeeLongTitle'>Manage employee</h4>
+                                </div>
 
-                            <div class='modal-body'>
-                                <Form>
-                                    {/* <Form.Row> */}
+                                <div class='modal-body'>
+                                    <Form>
+                                        {/* <Form.Row> */}
                                         <Form.Group as={Col} md='11' controlId='formGridName'>
                                             <Form.Label>Name:</Form.Label>
                                             <Form.Control type='text' placeholder='Enter name'
@@ -337,9 +338,9 @@ export default class ViewEmployeeList2 extends React.Component {
                                                 onChange={this.handleChange.bind(this)}
                                             />
                                         </Form.Group>
-                                    {/* </Form.Row> */}
-                                </Form>
-                                
+                                        {/* </Form.Row> */}
+                                    </Form>
+
                                     <ul className='lists-button'>
                                         <li>
                                             <div className='btn' onClick={this.handleAddEmployee.bind(this)}>Add</div>
@@ -349,11 +350,11 @@ export default class ViewEmployeeList2 extends React.Component {
                                             <div className='btn' onClick={this.handleClearEmployee.bind(this)}>Clear</div>
                                         </li>
                                     </ul>
-                                
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </Styled>
 
         )

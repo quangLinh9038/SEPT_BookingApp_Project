@@ -20,7 +20,9 @@ import LoginByAdmin from './Authentication/LoginByAdmin';
 import OwnerPage from './Employee/Owner'
 import NavAdmin from './Components/NavBar/NavAdmin'
 import Register from './Authentication/Register';
-
+import BookAdminCheck from './Components/Booking/BookAdminCheck';
+import ServiceByBusiness from './Components/Booking/ServiceByBusiness';
+import Welcome from './Components/Home/Welcome'
 const GridWrapper = styled.div`
   // font-family: 'Allura', cursive;
   // grid-gap: 10px;
@@ -59,8 +61,12 @@ function App() {
         <GridWrapper>
 
           {/* User view */}
-          <Route exact path={`/`} render={() =>
-            <div><NavUser/><Homepage /></div>
+          <Route exact path ={'/'} render={()=>
+            <div><NavUser/><Homepage /><Welcome/></div>
+          }/>
+
+          <Route exact path={`/Home`} render={() =>
+            <div><NavUser /><Homepage /></div>
           } />
 
           <Route exact path={`/Authentication/LoginByRole`} render={() =>
@@ -73,19 +79,23 @@ function App() {
           } />
 
           <Route exact path={`/Components/Home/HomepageCustomer`} render={() =>
-            <div><NavCustomer/><HomepageCustomer /></div>
+            <div><NavCustomer /><HomepageCustomer /></div>
           } />
 
           <Route exact path={`/Customer/Profile/:id/:name/:address/:contact/:email/:username/:password`} render={(props) =>
-            <div><NavCustomer/><Profile {...props} /></div>
+            <div><NavCustomer /><Profile {...props} /></div>
           } />
 
           <Route exact path={`/Components/Home/Booking/ListService`} render={() =>
-            <div><NavCustomer/><ListService /></div>
+            <div><NavCustomer /><ListService /></div>
           } />
 
           <Route exact path={`/Components/Booking/BookService`} render={() =>
-            <div><NavCustomer/><BookService /></div>
+            <div><NavCustomer /><BookService /></div>
+          } />
+
+          <Route exact path={`/ServiceFilter/:id/:name/:duration/:description/:price`} render={(props) =>
+            <div> <NavCustomer /> <ServiceByBusiness {...props} /> </div>
           } />
 
           {/* Admin */}
@@ -98,26 +108,30 @@ function App() {
           } />
 
           <Route exact path={`/BusinessOwner/EmployeeList2`} render={() =>
-            <div><NavAdmin/><ViewEmployeeList2 /></div>
+            <div><NavAdmin /><ViewEmployeeList2 /></div>
           } />
 
           <Route exact path={`/Employee/Owner/:id/:name`} render={(props) =>
-            <div><NavAdmin/><OwnerPage {...props} /></div>
+            <div><NavAdmin /><OwnerPage {...props} /></div>
           } />
 
-          <Route exact path={`/BusinessOwner/BookingList`} render={()=>
-          <div><BookingList/> </div>
-          }/>
+          <Route exact path={`/BusinessOwner/BookingList`} render={() =>
+            <div><BookingList /> </div>
+          } />
+
+          <Route exact path={`/Components/BookServices`} render={() =>
+            <div><NavAdmin /><BookAdminCheck /></div>
+          } />
 
           {/* Resgister */}
 
-          <Route exact path={`/Authentication/Register`} render={()=>
-          <div>
-            <Register/>
-          </div>
-          }/>
+          <Route exact path={`/Authentication/Register`} render={() =>
+            <div>
+              <Register />
+            </div>
+          } />
 
-          
+
 
         </GridWrapper>
       </Router>

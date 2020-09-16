@@ -15,6 +15,8 @@ nav{
     align-items:center;
     border-bottom: 5px double grey;
     font-family: 'Bebas Neue', cursive; 
+    margin-left:80px
+    margin-right:20px
 }
 
 .nav-title h1{
@@ -43,10 +45,32 @@ nav{
     font-weight:bold
 }
 
+.button{
+    text-align:center
+    margin:5px auto
+}
+
+// MODAL
+.modal{
+    margin-left: 35%
+    font-family: 'Bebas Neue', cursive;
+}
+
+.modal .modal-body form{
+    margin:0px;
+    padding:0px
+}
+
+.modal-header .modal-title{
+    margin:0;
+    padding:0;
+    padding-left:10px
+}
+
 // TABLE
 table{
-    margin: 10px auto 0px 36px
-    width:95%
+    width:93.5%
+    margin:10px 10px 0 80px
 }
 
 @media screen and (max-width:960px){
@@ -60,24 +84,38 @@ table{
         display:flex
     }
 
-    table{
-        margin:10px 0px 0px 30px;
+    nav{
+        margin:0
     }
-}
 
-@media screen and (max-width:900px){
     table{
+        width:100%
+        margin:10px 0
         font-size:10px
-        margin:10px 0px 0px 26px;
+    }
+
+    .btn{
+        width:40px
+        height:30px
+        font-size:15px
+        
+        border-radius:3px
     }
 }
 
-@media screen and (max-width:700px){
-    table{
-        font-size:9px
-        margin:10px 0px 0px 22px;
-    }
-}
+// @media screen and (max-width:900px){
+//     table{
+//         font-size:10px
+//         margin:10px 0px 0px 26px;
+//     }
+// }
+
+// @media screen and (max-width:700px){
+//     table{
+//         font-size:9px
+//         margin:10px 0px 0px 22px;
+//     }
+// }
 `
 
 const urlServices = 'http://localhost:8080/services'
@@ -255,7 +293,7 @@ export default class BookService extends React.Component {
                             <div className="modal-body">
                                 <Form>
                                     <Form.Row>
-                                        <Form.Group as={Col} md='11' controlId='formGridNote'>
+                                        <Form.Group as={Col} md='12' controlId='formGridNote'>
                                         <Form.Label>Notes:</Form.Label>
                                         <Form.Control as='textarea' rows="4"
                                             name='note' value={this.state.note}

@@ -108,7 +108,7 @@ export default class OwnerPage extends React.Component {
                         <div class='wrapper'>
                             <img className='img-wrapper' src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRk8cyUrYvHcRDy0ogeHCORJ4TnGpXq1PYpwQ&usqp=CAU&fbclid=IwAR3ZARxNt_76xhIDvGxdVCCG_cHDmFQPPfbGjvjKsDOJlVQXvgowDLDrLE0 " alt="card image cap" />
                             <div className="title">
-                                {this.props.match.params.name}
+                               <b> {this.props.match.params.name}</b>
                             </div>
                             <div className="btns">
                                 <Link to={`/BusinessOwner/EmployeeList2`} style={{ textDecoration: 'none' }}>
@@ -117,11 +117,13 @@ export default class OwnerPage extends React.Component {
                                         </div>
                                 </Link>
 
-                                {/* <Link to={`/Components/Booking/BookService`} style={{ textDecoration: 'none' }}>
+                                <span> </span>
+
+                                <Link to={`/Components/BookServices`} style={{ textDecoration: 'none' }}>
                                     <div className="btn">
                                         History
                                         </div>
-                                </Link> */}
+                                </Link>
                             </div>
                         </div>
                     </div>
