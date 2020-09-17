@@ -16,11 +16,12 @@ public class Main {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.setConfigLocation("config");
 
-        Server server = new Server(8080);
+        Server server = new Server(Integer.valueOf(System.getenv("PORT")));
 
         ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        contextHandler.setContextPath("/");
         contextHandler.setErrorHandler(null);
-        contextHandler.addServlet(new ServletHolder(new DispatcherServlet(context)), "/");
+        contextHandler.addServlet(new ServletHolder(new DispatcherServlet(context)), "/*");
 
         server.setHandler(contextHandler);
 
