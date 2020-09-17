@@ -1,0 +1,18 @@
+language: java
+jdk:
+  - openjdk10
+
+os:
+  - linux
+  - osx
+
+dist:
+  - precise
+  - trusty
+
+deploy:
+  provider: heroku
+  api_key: "0jzVr2D9CEpvTZz2PcQ2dA"
+  app: sept-booking-system
+  on:
+    repo: lamdoan7747/booking-app

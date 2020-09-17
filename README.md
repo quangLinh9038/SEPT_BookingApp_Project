@@ -10,6 +10,8 @@ The system can be flexible for diverse businesses such as dentist, hair spa, etc
 * Display bookings with relevent details
 * Able to retrive stored information
 * Tracking booking'status
+* Registration
+* Signin and Signout
 
 ## Tools 
 - Back-end: 
@@ -20,10 +22,12 @@ The system can be flexible for diverse businesses such as dentist, hair spa, etc
   - HTML
   - CSS
   - ReactJS
+  - JavaScript 
  - Build tools: 
   - Maven version 3.6.3
  - Unit test: 
   - Junit 4 or 5
+  
 ## Installation
 The project run on local server; therefore it is neccessary to follow some steps to install the system on local server:
 - You need to have PostgresSQL, Maven, Java, npm installed 
@@ -39,9 +43,13 @@ The project run on local server; therefore it is neccessary to follow some steps
    mvn jetty:run
    ```
  - Front-end: 
+   - Make sure that you have node.js and npm
    - cd resource/sept-front
+   - run App.js in terminal
    ```
-   mvn jetty:run
+   npm install
+  
+   npm start
    ```
 
 ## Contributing
@@ -54,8 +62,10 @@ The project run on local server; therefore it is neccessary to follow some steps
 
 ## History
 
-This is the first release of the system. Any update will be notice!!!
-
+- Three version up to now with following tags:
+  - v1.1
+  - v1.1
+  - v2.0 (the latest)
 ## Credits
 
 - Group 7: 

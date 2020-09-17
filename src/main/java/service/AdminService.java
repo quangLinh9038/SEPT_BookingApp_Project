@@ -65,14 +65,6 @@ public class AdminService {
         return query.list();
     }
 
-    //find admin by name
-    public Admin findAdminByName(String name){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Admin where name =:name");
-        query.setString("name", name);
-        Admin admin = (Admin) query.uniqueResult();
-        return admin;
-    }
-
     //update admin
     public void updateAdmin(Admin admin) {
         sessionFactory.getCurrentSession().update(admin);
