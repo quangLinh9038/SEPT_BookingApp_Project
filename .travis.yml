@@ -15,4 +15,4 @@ deploy:
   api_key: "0jzVr2D9CEpvTZz2PcQ2dA"
   app: sept-booking-system
   on:
-    repo: lamdoan7747/sept-booking-system
+    repo: lamdoan7747/booking-app
