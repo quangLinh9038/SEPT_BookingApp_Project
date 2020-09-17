@@ -12,7 +12,10 @@ dist:
 
 deploy:
   provider: heroku
-  api_key: "0jzVr2D9CEpvTZz2PcQ2dA"
-  app: sept-booking-system
+  api_key: "aa0ccff1-b80f-40a8-95e9-d74b14ae781b"
+  app: bookingapp-2
   on:
-    repo: lamdoan7747/booking-app
+    repo: quangLinh9038/booking-app
+
+
+
