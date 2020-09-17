@@ -12,7 +12,7 @@ dist:
 
 deploy:
   provider: heroku
-  api_key: "TFLhMdXK7LQE5W1vBqjHKA"
+  api_key: "aa0ccff1-b80f-40a8-95e9-d74b14ae781b"
   on: feature-back
   app: bookingapp-2
 
