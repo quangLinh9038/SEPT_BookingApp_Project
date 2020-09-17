@@ -13,9 +13,9 @@ dist:
 deploy:
   provider: heroku
   api_key: "TFLhMdXK7LQE5W1vBqjHKA"
+  on: feature-back
   app: bookingapp-2
-  on:
-    repo: quangLinh9038/booking-app
+
 
 
 
