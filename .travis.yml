@@ -10,10 +10,9 @@ dist:
   - precise
   - trusty
 
-# deploy:
-#   provider: heroku
-#   api_key:
-#     secure: "580caf8c-90ce-462c-8a11-f60b0d341924"
-#   app: booking-app1
-#   on:
-#     repo: quangLinh9038/booking-app
+deploy:
+  provider: heroku
+  api_key: "0jzVr2D9CEpvTZz2PcQ2dA"
+  app: sept-booking-system
+  on:
+    repo: lamdoan7747/sept-booking-system
