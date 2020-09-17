@@ -1,21 +1,18 @@
 language: java
 jdk:
-  - openjdk10
-
+- openjdk10
 os:
-  - linux
-  - osx
-
+- linux
+- osx
 dist:
-  - precise
-  - trusty
-
+- precise
+- trusty
 deploy:
   provider: heroku
-  api_key: "aa0ccff1-b80f-40a8-95e9-d74b14ae781b"
-  on: feature-back
-  app: bookingapp-2
-
-
-
-
+  api_key:
+    secure: fJSF+5uxR1aC7lbDtn3khlSHxmw8/aPE3Dio4vLZijSY4JzzOcKArqMzyRaXNx87oF1AKXOVhzehxW2HjFNfAQecVryPKqmu43JhAHP780IDaB1NXvCfhtsAYk5t9owvr2UF42QGZYEXHW0fFgSUBnR7N0IM9CWQjL5CHjxlr172Z9u94E9E2r6bh4qsZgOpuQZe+jn8E0BEd8TSghx78l/5BRFhw3iyMPrQm2KX3+74DRbmxNvLjAMeaKQLfXGsMjWtB86f7WjEa1fQu0PHra0wHDOQJ7H0tqaW7pEjtbN1kAlB8duzD2inmnlASpqaarY1yRjA/yP/QDbY2/GN5OeCQCRJ4Xu7QjTRh+GkSe+jigxsLIhC1WtwHaiRYbUM3rrO1TXYoLiauum4IOzj+qUqvlBSqk6tqpTPKYsE+bsGO3MvcVBWqhCkK2uWrDUrD0zVjkriDHQNeZn0YWR2rM7mIF2wv+joDOHIAVVTJXvvoxJzZr+QhP5b1I1FS4CRDc13fUVIklDhiBARpzortYBzibvhSynPXZztKg/c1lZi9XdlJRhhXVlxFFF6vzzA9BkrycVqEcPCVOiXACttANWlvNd5RCktme6VGuqgdJXnoI0fgigZFJVjS3Fb7AqmkXX2FBLif13eZmMyRQ3mt/amkbMR4ZCizRxce9nnaiM=
+  app: booking-app
+  on:
+    repo: quangLinh9038/booking-app
+    branch: feature-back
+  skip_cleanup: 'true'
