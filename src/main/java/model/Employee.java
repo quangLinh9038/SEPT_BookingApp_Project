@@ -17,6 +17,12 @@ public class Employee extends User {
     @Column
     private String schedule;
 
+    @Column
+    private String experience;
+
+    @Column
+    private String skills;
+
     @ManyToOne
     @JsonIgnore
     private Business business;
@@ -38,8 +44,6 @@ public class Employee extends User {
     public Employee() {
     }
 
-
-
     public String getName() {
         return name;
     }
@@ -54,6 +58,22 @@ public class Employee extends User {
 
     public void setSchedule(String schedule) {
         this.schedule = schedule;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
     }
 
     public Business getBusiness() {
@@ -93,6 +113,8 @@ public class Employee extends User {
         return "Employee{" +
                 ", name='" + name + '\'' +
                 ", schedule='" + schedule + '\'' +
+                ", experience='" + experience + '\'' +
+                ", skills='" + skills + '\'' +
                 ", business=" + business +
                 ", admin=" + admin +
                 ", bookings=" + bookings +
