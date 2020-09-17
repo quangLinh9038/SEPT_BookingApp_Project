@@ -23,12 +23,6 @@ import java.util.Properties;
 @ComponentScan({"controller", "service"})
 public class AppConfig extends WebMvcConfigurerAdapter {
 
-    @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**")
-                .addResourceLocations("/WEB-INF/classes/static/");
-    }
-
     @Bean
     public LocalSessionFactoryBean sessionFactory(){
 
@@ -47,9 +41,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         sessionFactoryBean.setPackagesToScan("model");
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/cuong");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/hello");
         dataSource.setUsername("postgres");
-        dataSource.setPassword("1234");
+        dataSource.setPassword("rm!t2412rhum");
 
         sessionFactoryBean.setDataSource(dataSource);
         sessionFactoryBean.setHibernateProperties(properties);

@@ -1,7 +1,10 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
+
+
 
 /**
  * Created by CoT on 7/29/18.
@@ -10,34 +13,19 @@ import java.net.URL;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-//        context.register(AppConfig.class);
-//
-//        context.refresh();
-//
-//        StudentService studentService = context.getBean(StudentService.class);
-//
-//        System.out.println(studentService.findStudents("Student"));
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        context.setConfigLocation("config");
 
+        Server server = new Server(8080);
 
+        ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        contextHandler.setErrorHandler(null);
+        contextHandler.addServlet(new ServletHolder(new DispatcherServlet(context)), "/");
 
-            URL url = new URL("http://localhost:8080/students");
+        server.setHandler(contextHandler);
 
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            String line = "";
-
-            StringBuilder stringBuilder = new StringBuilder();
-
-            while ((line = bufferedReader.readLine()) != null) {
-                System.out.println("line"+line);
-                stringBuilder.append(line);
-            }
-
-            String s = stringBuilder.toString();
-
-            System.out.println(s);
+        server.start();
+        server.join();
 
 
 
