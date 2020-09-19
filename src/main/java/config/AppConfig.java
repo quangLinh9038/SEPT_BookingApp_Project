@@ -47,9 +47,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         sessionFactoryBean.setPackagesToScan("model");
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/cuong");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/group7");
         dataSource.setUsername("postgres");
-        dataSource.setPassword("1234");
+        dataSource.setPassword("conmeobeo3007");
 
         sessionFactoryBean.setDataSource(dataSource);
         sessionFactoryBean.setHibernateProperties(properties);
