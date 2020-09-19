@@ -23,12 +23,6 @@ import java.util.Properties;
 @ComponentScan({"controller", "service"})
 public class AppConfig extends WebMvcConfigurerAdapter {
 
-    @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**")
-                .addResourceLocations("/WEB-INF/classes/static/");
-    }
-
     @Bean
     public LocalSessionFactoryBean sessionFactory(){
 
@@ -38,7 +32,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         //For mysql
         //properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.put("hibernate.show_sql", true);
-        properties.put("hibernate.hbm2ddl.auto", "create-drop");
+        properties.put("hibernate.hbm2ddl.auto", "update");
 
 
 
@@ -47,9 +41,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         sessionFactoryBean.setPackagesToScan("model");
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/group7");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("conmeobeo3007");
+        dataSource.setUrl("jdbc:postgresql://ec2-54-172-173-58.compute-1.amazonaws.com:5432/d8j5q9m21fb2do");
+        dataSource.setUsername("roagttfthbiahv");
+        dataSource.setPassword("381e05d180d618f42e43e85332aefad5652fa547334c37966ab2f999f0183ec1");
+
 
         sessionFactoryBean.setDataSource(dataSource);
         sessionFactoryBean.setHibernateProperties(properties);

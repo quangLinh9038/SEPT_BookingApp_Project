@@ -82,9 +82,9 @@ public class AdminController {
     }
 
     //get admin by name path
-    @RequestMapping(path = "admin/{name}", method = RequestMethod.GET)
-    public void findAdmin(@PathVariable String name) {
-        adminService.findAdminByName(name);
+    @RequestMapping(path = "admin/{id}", method = RequestMethod.GET)
+    public void findAdmin(@PathVariable int id) {
+        adminService.getAdminById(id);
     }
 
     //update path
