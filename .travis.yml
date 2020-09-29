@@ -8,7 +8,7 @@ os:
 deploy:
   provider: heroku
   api_key:
-    secure: VGb2R8ftNT6dHWusVJUYIDdwBoJwgZdYGEuwkJoVIzGjhVP5FXWH65318+4kSu866YYsklAbt7KOzBc2tHRHk0mLufMU4eEP9lKIKFJiH4ukeqYj+s/mVBaiPi2nBdjb4fKs92pOqS8zlwT7AV5oEMt40m8oVLh9De6syZDiJImwe6GKUUoqEv5PMUU+MWCnDulneA2BTCSFSMdBS+ny0lPjgw6EbfRSzGK8+OzaL3azGhRqiG/zfcz4AExNZ1LWtGADhZLNbQY+GYIJyMlE7v2WNB/obhWeLFoMfWun3geveeL2pM2VInulueb9VnZNYi3BQ6sfWJh9aXRFaRxS3faKy2iRbNIwROcY4fDRQloCV/fsvOs8bBfBTExM3PTVb+mhuHa/1BvakrhqxcB/7uYJUxy0C7QsqcZ2AXh/KHO00p2ZuFGJfE8PeNo/c5QKFMrfBeWTseFEmx6ksDvE3bR7/8DcPgzOQG+f1CQoDQXISl17CX79Q1aHaImyh26mNnjle1Bh5Qe/9eAbULLCechycd+AqlLbEJP+/s3Zr24CDeOtsAeZgYZHVCSag10e5qDtXYDKyppASnLFW1gG6daKEmb4TXbb4FcLvU2YXPcSDU4P6mEEY0+dg8+3pSYjeGKPrO7m+UUdC1QU1rwsqr7i9fE5arcfMLMgzhUrRuE=
+    secure: aa0ccff1-b80f-40a8-95e9-d74b14ae781b
   app: bookingapp-2
   on:
     repo: quangLinh9038/booking-app
