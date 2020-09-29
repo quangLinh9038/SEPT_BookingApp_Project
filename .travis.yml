@@ -15,6 +15,6 @@ deploy:
     secure: $HEROKU_API_KEY
   app: booking-app
   on:
-    repo: quangLinh9038/booking-app
+    repo: quangLinh9038/group7-booking-app
     branch: feature-back
   skip_cleanup: 'true'
