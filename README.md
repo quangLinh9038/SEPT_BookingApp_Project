@@ -65,7 +65,8 @@ The project run on local server; therefore it is neccessary to follow some steps
 - Three version up to now with following tags:
   - v1.1
   - v1.1
-  - v2.0 (the latest)
+  - v2.0 
+  - v3.0
 ## Credits
 
 - Group 7: 

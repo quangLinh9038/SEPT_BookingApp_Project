@@ -45,6 +45,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         dataSource.setUsername("roagttfthbiahv");
         dataSource.setPassword("381e05d180d618f42e43e85332aefad5652fa547334c37966ab2f999f0183ec1");
 
+
         sessionFactoryBean.setDataSource(dataSource);
         sessionFactoryBean.setHibernateProperties(properties);
 
