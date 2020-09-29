@@ -1,6 +1,7 @@
 
 ##Appointment Booking System
 ================
+
 This project is built based on instructions from Software Engineering: Process & Tools course in order to develop a online appointment booking can be used for multiple businesses. It contains a fullstack web application with appropriate technologies, processes and tools. 
 <img src="https://xbsoftware.com/wp-content/uploads/2019/12/online-appointment-scheduling-system-for-salons-main-update.png">
 ## Features 
@@ -65,7 +66,9 @@ The project run on local server; therefore it is neccessary to follow some steps
 - Three version up to now with following tags:
   - v1.1
   - v1.1
-  - v2.0 (the latest)
+  - v2.0 
+  - v3.0
+  
 ## Credits
 
 - Group 7: 
