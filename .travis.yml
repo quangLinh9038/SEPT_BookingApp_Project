@@ -1,12 +1,10 @@
 language: java
 jdk:
-- openjdk10
+- openjdk8
+
 os:
 - linux
-- osx
-dist:
-- precise
-- trusty
+
 deploy:
   provider: heroku
   api_key:
