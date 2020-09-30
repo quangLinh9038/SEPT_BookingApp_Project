@@ -68,11 +68,11 @@ The project run on local server; therefore it is neccessary to follow some steps
   - v1.1
   - v2.0 
   - v3.0
-  
+
 ## Credits
 
 - Group 7: 
-  - Nguyen Quang Linh3007
+  - Nguyen Quang Linh
   - Nguyen Thanh Dat
   - Doan Son Lam
   - Mai Viet Cuong
