@@ -67,7 +67,8 @@ The project run on local server; therefore it is neccessary to follow some steps
   - v1.1
   - v1.1
   - v2.0 
-  - v3.0 (lastet)
+  - v3.0 (the lastest)
+
 
 ## Credits
 
