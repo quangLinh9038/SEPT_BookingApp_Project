@@ -72,7 +72,7 @@ The project run on local server; therefore it is neccessary to follow some steps
 ## Credits
 
 - Group 7: 
-  - Nguyen Quang Linh
+  - Nguyen Quang Linh 3007
   - Nguyen Thanh Dat
   - Doan Son Lam
   - Mai Viet Cuong
